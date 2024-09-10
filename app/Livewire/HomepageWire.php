@@ -6,16 +6,41 @@ use Livewire\Component;
 
 class HomepageWire extends Component
 {
-    public $toggler = true;
 
-    public $current_name = "Habib";
+    public $theme_mode = 'light';
 
-    public function nameChanger(){
+    public function mount()
+    {
+        if(!session('theme_mode')) {
 
-        $this->toggler = !$this->toggler;
-        
-        $this->toggler ? $this->current_name = "Habib" : $this->current_name = "Not Habib";
+            $this->theme_mode = 'light';
 
+            session(['theme_mode' => $this->theme_mode]);
+
+        }else{
+
+            $this->theme_mode = session('theme_mode');
+
+        }
+    }
+
+
+
+    public function changeThemeMode(){
+
+        if($this->theme_mode == 'light'){
+
+            $this->theme_mode = 'dark';
+
+            session(['theme_mode' => $this->theme_mode]);
+
+        }else{
+
+            $this->theme_mode = 'light';
+
+            session(['theme_mode' => $this->theme_mode]);
+            
+        }
     }
 
     public function render()

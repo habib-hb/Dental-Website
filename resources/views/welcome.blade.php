@@ -6,15 +6,13 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
 
         @vite('resources/css/app.css')
         @livewireStyles
     </head>
 
-    <body class=" bg-[#EFF9FF]">
+    <body class="{{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#070707]'}}">
 
 
         <livewire:homepage_wire/>
