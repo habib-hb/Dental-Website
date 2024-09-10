@@ -14,10 +14,12 @@
         @livewireStyles
     </head>
 
+    <body class=" bg-[#EFF9FF]">
 
 
         <livewire:homepage_wire/>
 
         @livewireScripts
+    </body>
 
 </html>

@@ -1,4 +1,4 @@
-<body class=" bg-[#EFF9FF]">
+
 
     <div>
 
@@ -6,16 +6,44 @@
 
             <img  src="{{asset('images/the_logo.png')}}" class="ml-2 h-[64px] max-w-[45vw]" alt="">
 
-            <div class="relative">
+            <div id="input_div" class="relative">
 
-                <img src="{{asset('images/search_light_mode.png')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%]" alt="">
-                <input type="text" class="mr-2 h-[36px] w-[50vw] rounded-lg bg-[#EFF9FF]  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+                <img id='search_icon' src="{{asset('images/search.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1" alt="">
+
+                <span id='search_text' class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 ">Search</span>
+
+                <input id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] rounded-lg bg-[#EFF9FF]  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
 
             </div>
 
         </nav>
 
-    </div>
 
 
-</body>
+
+
+    {{-- JavaScript --}}
+    <script>
+
+        document.getElementById('input_div').addEventListener('click', () => {
+            document.getElementById('search_input').focus();
+        })
+
+        document.getElementById('search_input').addEventListener('focus', () => {
+
+            document.getElementById('search_icon').classList.add('hidden');
+            document.getElementById('search_text').classList.add('hidden');
+
+         })
+
+         document.getElementById('search_input').addEventListener('blur', () => {
+
+         })
+
+
+    </script>
+
+</div>
+
+
+
