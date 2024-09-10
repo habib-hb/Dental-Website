@@ -13,11 +13,11 @@
         @vite('resources/css/app.css')
         @livewireStyles
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+
 
 
         <livewire:homepage_wire/>
 
         @livewireScripts
-    </body>
+
 </html>
