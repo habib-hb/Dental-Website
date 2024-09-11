@@ -12,7 +12,7 @@
 
                 <span id='search_text' class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]'}}">Search</span>
 
-                <input id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] rounded-lg {{$theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4">
+                <input id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] rounded-lg {{$theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus:outline-none">
 
             </div>
 
@@ -26,11 +26,30 @@
 
                 </div> --}}
 
-        <div wire:click="changeThemeMode" class="flex justify-center">
+        <div wire:click="changeThemeMode" class="flex justify-center mt-6">
 
-            <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] mt-4 {{$theme_mode == 'light' ? '' : 'hidden'}}">
+            <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{$theme_mode == 'light' ? '' : 'hidden'}}">
 
-            <img src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] mt-4 {{$theme_mode == 'light' ? 'hidden' : ''}}">
+            <img src="{{asset('images/dark_mode_toggler.png')}}" class="h-[44px] {{$theme_mode == 'light' ? 'hidden' : ''}}">
+
+        </div>
+
+
+
+        <div class="flex justify-center mt-6">
+
+            <button class="h-[55px] w-[209px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Consult Now</button>
+
+        </div>
+
+
+        <div class="flex flex-col justify-center mt-6">
+
+            <h1 class="text-3xl text-center font-semibold  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Our Dental Services</h1>
+
+            <p class="text-sm   text-center px-4 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">We use only the best quality materials on the market in order to provide the best products to our patients, So don’t worry about anything and book yourself.</p>
+
+            <p class="text-lg font-medium text-center mt-4 px-4 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Click On “Select” To Get The Estimated Fee and Appointment. If You Want To Know More About, Click On The “Details” Button.</p>
 
         </div>
 
@@ -75,28 +94,20 @@
 
 
 
-            //  Testing
+
 
             document.addEventListener('livewire:init', () => {
 
                 Livewire.on('alert-manager', () => {
 
-                    alert('Inside the manager');
 
                     if(document.getElementById('search_input').value !== ''){
-                        alert('Inside the if Statement');
 
-
-                            console.log(document.getElementById('search_icon'));
-                            console.log(document.getElementById('search_text'));
-
-                            document.getElementById('search_icon').style.setProperty('display', 'none', 'important');
-                            document.getElementById('search_text').style.setProperty('display', 'none', 'important');
-
-
-                                // document.getElementById('search_icon').style.display = 'none';
-
-                                // document.getElementById('search_text').style.display = 'none';
+                        // Doing 100ms delay cause the DOM is not loaded yet.
+                        setTimeout(() => {
+                            document.getElementById('search_icon').style.display = 'none';
+                            document.getElementById('search_text').style.display = 'none';
+                        }, 10);
 
                     }
 
@@ -107,8 +118,6 @@
 
                 })
 
-
-            // End Testing
 
 
 
