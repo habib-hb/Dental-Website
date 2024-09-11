@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class HomepageWire extends Component
 {
 
-    public $theme_mode = 'light';
+    public $theme_mode;
+
 
     public function mount()
     {
@@ -25,7 +27,7 @@ class HomepageWire extends Component
     }
 
 
-
+    // #[On('theme-change')]
     public function changeThemeMode(){
 
         if($this->theme_mode == 'light'){
@@ -39,8 +41,11 @@ class HomepageWire extends Component
             $this->theme_mode = 'light';
 
             session(['theme_mode' => $this->theme_mode]);
-            
+
         }
+
+        $this->dispatch('alert-manager');
+
     }
 
     public function render()

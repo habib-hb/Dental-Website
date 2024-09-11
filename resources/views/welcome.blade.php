@@ -11,8 +11,8 @@
         @vite('resources/css/app.css')
         @livewireStyles
     </head>
+    <body>
 
-    <body class="{{ session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#070707]'}}">
 
 
         <livewire:homepage_wire/>
