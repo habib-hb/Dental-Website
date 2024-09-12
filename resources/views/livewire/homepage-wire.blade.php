@@ -1,10 +1,14 @@
 
 
-    <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} ">
+    <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}">
 
         <nav class="flex justify-between items-center h-[82px] w-[96vw] mx-auto mt-2 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
+            <div class=" flex justify-start md:w-[20vw]">
+
             <img  src="{{$theme_mode == 'light' ? asset('images/the_logo_light_mode.png') : asset('images/the_logo_dark_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw]" alt="">
+
+            </div>
 
             <div id="input_div" class="relative">
 
@@ -12,9 +16,19 @@
 
                 <span id='search_text' class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]'}}">Search</span>
 
-                <input id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] rounded-lg {{$theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus:outline-none">
+                <input id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{$theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus:outline-none">
+
+
 
             </div>
+
+            <div class=" flex justify-end md:w-[20vw]">
+
+            <button class="hidden md:block mr-2 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Consult Now</button>
+
+            </div>
+
+
 
         </nav>
 
@@ -36,7 +50,7 @@
 
 
 
-        <div class="flex justify-center mt-6">
+        <div class="flex justify-center mt-6 md:hidden">
 
             <button class="h-[55px] w-[209px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Consult Now</button>
 
@@ -62,7 +76,7 @@
             {{-- Root Canal Treatment --}}
             <div class="flex flex-col w-[96vw] h-full {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  rounded-lg  items-center">
 
-                <div class="{{$theme_mode == 'light' ? 'bg-[#358ce2]' : ''}}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
+                <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
                 <img src="{{asset('images/root_canal_treatment.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
                  </div>
 
@@ -84,7 +98,7 @@
             {{-- Cosmetic Dentistry --}}
             <div class="flex flex-col w-[96vw] h-full  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center">
 
-                <div class="{{$theme_mode == 'light' ? 'bg-[#358ce2]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{asset('images/cosmetic_dentist.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
                     </div>
 
@@ -107,7 +121,7 @@
             <div class="flex flex-col w-[96vw] h-full  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center">
 
 
-                <div class="{{$theme_mode == 'light' ? 'bg-[#358ce2]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{asset('images/dental_implant.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
                     </div>
 
@@ -130,7 +144,7 @@
             <div class="flex flex-col w-[96vw] h-full  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center">
 
 
-                <div class="{{$theme_mode == 'light' ? 'bg-[#358ce2]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{asset('images/teeth_whitening.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
                     </div>
 
@@ -152,7 +166,7 @@
             <div class="flex flex-col w-[96vw] h-full  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center">
 
 
-                <div class="{{$theme_mode == 'light' ? 'bg-[#358ce2]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{asset('images/emergency_dentistry.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
                     </div>
 
@@ -174,7 +188,7 @@
             <div class="flex flex-col w-[96vw] h-full  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center">
 
 
-                <div class="{{$theme_mode == 'light' ? 'bg-[#358ce2]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
+                <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{asset('images/prevention.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
                     </div>
 
@@ -192,7 +206,30 @@
 
 
 
+        {{-- Consult Now Button --}}
+        <button class="mt-8 px-8 py-2 rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Consult Now</button>
+
+
+
+        {{-- Footer Element --}}
+        <div class="flex flex-col justify-between items-center py-8 w-[96vw] mx-auto mt-8 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
+
+
+            <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px]" alt="">
+
+            <p class=" text-center {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">All Rights Reserved @2024</p>
+
+            <p class=" text-center {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
+
         </div>
+
+
+
+
+        </div>
+
+
+
 
 
 
