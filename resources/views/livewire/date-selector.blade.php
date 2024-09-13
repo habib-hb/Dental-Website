@@ -9,7 +9,8 @@
             <span>{{ $date['day'] }} - </span>
             <span>{{ $date['month'] }} - </span>
             <span>{{ $date['year'] }} - </span>
-            <span>{{ $date['month_name'] }}</span>
+            <span>{{ $date['month_name'] }} - </span>
+            <span>{{ $date['identifier'] }}</span>
         </p>
 
     @endforeach

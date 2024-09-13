@@ -37,6 +37,7 @@ class DateSelector extends Component
                     'month' => $today->format('m'),
                     'year' => $today->format('Y'),
                     'month_name' => $today->format('F'),
+                    'identifier' => $today->format('Y-m-d'),
                 ];
 
                 $datesArray[] = $dateInfo;
