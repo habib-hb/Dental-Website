@@ -2,7 +2,7 @@
 
     <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}">
 
-        <nav class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+        <nav class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 md:mt-8 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
             <div class=" flex justify-start md:w-[20vw]">
 
@@ -40,7 +40,7 @@
 
                 </div> --}}
 
-        <div wire:click="changeThemeMode" class="flex justify-center mt-6">
+        <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6">
 
             <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{$theme_mode == 'light' ? '' : 'hidden'}}">
 
@@ -74,7 +74,7 @@
 
 
             {{-- Root Canal Treatment --}}
-            <div class="flex flex-col w-[96vw] md:max-w-[30%] h-full md:h-[300px] hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw] md:max-w-[30%] h-full md:h-[300px] md:hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
                 <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
                 <img src="{{asset('images/root_canal_treatment.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
@@ -96,7 +96,7 @@
 
 
             {{-- Cosmetic Dentistry --}}
-            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] md:hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
                 <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
                 <img src="{{asset('images/cosmetic_dentist.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{$theme_mode == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
@@ -118,7 +118,7 @@
 
 
             {{-- Dental Implants--}}
-            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] md:hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
@@ -141,7 +141,7 @@
 
 
             {{-- Teeth Whitening--}}
-            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] md:hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
@@ -163,7 +163,7 @@
 
 
             {{-- Emergency Dentistry --}}
-            <div class="flex flex-col w-[96vw]  md:max-w-[30%] h-full md:h-[300px] hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw]  md:max-w-[30%] h-full md:h-[300px] md:hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
@@ -185,7 +185,7 @@
 
 
             {{-- Prevention --}}
-            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div class="flex flex-col w-[96vw] md:max-w-[30%]  h-full md:h-[300px] md:hover:scale-105 transition-all  {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg  items-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
 
                 <div class="{{$theme_mode == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg  border-1  bg-[#EFF9FF] ">
@@ -217,7 +217,7 @@
 
 
           {{-- Footer Element --}}
-          <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-4">
+          <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-4 md:mb-8">
 
 
               <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px]" alt="">
