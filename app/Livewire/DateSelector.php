@@ -10,9 +10,31 @@ class DateSelector extends Component
 
     public $datesArray;
     public $timesArray;
+    public $parameter;
+    public $theme_mode;
 
 
-    public function mount(){
+    public function mount($parameter = null){
+
+
+            // Theme Mode Stuff
+            
+            if(!session('theme_mode')) {
+
+                $this->theme_mode = 'light';
+
+                session(['theme_mode' => $this->theme_mode]);
+
+            }else{
+
+                $this->theme_mode = session('theme_mode');
+
+            }
+
+            //End Theme Mode Stuff
+
+
+            $this->parameter = $parameter;
 
 
             $timesArray = [];

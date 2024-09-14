@@ -9,6 +9,6 @@ Route::get('/', function () {
 
 
 
-Route::get('/selector', function () {
-    return view('date_selector');
+Route::get('/services/root_canal_treatment', function () {
+    return view('services.root_canal_treatment');
 });
