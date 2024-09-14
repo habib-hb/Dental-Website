@@ -9,16 +9,21 @@ class DateSelector extends Component
 {
 
     public $datesArray;
+
     public $timesArray;
+
     public $parameter;
+
     public $theme_mode;
+
+    public $clicked_date;
 
 
     public function mount($parameter = null){
 
 
             // Theme Mode Stuff
-            
+
             if(!session('theme_mode')) {
 
                 $this->theme_mode = 'light';
@@ -53,9 +58,13 @@ class DateSelector extends Component
             $datesArray = [];
             $today = new DateTime();
 
-            for ($i = 0; $i < 10; $i++) {
+            while(true){
+
+                if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+
                 $dateInfo = [
                     'day' => $today->format('d'),
+                    'day_name_abbr' => strtoupper($today->format('D')),
                     'month' => $today->format('m'),
                     'year' => $today->format('Y'),
                     'month_name' => $today->format('F'),
@@ -64,11 +73,26 @@ class DateSelector extends Component
 
                 $datesArray[] = $dateInfo;
 
+            }
+
+                if(count($datesArray) === 10){
+
+                    break;
+
+                }
+
                 // Move to the next day
                 $today->modify('+1 day');
             }
 
             $this->datesArray = $datesArray;
+
+    }
+
+
+    public function selectedDate($date){
+
+        $this->clicked_date = $date;
 
     }
 
