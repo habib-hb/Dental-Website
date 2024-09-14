@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\available_schedules;
 use DateTime;
 use Livewire\Component;
 
@@ -14,9 +15,17 @@ class DateSelector extends Component
 
     public $parameter;
 
+    public $select_date_string;
+
     public $theme_mode;
 
     public $clicked_date;
+
+    public $clicked_time;
+
+    public $clicked_gender;
+
+
 
 
     public function mount($parameter = null){
@@ -42,7 +51,7 @@ class DateSelector extends Component
             $this->parameter = $parameter;
 
 
-            $timesArray = [];
+
 
             // Raff
             //
@@ -87,6 +96,27 @@ class DateSelector extends Component
 
             $this->datesArray = $datesArray;
 
+            $first_date_month_year = $datesArray[0]['month_name'] . " " . $datesArray[0]['year'];
+            $last_date_month_year = $datesArray[count($datesArray) - 1]['month_name'] . " " . $datesArray[count($datesArray) - 1]['year'];
+
+            if($first_date_month_year == $last_date_month_year){
+
+                $this->select_date_string = $first_date_month_year;
+
+            }else{
+
+                $this->select_date_string = $first_date_month_year . " - " . $last_date_month_year;
+            }
+
+
+
+            //Getting the available times from database
+            $times_data = available_schedules::where('type' , 'general')->get();
+            $times_array = json_decode($times_data[0]->schedules, true);
+
+            $this->timesArray = $times_array;
+
+
     }
 
 
@@ -94,6 +124,18 @@ class DateSelector extends Component
 
         $this->clicked_date = $date;
 
+    }
+
+    public function selectedTime($time){
+
+        $this->clicked_time = $time;
+
+    }
+
+    public function selectedGender($gender){
+
+        $this->clicked_gender = $gender;
+        
     }
 
 
