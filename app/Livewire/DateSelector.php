@@ -25,6 +25,13 @@ class DateSelector extends Component
 
     public $clicked_gender;
 
+    public $user_name;
+
+    public $user_age;
+
+    public $user_phone;
+
+    public $user_problem;
 
 
 
@@ -135,7 +142,60 @@ class DateSelector extends Component
     public function selectedGender($gender){
 
         $this->clicked_gender = $gender;
-        
+
+    }
+
+    public function bookAppointment(){
+
+        if($this->clicked_date && $this->clicked_time && $this->clicked_gender && $this->user_name && $this->user_age && $this->user_phone && $this->user_problem){
+
+            session()->flash('message', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are '. $this->clicked_gender . '. Your described problem is "' . $this->user_problem . '". You will be contacted at ' . $this->user_phone . ' number on ' . $this->clicked_date . ' at 30 minutes before your appointment scheduled for ' . $this->clicked_time);
+
+        // dd([
+        //     'clicked_date' => $this->clicked_date,
+        //     'clicked_time' => $this->clicked_time,
+        //     'clicked_gender' => $this->clicked_gender,
+        //     'user_name' => $this->user_name,
+        //     'user_age' => $this->user_age,
+        //     'user_phone' => $this->user_phone,
+        //     'user_problem' => $this->user_problem,
+        // ]);
+        }elseif(!$this->clicked_date){
+
+            session()->flash('message', 'Please Select A Date');
+
+        }elseif(!$this->clicked_time){
+
+            session()->flash('message', 'Please Select A Time');
+
+        }elseif(!$this->user_name){
+
+            session()->flash('message', 'Please Enter Your Name');
+
+        }elseif(!$this->user_age){
+
+            session()->flash('message', 'Please Enter Your Age');
+
+        }elseif(!$this->clicked_gender){
+
+            session()->flash('message', 'Please Select Your Gender');
+
+        }elseif(!$this->user_phone){
+
+            session()->flash('message', 'Please Enter Your Phone');
+
+        }elseif(!$this->user_problem){
+
+            session()->flash('message', 'Please Enter Your Problem');
+
+        }
+
+    }
+
+    public function clearMessage(){
+
+        session()->flash('message', null);
+
     }
 
 

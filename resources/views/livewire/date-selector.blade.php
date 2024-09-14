@@ -19,12 +19,34 @@
 
     {{--End All The Looading Notifications --}}
 
+
+    {{-- All Flash Messages --}}
+
+
+        @if (session()->has('message'))
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit mx-auto w-[90%] bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-row justify-between items-center px-8">
+
+                    <p class="text-white text-left">{{ session('message') }}</p>
+
+                </div>
+
+                <button wire:click="clearMessage" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+        @endif
+
+    {{-- End All Flash Messages --}}
+
+
    <h2 class="text-2xl text-center mt-2 bg-[#1A579F] text-white w-2/3 mx-auto py-2 px-4 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">New Appointment</h2>
 
    <div class="flex flex-col justify-center items-center mt-2 p-2">
 
         <div class="flex flex-row justify-start w-[100%]">
-              <p class="text-xl">Select Date : {{$select_date_string}}</p>
+              <p class="text-lg">Please Select A Date : {{$select_date_string}}</p>
         </div>
 
 
@@ -54,7 +76,7 @@
         <div class="mt-8 {{$clicked_date == '' ? 'hidden' : ''}}">
 
 
-            <h2 class="text-2xl text-center my-2 ">Available Times</h2>
+            <h2 class="text-2xl text-center my-2 ">Please Select A Time</h2>
             <div>
 
                 @foreach ($timesArray as $time)
@@ -77,7 +99,7 @@
 
                 <label for="name" class="opacity-80">Full Name</label>
 
-                <input type="text" class="w-[96vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="name">
+                <input wire:model="user_name" type="text" class="w-[96vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="name">
 
              </div>
 
@@ -87,7 +109,7 @@
 
                 <label for="age" class="opacity-80">Age</label>
 
-                <input type="number"  class="w-[50vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                <input wire:model="user_age" type="number"  class="w-[50vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
 
              </div>
 
@@ -111,9 +133,9 @@
 
              <div class="flex flex-col mt-2">
 
-                <label for="age" class="opacity-80">Contact Number</label>
+                <label  for="age" class="opacity-80">Contact Number</label>
 
-                <input type="number"  class="w-[96vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                <input wire:model="user_phone" type="number"  class="w-[96vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
 
              </div>
 
@@ -122,18 +144,34 @@
 
                 <label for="name" class="opacity-80">Write Your Problem</label>
 
-                <textarea type="text" class="w-[96vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="name" rows="4" ></textarea>
+                <textarea wire:model="user_problem" type="text" class="w-[96vw] py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="name" rows="4" ></textarea>
 
              </div>
 
 
              {{-- Book Appointment Button --}}
-            <button class="mt-4 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Book Appointment</button>
+            <button wire:click="bookAppointment" class="mt-8 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all ">Book Appointment</button>
 
 
          </div>
 
 
+
+        {{-- Footer Element --}}
+        <div class="flex flex-col justify-between items-center py-8 w-[96vw] md:max-w-[1280px]  mx-auto mt-8 rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-4 md:mb-2">
+
+
+            <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px]" alt="">
+
+            <p class=" text-center {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">All Rights Reserved @2024</p>
+
+            <p class=" text-center {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
+
+        </div>
+
+
    </div>
+
+
 
 </div>
