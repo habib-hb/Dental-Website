@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class available_schedules extends Model
+class booked_appointments extends Model
 {
     use HasFactory;
 
-    protected $table = 'available_schedules';
-    protected $primaryKey = 'schedules_id';
+    protected $table = 'booked_appointments';
+
+    protected $primaryKey = 'booked_appointments_id';
 
     protected $fillable = [
-        'type',
-        'schedules',
+        'appointments',
+        'date'
     ];
 }

@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\available_schedules;
+use App\Models\booked_appointments;
+use App\Models\booked_patient_details;
 use DateTime;
 use Livewire\Component;
 
@@ -11,7 +13,9 @@ class DateSelector extends Component
 
     public $datesArray;
 
-    public $timesArray;
+    public $timesArray=[];
+
+    public $bookedTimesArray=[];
 
     public $parameter;
 
@@ -103,6 +107,8 @@ class DateSelector extends Component
 
             $this->datesArray = $datesArray;
 
+
+            // Setting the title Month and Year
             $first_date_month_year = $datesArray[0]['month_name'] . " " . $datesArray[0]['year'];
             $last_date_month_year = $datesArray[count($datesArray) - 1]['month_name'] . " " . $datesArray[count($datesArray) - 1]['year'];
 
@@ -131,6 +137,25 @@ class DateSelector extends Component
 
         $this->clicked_date = $date;
 
+        // Processing the available times
+        $the_booked_date= booked_appointments::where('date' , $this->clicked_date)->get();
+
+        if(count($the_booked_date) > 0){
+
+            $decoded_appointments = json_decode($the_booked_date[0]->appointments, true);
+
+            // Booked Time Excludced Array
+            $this->bookedTimesArray = $decoded_appointments;
+
+            if(count($this->bookedTimesArray) == count($this->timesArray)){
+                session()->flash('message', 'All times are booked. Please select another date.');
+            }
+        }else{
+
+            $this->bookedTimesArray = [];
+
+        }
+
     }
 
     public function selectedTime($time){
@@ -147,54 +172,112 @@ class DateSelector extends Component
 
     public function bookAppointment(){
 
+
         if($this->clicked_date && $this->clicked_time && $this->clicked_gender && $this->user_name && $this->user_age && $this->user_phone && $this->user_problem){
 
-            session()->flash('message', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are '. $this->clicked_gender . '. Your described problem is "' . $this->user_problem . '". You will be contacted at ' . $this->user_phone . ' number on ' . $this->clicked_date . ' at 30 minutes before your appointment scheduled for ' . $this->clicked_time);
+                // "booked_appointments" Table Management
+                $appointments_on_the_specific_date=booked_appointments::where('date' , $this->clicked_date)->get();
 
-        // dd([
-        //     'clicked_date' => $this->clicked_date,
-        //     'clicked_time' => $this->clicked_time,
-        //     'clicked_gender' => $this->clicked_gender,
-        //     'user_name' => $this->user_name,
-        //     'user_age' => $this->user_age,
-        //     'user_phone' => $this->user_phone,
-        //     'user_problem' => $this->user_problem,
-        // ]);
-        }elseif(!$this->clicked_date){
+                if(count($appointments_on_the_specific_date) > 0){
 
-            session()->flash('message', 'Please Select A Date');
+                    $decoded_appointments = json_decode($appointments_on_the_specific_date[0]->appointments, true);
 
-        }elseif(!$this->clicked_time){
+                    $updated_decoded_appointments = array_merge($decoded_appointments, [$this->clicked_time]);
+                    $updated_encoded_appointments = json_encode($updated_decoded_appointments);
+                    $appointments_on_the_specific_date[0]->update(['appointments' => $updated_encoded_appointments]);
 
-            session()->flash('message', 'Please Select A Time');
+                }else{
 
-        }elseif(!$this->user_name){
+                    $appointments_on_the_specific_date = new booked_appointments();
+                    $appointments_on_the_specific_date->date = $this->clicked_date;
+                    $appointments_on_the_specific_date->appointments = json_encode([$this->clicked_time]);
+                    $appointments_on_the_specific_date->save();
 
-            session()->flash('message', 'Please Enter Your Name');
+                }
 
-        }elseif(!$this->user_age){
 
-            session()->flash('message', 'Please Enter Your Age');
+                // "booked_patient_details" Table Management
+                $patient_details = new booked_patient_details();
+                $patient_details->name = $this->user_name;
+                $patient_details->age = $this->user_age;
+                $patient_details->gender = $this->clicked_gender;
+                $patient_details->contact_number = $this->user_phone;
+                $patient_details->written_problem = $this->user_problem;
+                $patient_details->appointment_date = $this->clicked_date;
+                $patient_details->appointment_time = $this->clicked_time;
+                $patient_details->save();
 
-        }elseif(!$this->clicked_gender){
+                // Flashing the session message
+                session()->flash('patient_details', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are '. $this->clicked_gender . '. Your described problem is "' . $this->user_problem . '". You will be contacted at ' . $this->user_phone . ' on ' . $this->clicked_date . ', 30 minutes before your appointment which is scheduled for ' . $this->clicked_time . '.');
 
-            session()->flash('message', 'Please Select Your Gender');
 
-        }elseif(!$this->user_phone){
+                    }elseif(!$this->clicked_date){
 
-            session()->flash('message', 'Please Enter Your Phone');
+                        session()->flash('message', 'Please Select A Date');
 
-        }elseif(!$this->user_problem){
+                    }elseif(!$this->clicked_time){
 
-            session()->flash('message', 'Please Enter Your Problem');
+                        session()->flash('message', 'Please Select A Time');
 
-        }
+                    }elseif(!$this->user_name){
+
+                        session()->flash('message', 'Please Enter Your Name');
+
+                    }elseif(!$this->user_age){
+
+                        session()->flash('message', 'Please Enter Your Age');
+
+                    }elseif(!$this->clicked_gender){
+
+                        session()->flash('message', 'Please Select Your Gender');
+
+                    }elseif(!$this->user_phone){
+
+                        session()->flash('message', 'Please Enter Your Phone');
+
+                    }elseif(!$this->user_problem){
+
+                        session()->flash('message', 'Please Enter Your Problem');
+
+                    }
 
     }
 
     public function clearMessage(){
 
         session()->flash('message', null);
+
+    }
+
+    public function clear_patient_details(){
+
+        session()->flash('patient_details', null);
+
+        // Clearing the livewire states
+        $this->clicked_date=null;
+
+        $this->clicked_time=null;
+
+        $this->clicked_gender=null;
+
+        $this->user_name=null;
+
+        $this->user_age=null;
+
+        $this->user_phone=null;
+
+        $this->user_problem=null;
+
+        $this->bookedTimesArray=[];
+
+        // Sending event to javascript for clearing the input fields
+        $this->dispatch('patient_details_submitted');
+
+    }
+
+    public function timeBookedAlert($time){
+
+        session()->flash('message', 'Scheduled for ' . $time . ' is already booked. Please select another time.');
 
     }
 
