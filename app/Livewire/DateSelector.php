@@ -6,6 +6,7 @@ use App\Models\available_schedules;
 use App\Models\booked_appointments;
 use App\Models\booked_patient_details;
 use DateTime;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class DateSelector extends Component
@@ -36,6 +37,8 @@ class DateSelector extends Component
     public $user_phone;
 
     public $user_problem;
+
+    public $total_estimated_amount=0;
 
 
 
@@ -281,9 +284,18 @@ class DateSelector extends Component
 
     }
 
+    #[On('total_estimated_amount')]
+    public function total_estimated_amount_function($total)
+    {
+
+        $this->total_estimated_amount = $total;
+
+    }
+
 
     public function render()
     {
+        $this->dispatch('estimated_price_load_consistency');
         return view('livewire.date-selector');
     }
 }
