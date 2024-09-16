@@ -175,7 +175,6 @@ class DateSelector extends Component
 
     public function bookAppointment(){
 
-
         if($this->clicked_date && $this->clicked_time && $this->clicked_gender && $this->user_name && $this->user_age && $this->user_phone && $this->user_problem){
 
                 // "booked_appointments" Table Management
