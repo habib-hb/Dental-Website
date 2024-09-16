@@ -113,11 +113,13 @@
             <!-- Treatment Complexity -->
             <div class="my-2">
             <label class=" text-lg mb-2">Treatment Complexity</label>
+
             <select id="complexity" class="w-full py-2 bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
                 <option value="500">Simple - 500</option>
                 <option value="800">Moderate - 800</option>
                 <option value="1200">Complex - 1200</option>
             </select>
+
             </div>
 
 
@@ -290,11 +292,9 @@
 
                     @else
 
-                        <p  wire:click="selectedTime('{{$time}}')" class="text-center p-2 {{$clicked_time == $time ? 'bg-[#1A579F] text-white' : 'bg-[#deeaf8] text-[#484d5f]'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{$time}}</p>
-
+                        <p wire:click="selectedTime('{{$time}}')" class="text-center p-2 {{$clicked_time == $time ? 'bg-[#1A579F] text-white' : 'bg-[#deeaf8] text-[#484d5f]'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">{{$time}}</p>
 
                     @endif
-
 
                 @endforeach
 
@@ -429,9 +429,7 @@
             document.getElementById('phone').value = null;
             document.getElementById('problem').value = null;
 
-            calculateTotal();
-
-
+            window.location.reload();
 
         })
 
@@ -484,7 +482,7 @@
 
     // Function to calculate total price
     function calculateTotal() {
-            alert('working')
+
             // Base price from complexity
             let total = parseInt(complexitySelect.value);
 
