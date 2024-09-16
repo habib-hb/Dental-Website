@@ -522,13 +522,13 @@
     // Update total amount
     totalAmountSpan.textContent = total;
 
-     // Sending Data To backend
-     setTimeout(() => {
-                Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
-            }, 1000);
-     clearTimeout();
+        //  // Sending Data To backend
+        //  setTimeout(() => {
+        //             Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
+        //         }, 1000);
+        //  clearTimeout();
 
-    // document.getElementById('estimated_price').value = total;
+        // document.getElementById('estimated_price').value = total;
 
 
 
