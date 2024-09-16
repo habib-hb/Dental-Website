@@ -38,7 +38,7 @@ class DateSelector extends Component
 
     public $user_problem;
 
-    public $total_estimated_amount=0;
+    public $total_estimated_amount;
 
 
 

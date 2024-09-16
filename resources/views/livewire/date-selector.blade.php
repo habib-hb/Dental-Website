@@ -11,7 +11,7 @@
 
                 <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
 
-                <span class=" text-white py-2 rounded-lg"> Processing Date...</span>
+                <span class=" text-white py-2 rounded-lg"> Processing Date... {{$total_estimated_amount}}</span>
 
              </div>
         </div>
@@ -94,18 +94,18 @@
 
 
         {{-- ********* Price Estimator ********** --}}
+        <input id="estimated_price" type="hidden" >
         <div class="relative">
 
 
-
-
             <h2 class="text-2xl text-center  text-[#1A579F] w-[90vw] mx-auto py-2 px-4 rounded-lg mt-2">Root Canal Treatment Price Estimator</h2>
-
+                {{$total_estimated_amount}}
                 <!-- Total Amount -->
                 <div class="flex flex-col sticky top-2  justify-between items-center py-2 w-[96vw] md:max-w-[1280px]  mx-auto rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
                     <p class="text-center px-4">Please complete the form below to receive an accurate price estimate.</p><hr class="w-[90%] mx-auto bg-black">
                     <p class="text-2xl">Total Estimated Amount</p>
-                    <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount">{{ $total_estimated_amount }}</p>
+                    <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount"></p>
+                    {{-- <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount">{{ $total_estimated_amount }}</p> --}}
                     </div>
 
 
@@ -309,6 +309,7 @@
         {{-- Patient Details Section --}}
         <div class="flex flex-col w-full  mt-8">
 
+
             <div class="flex flex-row justify-start w-[100%]">
                 <p class="text-xl">Patient Details</p>
             </div>
@@ -431,7 +432,12 @@
 
         Livewire.on('estimated_price_load_consistency', () => {
 
-            calculateTotal();
+            setTimeout(() => {
+
+                calculateTotal();
+
+            }, 10);
+
 
         })
 
@@ -514,10 +520,20 @@
     }
 
     // Update total amount
-    // totalAmountSpan.textContent = total;
+    totalAmountSpan.textContent = total;
 
-    // Sending Data To backend
-    Livewire.dispatch('total_estimated_amount', { total: total });
+        // Sending Data To backend
+        // setTimeout(() => {
+
+        //     Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
+
+        // }, 1000);
+
+        // clearTimeout();
+
+    document.getElementById('estimated_price').value = total;
+
+
 
     }
 
