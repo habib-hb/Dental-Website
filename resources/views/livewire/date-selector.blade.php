@@ -409,7 +409,11 @@
 
 
 
+   {{-- Testing --}}
 
+        <button id="test">Testing</button>
+
+   {{--End Testing --}}
 
 
 
@@ -424,6 +428,10 @@
             document.getElementById('age').value = null;
             document.getElementById('phone').value = null;
             document.getElementById('problem').value = null;
+
+            calculateTotal();
+
+
 
         })
 
@@ -560,8 +568,18 @@
 
     anesthesiaCheckbox.addEventListener('change', calculateTotal);
 
+
+    // Testing
+        document.getElementById('test').addEventListener('click', () => {
+            alert("Clicking")
+        })
+    // End Testing
+
+
     // Initial calculation
     calculateTotal();
+
+
 
 
     // ***End Price Estimation

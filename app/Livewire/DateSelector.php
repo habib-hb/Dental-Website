@@ -214,6 +214,8 @@ class DateSelector extends Component
                 session()->flash('patient_details', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are '. $this->clicked_gender . '. Your described problem is "' . $this->user_problem . '". You will be contacted at ' . $this->user_phone . ' on ' . $this->clicked_date . ', 30 minutes before your appointment which is scheduled for ' . $this->clicked_time . '.');
 
 
+
+
                     }elseif(!$this->clicked_date){
 
                         session()->flash('message', 'Please Select A Date');
