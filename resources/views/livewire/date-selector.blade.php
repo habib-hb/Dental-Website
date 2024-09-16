@@ -1,8 +1,5 @@
 <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} ">
 
-
-
-
     {{-- All The Looading Notifications --}}
 
         <!-- Show a loading spinner while Doing Date Processing -->
@@ -99,12 +96,12 @@
 
 
             <h2 class="text-2xl text-center  text-[#1A579F] w-[90vw] mx-auto py-2 px-4 rounded-lg mt-2">Root Canal Treatment Price Estimator</h2>
-                {{$total_estimated_amount}}
+
                 <!-- Total Amount -->
                 <div class="flex flex-col sticky top-2  justify-between items-center py-2 w-[96vw] md:max-w-[1280px]  mx-auto rounded-lg {{$theme_mode == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
                     <p class="text-center px-4">Please complete the form below to receive an accurate price estimate.</p><hr class="w-[90%] mx-auto bg-black">
                     <p class="text-2xl">Total Estimated Amount</p>
-                    <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount"></p>
+                    <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount">{{$total_estimated_amount}}</p>
                     {{-- <p class="font-bold text-4xl text-[#1A579F]" id="totalAmount">{{ $total_estimated_amount }}</p> --}}
                     </div>
 
@@ -434,7 +431,10 @@
 
             setTimeout(() => {
 
-                calculateTotal();
+                // calculateTotal();
+
+                totalAmountSpan.textContent = localStorage.getItem('total');
+
 
             }, 10);
 
@@ -476,59 +476,62 @@
 
     // Function to calculate total price
     function calculateTotal() {
-    // Base price from complexity
-    let total = parseInt(complexitySelect.value);
+            alert('working')
+            // Base price from complexity
+            let total = parseInt(complexitySelect.value);
 
-    if(affected_tooth_type_select.value){
-        total += parseInt(affected_tooth_type_select.value);
-    }
+            if(affected_tooth_type_select.value){
+                total += parseInt(affected_tooth_type_select.value);
+            }
 
-    if(number_of_canals_select.value){
-        total += parseInt(number_of_canals_select.value);
-    }
+            if(number_of_canals_select.value){
+                total += parseInt(number_of_canals_select.value);
+            }
 
-    if(location_of_tooth_select.value){
-        total += parseInt(location_of_tooth_select.value);
-    }
+            if(location_of_tooth_select.value){
+                total += parseInt(location_of_tooth_select.value);
+            }
 
-    if(anesthesia_type_select.value){
-        total += parseInt(anesthesia_type_select.value);
-    }
+            if(anesthesia_type_select.value){
+                total += parseInt(anesthesia_type_select.value);
+            }
 
-    if(additional_post_treatment_select.value){
-        total += parseInt(additional_post_treatment_select.value);
-    }
+            if(additional_post_treatment_select.value){
+                total += parseInt(additional_post_treatment_select.value);
+            }
 
-    if(emergency_treatment_select.value){
-        total += parseInt(emergency_treatment_select.value);
-    }
+            if(emergency_treatment_select.value){
+                total += parseInt(emergency_treatment_select.value);
+            }
 
-    // Multiply by number of sessions
-    // total *= parseInt(sessionsInput.value);
+            // Multiply by number of sessions
+            // total *= parseInt(sessionsInput.value);
 
-    // Add optional services
-    if (xrayCheckbox.checked) {
-        total += parseInt(xrayCheckbox.value);
-    }
+            // Add optional services
+            if (xrayCheckbox.checked) {
+                total += parseInt(xrayCheckbox.value);
+            }
 
-    if (cbctCheckbox.checked) {
-        total += parseInt(cbctCheckbox.value);
-    }
+            if (cbctCheckbox.checked) {
+                total += parseInt(cbctCheckbox.value);
+            }
 
-    if (anesthesiaCheckbox.checked) {
-        total += parseInt(anesthesiaCheckbox.value);
-    }
+            if (anesthesiaCheckbox.checked) {
+                total += parseInt(anesthesiaCheckbox.value);
+            }
 
-    // Update total amount
-    totalAmountSpan.textContent = total;
+            // Update total amount
+            totalAmountSpan.textContent = total;
 
-        //  // Sending Data To backend
-        //  setTimeout(() => {
-        //             Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
-        //         }, 1000);
-        //  clearTimeout();
+            localStorage.setItem('total', total);
 
-        // document.getElementById('estimated_price').value = total;
+                // Sending Data To backend
+                setTimeout(() => {
+                            Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
+                        }, 10);
+                clearTimeout();
+
+                //  document.getElementById('estimated_price').value = total;
 
 
 
@@ -559,7 +562,6 @@
 
     // Initial calculation
     calculateTotal();
-
 
 
     // ***End Price Estimation

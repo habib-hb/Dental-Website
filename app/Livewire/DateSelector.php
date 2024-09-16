@@ -207,6 +207,7 @@ class DateSelector extends Component
                 $patient_details->written_problem = $this->user_problem;
                 $patient_details->appointment_date = $this->clicked_date;
                 $patient_details->appointment_time = $this->clicked_time;
+                $patient_details->estimated_price = $this->total_estimated_amount;
                 $patient_details->save();
 
                 // Flashing the session message
@@ -283,6 +284,7 @@ class DateSelector extends Component
 
     }
 
+    // Receiving The Javascript Value From The Livewire Component
     #[On('total_estimated_amount')]
     public function total_estimated_amount_function($total)
     {
@@ -294,6 +296,7 @@ class DateSelector extends Component
 
     public function render()
     {
+        // Dispatching this to ensure a consistent state of the total amount string on the frontend
         $this->dispatch('estimated_price_load_consistency');
         return view('livewire.date-selector');
     }
