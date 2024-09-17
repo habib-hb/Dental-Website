@@ -10,7 +10,7 @@
 <body>
 
 
-    <livewire:date-selector parameter="Root Canal Treatment"/>
+    <livewire:root-canal-treatment-service parameter="Root Canal Treatment"/>
 
     @livewireScripts
 </body>
