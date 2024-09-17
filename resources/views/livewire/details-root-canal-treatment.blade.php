@@ -52,7 +52,7 @@
 
 
     {{-- The Headline Card --}}
-    <div class="flex flex-col w-[96%] mx-auto h-[228px] {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mt-4 rounded-lg items-center justify-center">
+    <div class="flex flex-col w-[96%] max-w-[800px] mx-auto h-[228px] {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mt-4 rounded-lg items-center justify-center">
 
         <div class="{{session('theme_mode') == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
             <img src="{{asset('images/root_canal_treatment.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{session('theme_mode') == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
@@ -76,7 +76,7 @@
 
 
     {{-- The Blog Text Section --}}
-    <div class="max-w-4xl mx-auto py-8 px-4">
+    <div class="max-w-[800px] mx-auto py-8 px-4">
         <h1 class="text-3xl font-bold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}  mb-6">Everything You Need to Know About Root Canal Treatment (Plus a Price Estimation Guide!)</h1>
 
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
@@ -161,7 +161,7 @@
 
 
     {{-- Consult Now Button --}}
-    <div class="flex flex-col w-[96%] mx-auto items-center justify-center mt-6 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg py-4">
+    <div class="flex flex-col w-[96%] max-w-[800px] mx-auto items-center justify-center mt-6 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} rounded-lg py-4">
 
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} px-4">If you are sure that you have this problem and want to receive our service, then please click on the "Select" button. But, if you are not exactly sure, then please click on the "Consult Now" button.</p>
 

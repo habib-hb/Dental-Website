@@ -85,9 +85,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Select</button>
+                    <button class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='http://127.0.0.1:8000/services/root_canal_treatment'">Select</button>
 
-                    <button class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Details</button>
+                    <button class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='http://127.0.0.1:8000/details/root_canal_treatment'">Details</button>
                 </div>
 
             </div>
