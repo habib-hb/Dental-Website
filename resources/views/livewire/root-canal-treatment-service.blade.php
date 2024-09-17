@@ -94,7 +94,7 @@
         <input id="estimated_price" type="hidden" >
         <div class="relative">
 
-            <div class="flex flex-row justify-between items-center mx-auto  md:max-w-[1280px]  md:px-8  py-2 px-4 mt-2 w-full">
+            <div class="flex flex-row justify-between items-center mx-auto  md:max-w-[800px]   py-2  mt-2 w-full">
 
                 <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="h-[48px] w-[48px] cursor-pointer hover:scale-105" onclick="window.history.back()" alt="">
 
@@ -264,7 +264,7 @@
 
 
         {{-- Dates Cards --}}
-        <div class="flex flex-row flex-wrap gap-2 justify-center w-[100%] md:max-w-[1280px] md:gap-4 mt-2">
+        <div class="flex flex-row flex-wrap gap-2 justify-center w-[100%] md:max-w-[800px] md:gap-4 mt-2">
 
 
             @foreach ($datesArray as $dates)
@@ -436,19 +436,20 @@
 
         })
 
-        Livewire.on('estimated_price_load_consistency', () => {
+        // Livewire.on('estimated_price_load_consistency', () => {
 
-            setTimeout(() => {
+        //     setTimeout(() => {
 
-                // calculateTotal();
+        //         // calculateTotal();
 
-                totalAmountSpan.textContent = localStorage.getItem('total');
-
-
-            }, 10);
+        //         // The below operation is required because when the component reloads, the javascript value disappears
+        //         // totalAmountSpan.textContent = localStorage.getItem('total');
 
 
-        })
+        //     }, 10);
+
+
+        // })
 
     })
 
