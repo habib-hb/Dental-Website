@@ -9,9 +9,9 @@ use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class TeethWhiteningService extends Component
+class EmergencyDentistryService extends Component
 {
-    public $service_name = "Teeth Whitening";
+    public $service_name = "Emergency Dentistry";
 
     public $datesArray;
 
@@ -288,7 +288,7 @@ class TeethWhiteningService extends Component
     }
 
     // Receiving The Javascript Value From The Livewire Component
-    #[On('total_estimated_amount_teeth_whitening_service')]
+    #[On('total_estimated_amount_emergency_dentistry')]
     public function total_estimated_amount_function($total)
     {
 
@@ -302,8 +302,7 @@ class TeethWhiteningService extends Component
         // Dispatching this to ensure a consistent state of the total amount string on the frontend
         // $this->dispatch('estimated_price_load_consistency_root_canal_treatment');
 
-        return view('livewire.teeth-whitening-service');
+        return view('livewire.emergency-dentistry-service');
 
     }
 }
-

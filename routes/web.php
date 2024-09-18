@@ -64,6 +64,17 @@ Route::get('/services/teeth_whitening', function () {
 
 
 
+Route::get('/services/emergency_dentistry', function () {
+    return view('services.emergency_dentistry');
+});
+
+
+
+
+
+
+
+
 
 
 Route::get('/details/root_canal_treatment', function () {

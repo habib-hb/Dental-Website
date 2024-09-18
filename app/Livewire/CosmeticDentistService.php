@@ -213,7 +213,7 @@ class CosmeticDentistService extends Component
                 $patient_details->save();
 
                 // Flashing the session message
-                session()->flash('patient_details', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are '. $this->clicked_gender . '. The medical service you have selected is "' . $this->service_name .  '". Your described problem is "' .  \Illuminate\Support\Str::limit($this->user_problem, 30, '...') . '". You will be contacted at ' . $this->user_phone . ' on ' . $this->clicked_date . ', 30 minutes before your appointment which is scheduled for ' . $this->clicked_time . '.');
+                session()->flash('patient_details', 'Appointment Booked Successfully. Your name is ' . $this->user_name . '. Your age is ' . $this->user_age . '. You are a '. $this->clicked_gender . '. The medical service you have selected is "' . $this->service_name .  '". Your described problem is "' .  \Illuminate\Support\Str::limit($this->user_problem, 30, '...') . '". You will be contacted at ' . $this->user_phone . ' on ' . $this->clicked_date . ', 30 minutes before your appointment which is scheduled for ' . $this->clicked_time . '.');
 
 
 

@@ -94,9 +94,9 @@
         <input id="estimated_price" type="hidden">
         <div class="relative">
 
-            <div class="flex flex-row justify-between items-center mx-auto md:max-w-[800px] py-2 mt-2 w-full">
+            <div class="flex flex-row justify-between items-center mx-auto  md:max-w-[800px] py-2  mt-2 w-full">
                 <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="h-[48px] w-[48px] cursor-pointer hover:scale-105" onclick="window.history.back()" alt="">
-                <h2 class="text-2xl text-center {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} ">Teeth Whitening Price Estimator</h2>
+                <h2 class="text-2xl text-center {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">Emergency Dentistry Price Estimator</h2>
                 <div class="w-[48px]"></div>
             </div>
 
@@ -109,85 +109,77 @@
 
             <div class="flex flex-col w-full md:max-w-[800px] md:px-8 mx-auto p-2 {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
-                <!-- Whitening Type -->
+                <!-- Urgency of Treatment -->
                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Whitening Type</label>
-                    <select id="whitening_type" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="300">In-office - $300</option>
-                        <option value="150">At-home Kits - $150</option>
-                        <option value="200">Combination (In-office + At-home) - $200</option>
+                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Urgency of Treatment</label>
+                    <select id="urgency_of_treatment" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
+                        <option value="300">Mild - $300</option>
+                        <option value="600">Moderate - $600</option>
+                        <option value="1000">Severe - $1000</option>
                     </select>
                 </div>
 
-                <!-- Number of Sessions -->
+                <!-- Number of Affected Teeth -->
                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Sessions</label>
-                    <select id="number_of_sessions" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="1">1 Session</option>
-                        <option value="2">2 Sessions</option>
-                        <option value="3">3 Sessions</option>
-                        <option value="4">4 Sessions</option>
+                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Affected Teeth</label>
+                    <select id="number_of_affected_teeth" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                        <option value="1">1 </option>
+                        <option value="2">2 </option>
+                        <option value="3">3 </option>
+                        <option value="4">4 </option>
+                        <option value="5">5 </option>
                     </select>
                 </div>
 
-                <!-- Sensitivity Treatment -->
+                <!-- Type of Pain -->
                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Tooth Sensitivity Treatment</label>
-                    <select id="sensitivity_treatment" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="0">No - Default</option>
-                        <option value="100">Yes - $100</option>
+                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Type of Pain</label>
+                    <select id="pain_type" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                        <option value="200">Sharp - $200</option>
+                        <option value="400">Dull - $400</option>
+                        <option value="600">Throbbing - $600</option>
                     </select>
                 </div>
 
-                <!-- Whitening Gel Type -->
+                <!-- Time Since Injury -->
                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Whitening Gel Type</label>
-                    <select id="gel_type" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="0">Standard Gel - Default</option>
-                        <option value="50">High Concentration Gel - $50</option>
+                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Time Since Injury</label>
+                    <select id="time_since_injury" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                        <option value="0">Within 24 Hours (Default)</option>
+                        <option value="300">24-48 Hours - $300</option>
+                        <option value="500">More than 48 Hours - $500</option>
                     </select>
                 </div>
 
-                <!-- Shade Preference -->
+                <!-- Treatment Location -->
                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Shade Preference</label>
-                    <select id="shade_preference" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="0">Natural White - Default</option>
-                        <option value="50">Extra Bright White - $50</option>
+                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Treatment Location</label>
+                    <select id="treatment_location" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                        <option value="0">Clinic (Default)</option>
+                        <option value="300">Mobile Unit - $300</option>
+                        <option value="500">At Home - $500</option>
                     </select>
                 </div>
-
-
-                 <!-- Priority Treatment -->
-                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Priority Treatment</label>
-                    <select id="priority_treatment" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="0">Standard - Default</option>
-                        <option value="150">Priority Treatment - $150</option>
-                    </select>
-                </div>
-
 
                 <!-- Additional Services -->
-                <div class="my-2">
+                <div class="mb-4">
                     <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Additional Services</label>
                     <div class="flex items-center">
-                        <input id="fluoride_treatment" type="checkbox" value="50" class="h-[20px] w-[20px] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2">
-                        <label for="fluoride_treatment" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Fluoride Treatment - $50</label>
+                        <input id="xray" type="checkbox" value="100" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
+                        <label for="xray" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">X-ray ($100)</label>
                     </div>
+
                     <div class="flex items-center mt-2">
-                        <input id="laser_whitening" type="checkbox" value="200" class="h-[20px] w-[20px] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2">
-                        <label for="laser_whitening" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Laser Whitening - $200</label>
+                        <input id="medication" type="checkbox" value="150" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
+                        <label for="medication" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Pain Medication ($150)</label>
                     </div>
+
                     <div class="flex items-center mt-2">
-                        <input id="post_whitening_care" type="checkbox" value="100" class="h-[20px] w-[20px] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2">
-                        <label for="post_whitening_care" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Post-whitening Care Kit - $100</label>
+                        <input id="followup" type="checkbox" value="200" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
+                        <label for="followup" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Follow-up Visit ($200)</label>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
 {{-- ********* End Price Estimator ********** --}}
 
@@ -408,73 +400,87 @@
 
     // ***Price Estimation
 
-    const whitening_typeSelect = document.getElementById('whitening_type');
+    const urgency_of_treatment_Select = document.getElementById('urgency_of_treatment');
 
-    const number_of_sessions_select = document.getElementById('number_of_sessions');
+    const number_of_affected_teeth_select = document.getElementById('number_of_affected_teeth');
 
-    const sensitivity_treatment_select = document.getElementById('sensitivity_treatment');
+    const pain_type_select = document.getElementById('pain_type');
 
-    const gel_type_select = document.getElementById('gel_type');
+    const number_of_canals_select = document.getElementById('number_of_canals');
 
-    const shade_preference_select = document.getElementById('shade_preference');
+    const location_of_tooth_select = document.getElementById('location_of_tooth');
 
-    const priority_treatment_select = document.getElementById('priority_treatment');
+    const anesthesia_type_select = document.getElementById('anesthesia_type');
 
+    const additional_post_treatment_select = document.getElementById('additional_post_treatment');
+
+    const emergency_treatment_select = document.getElementById('emergency_treatment');
+
+
+    const sessionsInput = document.getElementById('sessions');
 
 
     // Checkboxes
-    const fluoride_treatment_Checkbox = document.getElementById('fluoride_treatment');
+    const xrayCheckbox = document.getElementById('xray');
 
-    const laser_whitening_Checkbox = document.getElementById('laser_whitening');
+    const anesthesiaCheckbox = document.getElementById('anesthesia');
 
-    const post_whitening_care_Checkbox = document.getElementById('post_whitening_care');
+    const cbctCheckbox = document.getElementById('cbct');
 
     // Total Amount Element
     const totalAmountSpan = document.getElementById('totalAmount');
+
 
     // Function to calculate total price
     function calculateTotal() {
 
             // Base price from complexity
-            let total = parseInt(whitening_typeSelect.value);
+            let total = parseInt(urgency_of_treatment_Select.value);
 
-            if(sensitivity_treatment_select.value){
-              total += parseInt(sensitivity_treatment_select.value);
+            if(number_of_affected_teeth_select.value){
+              total = parseInt(number_of_affected_teeth_select.value) * parseInt(urgency_of_treatment_Select.value);
             }
 
-
-            if(gel_type_select.value){
-                total += parseInt(gel_type_select.value) ;
+            if(pain_type_select.value){
+                total += parseInt(pain_type_select.value) * parseInt(number_of_affected_teeth_select.value);
             }
 
-            if(shade_preference_select.value){
-                total += parseInt(shade_preference_select.value);
+            if(number_of_canals_select.value){
+                total += parseInt(number_of_canals_select.value) * parseInt(number_of_affected_teeth_select.value);
             }
 
-            if(priority_treatment_select.value){
-                total += parseInt(priority_treatment_select.value);
+            if(location_of_tooth_select.value){
+                total += parseInt(location_of_tooth_select.value)  * parseInt(number_of_affected_teeth_select.value);
             }
 
+            if(anesthesia_type_select.value){
+                total += parseInt(anesthesia_type_select.value);
+            }
+
+            if(additional_post_treatment_select.value){
+
+                total += parseInt(additional_post_treatment_select.value) * parseInt(number_of_affected_teeth_select.value);
+
+            }
+
+            if(emergency_treatment_select.value){
+                total += parseInt(emergency_treatment_select.value);
+            }
 
             // Multiply by number of sessions
             // total *= parseInt(sessionsInput.value);
 
             // Add optional services
-            if (fluoride_treatment_Checkbox.checked) {
-                total += parseInt(fluoride_treatment_Checkbox.value);
+            if (xrayCheckbox.checked) {
+                total += parseInt(xrayCheckbox.value);
             }
 
-
-            if (laser_whitening_Checkbox.checked) {
-                total += parseInt(laser_whitening_Checkbox.value);
+            if (cbctCheckbox.checked) {
+                total += parseInt(cbctCheckbox.value);
             }
 
-            if(number_of_sessions_select.value){
-                total = total * parseInt(number_of_sessions_select.value) ;
-            }
-
-            if (post_whitening_care_Checkbox.checked) {
-                total += parseInt(post_whitening_care_Checkbox.value);
+            if (anesthesiaCheckbox.checked) {
+                total += parseInt(anesthesiaCheckbox.value);
             }
 
             // Update total amount
@@ -485,7 +491,7 @@
                 // Sending Data To backend
                 setTimeout(() => {
 
-                            Livewire.dispatch('total_estimated_amount_teeth_whitening_service', { total: totalAmountSpan.textContent });
+                            Livewire.dispatch('total_estimated_amount_emergency_dentistry', { total: totalAmountSpan.textContent });
 
                         }, 10);
                 clearTimeout();
@@ -497,26 +503,29 @@
     }
 
     // Add event listeners to all inputs
-    whitening_typeSelect.addEventListener('change', calculateTotal);
+    urgency_of_treatment_Select.addEventListener('change', calculateTotal);
 
-    number_of_sessions_select.addEventListener('change', calculateTotal);
+    number_of_affected_teeth_select.addEventListener('change', calculateTotal);
 
-    sensitivity_treatment_select.addEventListener('change', calculateTotal);
+    number_of_affected_teeth_select.addEventListener('change', calculateTotal);
 
-    gel_type_select.addEventListener('change', calculateTotal);
+    number_of_canals_select.addEventListener('change', calculateTotal);
 
-    shade_preference_select.addEventListener('change', calculateTotal);
+    location_of_tooth_select.addEventListener('change', calculateTotal);
 
-    priority_treatment_select.addEventListener('change', calculateTotal);
+    anesthesia_type_select.addEventListener('change', calculateTotal);
 
+    additional_post_treatment_select.addEventListener('change', calculateTotal);
+
+    emergency_treatment_select.addEventListener('change', calculateTotal);
 
     // sessionsInput.addEventListener('input', calculateTotal);
 
-    fluoride_treatment_Checkbox.addEventListener('change', calculateTotal);
+    xrayCheckbox.addEventListener('change', calculateTotal);
 
-    post_whitening_care_Checkbox.addEventListener('change', calculateTotal);
+    cbctCheckbox.addEventListener('change', calculateTotal);
 
-    laser_whitening_Checkbox.addEventListener('change', calculateTotal);
+    anesthesiaCheckbox.addEventListener('change', calculateTotal);
 
 
 
