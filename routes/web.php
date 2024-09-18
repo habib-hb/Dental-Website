@@ -52,6 +52,18 @@ Route::get('/services/dental_implants', function () {
 
 
 
+Route::get('/services/teeth_whitening', function () {
+    return view('services.teeth_whitening');
+});
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/details/root_canal_treatment', function () {
