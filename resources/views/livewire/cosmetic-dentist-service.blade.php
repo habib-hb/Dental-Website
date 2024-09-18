@@ -113,7 +113,6 @@
             <div class="my-2">
                 <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Treatment Type</label>
                 <select id="treatment_type" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                    <option value="1000">Teeth Whitening - 1000</option>
                     <option value="2500">Veneers - 2500</option>
                     <option value="3000">Dental Bonding - 3000</option>
                     <option value="4000">Inlays & Onlays - 4000</option>
@@ -122,11 +121,14 @@
 
             <!-- Number of Teeth -->
             <div class="my-2">
-                <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Teeth (Applicable Except : Teeth Whitening)</label>
+                <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Teeth </label>
                 <select id="number_of_teeth" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
-                    <option value="0">1 Tooth - Default</option>
-                    <option value="500">2-4 Teeth - $500 each</option>
-                    <option value="1000">5+ Teeth - $1000 each</option>
+                    <option value="1">1 Tooth - Default</option>
+                    <option value="2">2 Teeth - Default</option>
+                    <option value="3">3 Teeth</option>
+                    <option value="4">4 Teeth</option>
+                    <option value="5">5 Teeth</option>
+
                 </select>
             </div>
 
@@ -361,6 +363,8 @@
 
      document.addEventListener('livewire:init', () => {
 
+        calculateTotal();
+
         Livewire.on('patient_details_submitted', () => {
 
             document.getElementById('name').value = null;
@@ -419,11 +423,11 @@
             let total = parseInt(treatment_typeSelect.value);
 
             if(number_of_teeth_select.value){
-                total += parseInt(number_of_teeth_select.value);
+                total = parseInt(number_of_teeth_select.value) * parseInt(treatment_typeSelect.value);
             }
 
             if(material_type_select.value){
-                total += parseInt(material_type_select.value);
+                total += parseInt(material_type_select.value) * parseInt(number_of_teeth_select.value);
             }
 
             if(sedation_options_select.value){
@@ -455,7 +459,7 @@
 
                 // Sending Data To backend
                 setTimeout(() => {
-                            Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
+                            Livewire.dispatch('total_estimated_amount_cosmetic_dentist', { total: totalAmountSpan.textContent });
                         }, 10);
                 clearTimeout();
 

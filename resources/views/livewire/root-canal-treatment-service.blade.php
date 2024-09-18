@@ -438,6 +438,8 @@
 
      document.addEventListener('livewire:init', () => {
 
+        calculateTotal();
+
         Livewire.on('patient_details_submitted', () => {
 
             document.getElementById('name').value = null;
@@ -449,14 +451,14 @@
 
         })
 
-        // Livewire.on('estimated_price_load_consistency', () => {
+        // Livewire.on('estimated_price_load_consistency_root_canal_treatment', () => {
 
         //     setTimeout(() => {
 
         //         // calculateTotal();
 
-        //         // The below operation is required because when the component reloads, the javascript value disappears
-        //         // totalAmountSpan.textContent = localStorage.getItem('total');
+        //         //The below operation is required because when the component reloads, the javascript value disappears
+        //         totalAmountSpan.textContent = localStorage.getItem('total');
 
 
         //     }, 10);
@@ -526,7 +528,9 @@
             }
 
             if(additional_post_treatment_select.value){
+
                 total += parseInt(additional_post_treatment_select.value) * parseInt(number_of_affected_teeth_select.value);
+
             }
 
             if(emergency_treatment_select.value){
@@ -556,7 +560,9 @@
 
                 // Sending Data To backend
                 setTimeout(() => {
-                            Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
+
+                            Livewire.dispatch('total_estimated_amount_root_canal_treatment', { total: totalAmountSpan.textContent });
+
                         }, 10);
                 clearTimeout();
 
@@ -594,7 +600,7 @@
 
 
     // Initial calculation
-    calculateTotal();
+    // calculateTotal();
 
 
 

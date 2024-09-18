@@ -289,7 +289,7 @@ class CosmeticDentistService extends Component
     }
 
     // Receiving The Javascript Value From The Livewire Component
-    #[On('total_estimated_amount')]
+    #[On('total_estimated_amount_cosmetic_dentist')]
     public function total_estimated_amount_function($total)
     {
 

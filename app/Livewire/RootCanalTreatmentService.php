@@ -288,7 +288,7 @@ class RootCanalTreatmentService extends Component
     }
 
     // Receiving The Javascript Value From The Livewire Component
-    #[On('total_estimated_amount')]
+    #[On('total_estimated_amount_root_canal_treatment')]
     public function total_estimated_amount_function($total)
     {
 
@@ -300,9 +300,9 @@ class RootCanalTreatmentService extends Component
     {
 
         // Dispatching this to ensure a consistent state of the total amount string on the frontend
-        $this->dispatch('estimated_price_load_consistency');
+        // $this->dispatch('estimated_price_load_consistency_root_canal_treatment');
 
         return view('livewire.root-canal-treatment-service');
-        
+
     }
 }

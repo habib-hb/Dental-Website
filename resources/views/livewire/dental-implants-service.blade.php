@@ -119,13 +119,13 @@
 
                 <!-- Number of Implants -->
                 <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Implants (Avarage 1500 each)</label>
+                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Implants</label>
                     <select id="number_of_implants" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
                         <option value="1">1 Implant - Default</option>
-                        <option value="2">2 Implants - 1500 </option>
-                        <option value="3">3 Implants - 3000 </option>
-                        <option value="4">4 Implants - 4500 </option>
-                        <option value="5">5 Implants - 6000 </option>
+                        <option value="2">2 Implants  </option>
+                        <option value="3">3 Implants  </option>
+                        <option value="4">4 Implants  </option>
+                        <option value="5">5 Implants  </option>
 
                     </select>
                 </div>
@@ -388,6 +388,8 @@
 
      document.addEventListener('livewire:init', () => {
 
+        calculateTotal();
+
         Livewire.on('patient_details_submitted', () => {
 
             document.getElementById('name').value = null;
@@ -454,7 +456,7 @@
             let total = parseInt(implant_typeSelect.value);
 
             if(number_of_implants_select.value){
-                total += parseInt(number_of_implants_select.value) * 1500;
+                total = parseInt(number_of_implants_select.value) *  parseInt(implant_typeSelect.value);
             }
 
             if(bone_grafting_select.value){
@@ -500,7 +502,7 @@
 
                 // Sending Data To backend
                 setTimeout(() => {
-                            Livewire.dispatch('total_estimated_amount', { total: totalAmountSpan.textContent });
+                            Livewire.dispatch('total_estimated_amount_dental_implants', { total: totalAmountSpan.textContent });
                         }, 10);
                 clearTimeout();
 

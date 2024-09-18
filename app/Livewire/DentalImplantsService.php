@@ -288,7 +288,7 @@ class DentalImplantsService extends Component
     }
 
     // Receiving The Javascript Value From The Livewire Component
-    #[On('total_estimated_amount')]
+    #[On('total_estimated_amount_dental_implants')]
     public function total_estimated_amount_function($total)
     {
 
