@@ -130,6 +130,20 @@
             </div>
 
 
+            <!-- Number of Affected Teeth -->
+            <div class="my-2">
+                <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Affected Teeth</label>
+                <select id="number_of_affected_teeth" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                    <option value="1">1 </option>
+                    <option value="2">2 </option>
+                    <option value="3">3 </option>
+                    <option value="4">4 </option>
+                    <option value="5">5 </option>
+
+                </select>
+            </div>
+
+
              <!-- Affected Tooth Type -->
              <div class="my-2">
                 <label class=" text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Affected Tooth Type</label>
@@ -192,7 +206,6 @@
                     <option value="100">Temporary Filling - 100 (may be needed before placing the final restoration)</option>
                     <option value="1500">Permanent Crown - 1,500 (required after root canal for tooth protection)</option>
 
-                    <option value="200">Follow-up Appointments - 200 (if multiple post-op visits are necessary)</option>
 
                 </select>
                 </div>
@@ -460,6 +473,8 @@
 
     const affected_tooth_type_select = document.getElementById('affected_tooth_type');
 
+    const number_of_affected_teeth_select = document.getElementById('number_of_affected_teeth');
+
     const number_of_canals_select = document.getElementById('number_of_canals');
 
     const location_of_tooth_select = document.getElementById('location_of_tooth');
@@ -490,16 +505,20 @@
             // Base price from complexity
             let total = parseInt(complexitySelect.value);
 
+            if(number_of_affected_teeth_select.value){
+              total = parseInt(number_of_affected_teeth_select.value) * parseInt(complexitySelect.value);
+            }
+
             if(affected_tooth_type_select.value){
-                total += parseInt(affected_tooth_type_select.value);
+                total += parseInt(affected_tooth_type_select.value) * parseInt(number_of_affected_teeth_select.value);
             }
 
             if(number_of_canals_select.value){
-                total += parseInt(number_of_canals_select.value);
+                total += parseInt(number_of_canals_select.value) * parseInt(number_of_affected_teeth_select.value);
             }
 
             if(location_of_tooth_select.value){
-                total += parseInt(location_of_tooth_select.value);
+                total += parseInt(location_of_tooth_select.value)  * parseInt(number_of_affected_teeth_select.value);
             }
 
             if(anesthesia_type_select.value){
@@ -507,7 +526,7 @@
             }
 
             if(additional_post_treatment_select.value){
-                total += parseInt(additional_post_treatment_select.value);
+                total += parseInt(additional_post_treatment_select.value) * parseInt(number_of_affected_teeth_select.value);
             }
 
             if(emergency_treatment_select.value){
@@ -551,6 +570,8 @@
     complexitySelect.addEventListener('change', calculateTotal);
 
     affected_tooth_type_select.addEventListener('change', calculateTotal);
+
+    number_of_affected_teeth_select.addEventListener('change', calculateTotal);
 
     number_of_canals_select.addEventListener('change', calculateTotal);
 

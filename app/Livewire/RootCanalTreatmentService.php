@@ -298,9 +298,11 @@ class RootCanalTreatmentService extends Component
 
     public function render()
     {
+
         // Dispatching this to ensure a consistent state of the total amount string on the frontend
         $this->dispatch('estimated_price_load_consistency');
 
         return view('livewire.root-canal-treatment-service');
+        
     }
 }
