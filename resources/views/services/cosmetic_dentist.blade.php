@@ -3,14 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Date Selector</title>
+    <title>Cosmetic Dentist Service</title>
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
 <body>
 
 
-    <livewire:root-canal-treatment-service/>
+    <livewire:cosmetic-dentist-service parameter="Root Canal Treatment"/>
 
     @livewireScripts
 </body>

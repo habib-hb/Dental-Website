@@ -9,9 +9,9 @@ use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class RootCanalTreatmentService extends Component
+class CosmeticDentistService extends Component
 {
-    public $service_name = "Root Canal Treatment";
+    public $service_name = "Cosmetic Dentist";
 
     public $datesArray;
 
@@ -61,6 +61,7 @@ class RootCanalTreatmentService extends Component
             }
 
             //End Theme Mode Stuff
+
 
 
 
@@ -301,6 +302,7 @@ class RootCanalTreatmentService extends Component
         // Dispatching this to ensure a consistent state of the total amount string on the frontend
         $this->dispatch('estimated_price_load_consistency');
 
-        return view('livewire.root-canal-treatment-service');
+        return view('livewire.cosmetic-dentist-service');
     }
 }
+
