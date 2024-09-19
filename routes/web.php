@@ -13,6 +13,29 @@ Route::get('/', function () {
 
 
 
+
+
+
+
+
+Route::get('/consultation', function () {
+    return view('consultation');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/services/root_canal_treatment', function () {
     return view('services.root_canal_treatment');
 });
