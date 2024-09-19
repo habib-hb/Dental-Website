@@ -55,10 +55,10 @@
     <div class="flex flex-col w-[96%] max-w-[800px] mx-auto h-[228px] {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mt-4 rounded-lg items-center justify-center  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
         <div class="{{session('theme_mode') == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
-            <img src="{{asset('images/dental_implant.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{session('theme_mode') == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
+            <img src="{{asset('images/prevention.gif')}}" class=" h-[70px] w-[70px] rounded-lg    {{session('theme_mode') == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
         </div>
 
-        <h1 class="text-center text-2xl font-medium {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">Dental Implants</h1>
+        <h1 class="text-center text-2xl font-medium {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">Prevention</h1>
 
         <div class="flex flex-row items-center gap-2 justify-center mt-2">
             <img src="{{session('theme_mode') == 'light' ? asset('images/person_icon_light_mode.png') : asset('images/person_icon_dark_mode.png')}}" class="h-[40px] w-[40px]" alt="">
@@ -77,78 +77,65 @@
 
     {{-- The Blog Text Section --}}
     <div class="max-w-[800px] mx-auto py-8 px-4">
-        <h1 class="text-3xl font-bold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-6">Everything You Need to Know About Dental Implants (Plus a Price Estimation Guide!)</h1>
+        <h1 class="text-3xl font-bold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-6">
+            A Complete Guide to General Dental Prevention (Plus a Price Estimation Tool!)
+        </h1>
 
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            Missing teeth can affect not only your appearance but also your ability to speak and eat comfortably. Fortunately, dental implants offer a long-lasting solution that looks and feels just like natural teeth. In this blog, we’ll cover everything you need to know about dental implants, from how they work to the benefits they provide. Plus, we’ll walk you through a simple price estimator to help you plan for your procedure.
+            Maintaining good oral health is essential not just for a bright smile, but for overall health and well-being. General dental prevention services, like routine cleanings and oral exams, help you avoid more severe issues down the road. In this blog, we’ll break down what general dental prevention services entail, why they are crucial, and how you can estimate the cost of these essential procedures using our price estimator.
         </p>
 
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">What Are Dental Implants?</h2>
+        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            What Are General Prevention Services?
+        </h2>
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            Dental implants are small titanium posts that are surgically placed into the jawbone to serve as artificial tooth roots. Once the implants are securely positioned, they provide a strong foundation for attaching replacement teeth, such as crowns, bridges, or dentures. The implant fuses with the jawbone over time, offering a stable and permanent solution for missing teeth.
-        </p>
-
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">Why Choose Dental Implants?</h2>
-        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            Dental implants are considered the gold standard for tooth replacement for several reasons:
+            General prevention services are routine dental treatments designed to keep your teeth and gums healthy. These typically include:
         </p>
         <ul class="list-disc list-inside {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            <li><strong>Natural Look and Feel:</strong> Implants mimic the appearance and function of natural teeth, helping you smile with confidence.</li>
-            <li><strong>Durability:</strong> With proper care, dental implants can last a lifetime, making them a worthwhile investment.</li>
-            <li><strong>Preserving Jawbone Health:</strong> Implants prevent bone loss in the jaw, which often occurs after losing a tooth.</li>
-            <li><strong>No Impact on Neighboring Teeth:</strong> Unlike bridges, implants don't require altering adjacent healthy teeth.</li>
-            <li><strong>Improved Quality of Life:</strong> Dental implants make it easier to eat, speak, and maintain your overall oral health.</li>
+            <li><strong>Routine Cleanings:</strong> Professional teeth cleaning helps remove plaque and tartar buildup that regular brushing and flossing can't reach.</li>
+            <li><strong>Oral Exams:</strong> Routine exams allow your dentist to detect early signs of dental issues, such as cavities or gum disease.</li>
+            <li><strong>Fluoride Treatments:</strong> Fluoride strengthens the tooth enamel, helping to prevent decay.</li>
+            <li><strong>X-Rays:</strong> X-rays provide a closer look at what’s happening beneath the surface, especially in areas not visible to the naked eye.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">The Dental Implant Procedure</h2>
+        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            Why Are General Prevention Services Important?
+        </h2>
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            Getting dental implants is a multi-step process that takes several months to complete. Here's what you can expect:
+            Regular preventive dental care plays a crucial role in keeping your teeth and gums healthy. Here are a few reasons why these services are so important:
+        </p>
+        <ul class="list-disc list-inside {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            <li><strong>Prevents Cavities:</strong> Routine cleanings help to remove plaque, which can harden and lead to tooth decay.</li>
+            <li><strong>Detects Early Issues:</strong> Oral exams catch problems like cavities, gum disease, and oral cancer before they become more severe.</li>
+            <li><strong>Improves Oral Hygiene:</strong> Dental cleanings encourage good oral habits and can boost overall health.</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            What to Expect During a General Prevention Appointment
+        </h2>
+        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            A typical general prevention visit involves a series of steps aimed at maintaining and assessing your dental health. Here’s what you can expect:
         </p>
         <ol class="list-decimal list-inside {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            <li><strong>Consultation and Planning:</strong> Your dentist will evaluate your oral health and bone structure to determine if you're a good candidate for implants.</li>
-            <li><strong>Implant Placement:</strong> The titanium implant is surgically inserted into the jawbone, where it will gradually integrate over a few months.</li>
-            <li><strong>Healing Period:</strong> It takes time for the implant to fuse with the bone, a process called osseointegration.</li>
-            <li><strong>Attaching the Abutment:</strong> After healing, an abutment is placed on top of the implant to connect it with the replacement tooth.</li>
-            <li><strong>Final Restoration:</strong> The custom-made crown, bridge, or denture is then attached, completing the process.</li>
+            <li><strong>Initial Examination:</strong> Your dentist will begin by checking your teeth, gums, and mouth for any signs of issues like decay, cavities, or gum disease.</li>
+            <li><strong>Cleaning:</strong> A dental hygienist will clean your teeth by removing plaque and tartar from areas that are hard to reach with a toothbrush.</li>
+            <li><strong>Fluoride Treatment:</strong> If needed, you may receive a fluoride treatment to strengthen your teeth.</li>
+            <li><strong>X-Rays:</strong> If required, your dentist may take X-rays to get a closer look at areas that need further assessment.</li>
         </ol>
 
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">Common Myths About Dental Implants</h2>
+        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            Price Estimation for General Prevention Services
+        </h2>
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            While dental implants are highly successful, some misconceptions still linger. Let's debunk a few common myths:
-        </p>
-        <ul class="list-disc list-inside {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            <li><strong>Myth 1:</strong> Implants are painful – The procedure is typically done under local anesthesia, and most patients report minimal discomfort during recovery.</li>
-            <li><strong>Myth 2:</strong> Implants are too expensive – While the upfront cost may be higher than other treatments, the long-term benefits and durability of implants make them cost-effective in the long run.</li>
-            <li><strong>Myth 3:</strong> Implants aren’t safe for older adults – Age isn’t usually a barrier to getting implants as long as your overall health and jawbone are suitable for the procedure.</li>
-        </ul>
-
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">Caring for Your Dental Implants</h2>
-        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            Dental implants require the same level of care as your natural teeth. Follow these tips to maintain your implants:
-        </p>
-        <ul class="list-disc list-inside {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            <li>Brush twice a day and floss daily to keep your implants and surrounding gums healthy.</li>
-            <li>Visit your dentist regularly for check-ups and professional cleanings.</li>
-            <li>Avoid chewing on hard items like ice or pens, which could damage your implant crown.</li>
-        </ul>
-
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">Planning for the Cost of Dental Implants</h2>
-        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            The cost of dental implants can vary based on factors such as the number of implants needed, the complexity of the case, and the materials used for your restoration. Our price estimator can help you get an accurate estimate based on your specific needs, allowing you to plan financially for this important investment in your smile.
+            The cost of general prevention services can vary depending on the type of cleaning, the need for X-rays, and other additional treatments. Our price estimator tool below will help you calculate an accurate estimate for your next visit.
         </p>
 
-        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
-            Investing in dental implants can provide long-lasting benefits for your oral health, appearance, and confidence. Use our price estimator and consult your dentist to determine the best treatment plan for you.
-        </p>
-
-        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">Conclusion</h2>
-
-        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4"> Dental implants are a transformative solution for missing teeth, offering a natural look, long-lasting durability, and improved quality of life. By understanding the process and considering the cost, you can make an informed decision about this dental procedure. Don’t hesitate to consult with your dentist and explore our price estimation tool to take the first step toward restoring your smile. </p>
-
+        <h2 class="text-2xl font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mb-4">
+            Conclusion
+        </h2>
         <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
-            Ready to find out if dental implants are right for you? Use our online price estimator to get started or book a consultation with our dental experts today!
+            Prioritizing general dental prevention helps ensure a healthy smile for years to come. By staying on top of routine cleanings and oral exams, you’re not only saving your teeth but also preventing more significant dental expenses down the road. Use our price estimator to get an idea of the cost of your next appointment, and keep smiling with confidence!
         </p>
-
     </div>
 
 

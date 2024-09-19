@@ -154,3 +154,22 @@ Route::get('/details/emergency_dentistry', function () {
 });
 
 
+
+
+
+
+
+
+
+
+
+Route::get('/details/prevention', function () {
+    return view('details.details_prevention');
+});
+
+
+
+
+
+
+
