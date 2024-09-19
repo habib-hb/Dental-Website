@@ -90,97 +90,86 @@
 
 
 
-     {{-- ********* Price Estimator ********** --}}
-        <input id="estimated_price" type="hidden">
-        <div class="relative">
+{{-- ********* Price Estimator ********** --}}
+<input id="estimated_price" type="hidden">
+<div class="relative">
+    <div class="flex flex-row justify-between items-center mx-auto md:max-w-[800px] py-2 mt-2 w-full">
+        <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="h-[48px] w-[48px] cursor-pointer hover:scale-105" onclick="window.history.back()" alt="">
+        <h2 class="text-2xl text-center {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">General Prevention - Price Estimator</h2>
+        <div class="w-[48px]"></div>
+    </div>
 
-            <div class="flex flex-row justify-between items-center mx-auto  md:max-w-[800px] py-2  mt-2 w-full">
-                <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="h-[48px] w-[48px] cursor-pointer hover:scale-105" onclick="window.history.back()" alt="">
-                <h2 class="text-2xl text-center {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}">Emergency Dentistry Price Estimator</h2>
-                <div class="w-[48px]"></div>
+    <!-- Total Amount -->
+    <div class="flex flex-col sticky top-2 justify-between items-center py-2 w-[96vw] md:max-w-[800px] mx-auto rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
+        <p class="text-center px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please complete the form below to receive an accurate price estimate.</p>
+        <p class="text-2xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Total Estimated Amount</p>
+        <p class="font-bold text-4xl {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}" id="totalAmount">{{$total_estimated_amount}}</p>
+    </div>
+
+    <div class="flex flex-col w-full md:max-w-[800px] md:px-8 mx-auto p-2 {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+        <!-- Type of Cleaning -->
+        <div class="my-2">
+            <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Type of Cleaning</label>
+            <select id="cleaning_type" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
+                <option value="100">Routine Cleaning - 100</option>
+                <option value="200">Deep Cleaning - 200</option>
+            </select>
+        </div>
+
+        <!-- Fluoride Treatment -->
+        <div class="my-2">
+            <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Fluoride Treatment</label>
+            <select id="fluoride_treatment" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                <option value="0">No Fluoride Treatment</option>
+                <option value="50">Fluoride Treatment - 50</option>
+            </select>
+        </div>
+
+        <!-- X-Rays -->
+        <div class="my-2">
+            <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">X-Rays</label>
+            <select id="number_of_xrays" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                <option value="0">None</option>
+                <option value="50">Single X-Ray - 50</option>
+                <option value="150">Full Mouth X-Ray - 150</option>
+            </select>
+        </div>
+
+        <!-- Oral Exam -->
+        <div class="my-2">
+            <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Oral Exam</label>
+            <select id="oral_exam" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                <option value="75">Routine Oral Exam - 75</option>
+                <option value="150">Comprehensive Oral Exam - 150</option>
+            </select>
+        </div>
+
+        <!-- Emergency Treatment -->
+        <div class="my-2">
+            <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Emergency Treatment</label>
+            <select id="emergency_treatment" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
+                <option value="0">Standard Hours - Default</option>
+                <option value="200">Emergency or After-Hours - 200</option>
+            </select>
+        </div>
+
+
+        <!-- Additional Services -->
+        <div class="my-2">
+            <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Additional Services</label>
+            <div class="flex items-center">
+                <input id="sealants" type="checkbox" value="100" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
+                <label for="sealants" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Sealants (100)</label>
             </div>
-
-            <!-- Total Amount -->
-            <div class="flex flex-col sticky top-2 justify-between items-center py-2 w-[96vw] md:max-w-[800px] mx-auto rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] mb-2">
-                <p class="text-center px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please complete the form below to receive an accurate price estimate.</p>
-                <p class="text-2xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Total Estimated Amount</p>
-                <p class="font-bold text-4xl {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}}" id="totalAmount">{{$total_estimated_amount}}</p>
-            </div>
-
-            <div class="flex flex-col w-full md:max-w-[800px] md:px-8 mx-auto p-2 {{$theme_mode == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-
-                <!-- Urgency of Treatment -->
-                <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Urgency of Treatment</label>
-                    <select id="urgency_of_treatment" class="w-full py-2 rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}">
-                        <option value="300">Mild - $300</option>
-                        <option value="600">Moderate - $600</option>
-                        <option value="1000">Severe - $1000</option>
-                    </select>
-                </div>
-
-                <!-- Number of Affected Teeth -->
-                <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Number of Affected Teeth</label>
-                    <select id="number_of_affected_teeth" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
-                        <option value="1">1 </option>
-                        <option value="2">2 </option>
-                        <option value="3">3 </option>
-                        <option value="4">4 </option>
-                        <option value="5">5 </option>
-                    </select>
-                </div>
-
-                <!-- Type of Pain -->
-                <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Type of Pain</label>
-                    <select id="pain_type" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
-                        <option value="200">Sharp - $200</option>
-                        <option value="400">Dull - $400</option>
-                        <option value="600">Throbbing - $600</option>
-                    </select>
-                </div>
-
-                <!-- Time Since Injury -->
-                <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Time Since Injury</label>
-                    <select id="time_since_injury" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
-                        <option value="0">Within 24 Hours (Default)</option>
-                        <option value="300">24-48 Hours - $300</option>
-                        <option value="500">More than 48 Hours - $500</option>
-                    </select>
-                </div>
-
-                <!-- Treatment Location -->
-                <div class="my-2">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Treatment Location</label>
-                    <select id="treatment_location" class="w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2">
-                        <option value="0">Clinic (Default)</option>
-                        <option value="300">Mobile Unit - $300</option>
-                        <option value="500">At Home - $500</option>
-                    </select>
-                </div>
-
-                <!-- Additional Services -->
-                <div class="mb-4">
-                    <label class="text-lg mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Additional Services</label>
-                    <div class="flex items-center">
-                        <input id="xray" type="checkbox" value="100" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
-                        <label for="xray" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">X-ray ($100)</label>
-                    </div>
-
-                    <div class="flex items-center mt-2">
-                        <input id="medication" type="checkbox" value="150" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
-                        <label for="medication" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Pain Medication ($150)</label>
-                    </div>
-
-                    <div class="flex items-center mt-2">
-                        <input id="followup" type="checkbox" value="200" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
-                        <label for="followup" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Follow-up Visit ($200)</label>
-                    </div>
-                </div>
+            <div class="flex items-center mt-2">
+                <input id="oral_cancer_screening" type="checkbox" value="200" class="h-[20px] w-[20px] bg-[#deeaf8] rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none mr-2"/>
+                <label for="oral_cancer_screening" class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Oral Cancer Screening (200)</label>
             </div>
         </div>
+
+
+    </div>
+</div>
 {{-- ********* End Price Estimator ********** --}}
 
 
@@ -400,57 +389,47 @@
 
     // ***Price Estimation
 
-    const urgency_of_treatment_Select = document.getElementById('urgency_of_treatment');
+    const cleaning_typeSelect = document.getElementById('cleaning_type');
 
-    const number_of_affected_teeth_select = document.getElementById('number_of_affected_teeth');
+    const fluoride_treatment_select = document.getElementById('fluoride_treatment');
 
-    const pain_type_select = document.getElementById('pain_type');
+    const number_of_xrays_select = document.getElementById('number_of_xrays');
 
-    const time_since_injury_select = document.getElementById('time_since_injury');
-
-    const treatment_location_select = document.getElementById('treatment_location');
-
-    const anesthesia_type_select = document.getElementById('anesthesia_type');
-
-    const additional_post_treatment_select = document.getElementById('additional_post_treatment');
+    const oral_exam_select = document.getElementById('oral_exam');
 
     const emergency_treatment_select = document.getElementById('emergency_treatment');
 
 
-    const sessionsInput = document.getElementById('sessions');
-
-
     // Checkboxes
-    const xrayCheckbox = document.getElementById('xray');
+    const sealantsCheckbox = document.getElementById('sealants');
 
-    const medicationCheckbox = document.getElementById('medication');
+    const oral_cancer_screeningCheckbox = document.getElementById('oral_cancer_screening');
 
-    const followupCheckbox = document.getElementById('followup');
+    const cbctCheckbox = document.getElementById('cbct');
 
     // Total Amount Element
     const totalAmountSpan = document.getElementById('totalAmount');
-
 
     // Function to calculate total price
     function calculateTotal() {
 
             // Base price from complexity
-            let total = parseInt(urgency_of_treatment_Select.value);
+            let total = parseInt(cleaning_typeSelect.value);
 
-            if(number_of_affected_teeth_select.value){
-              total += Math.floor(parseInt(number_of_affected_teeth_select.value) * (parseInt(urgency_of_treatment_Select.value) / 3));
+            if(number_of_xrays_select.value){
+              total += parseInt(number_of_xrays_select.value) ;
             }
 
-            if(pain_type_select.value){
-                total += parseInt(pain_type_select.value) ;
+            if(fluoride_treatment_select.value){
+                total += parseInt(fluoride_treatment_select.value);
             }
 
-            if(time_since_injury_select.value){
-                total += parseInt(time_since_injury_select.value) * (parseInt(number_of_affected_teeth_select.value));
+            if(oral_exam_select.value){
+                total += parseInt(oral_exam_select.value);
             }
 
-            if(treatment_location_select.value){
-                total += parseInt(treatment_location_select.value) ;
+            if(emergency_treatment_select.value){
+                total += parseInt(emergency_treatment_select.value);
             }
 
 
@@ -459,16 +438,13 @@
             // total *= parseInt(sessionsInput.value);
 
             // Add optional services
-            if (xrayCheckbox.checked) {
-                total += parseInt(xrayCheckbox.value);
+            if (sealantsCheckbox.checked) {
+                total += parseInt(sealantsCheckbox.value);
             }
 
-            if (followupCheckbox.checked) {
-                total += parseInt(followupCheckbox.value);
-            }
 
-            if (medicationCheckbox.checked) {
-                total += parseInt(medicationCheckbox.value);
+            if (oral_cancer_screeningCheckbox.checked) {
+                total += parseInt(oral_cancer_screeningCheckbox.value);
             }
 
             // Update total amount
@@ -479,7 +455,7 @@
                 // Sending Data To backend
                 setTimeout(() => {
 
-                            Livewire.dispatch('total_estimated_amount_emergency_dentistry', { total: totalAmountSpan.textContent });
+                            Livewire.dispatch('total_estimated_amount_prevention', { total: totalAmountSpan.textContent });
 
                         }, 10);
                 clearTimeout();
@@ -491,24 +467,24 @@
     }
 
     // Add event listeners to all inputs
-    urgency_of_treatment_Select.addEventListener('change', calculateTotal);
+    cleaning_typeSelect.addEventListener('change', calculateTotal);
 
-    number_of_affected_teeth_select.addEventListener('change', calculateTotal);
+    fluoride_treatment_select.addEventListener('change', calculateTotal);
 
-    pain_type_select.addEventListener('change', calculateTotal);
+    number_of_xrays_select.addEventListener('change', calculateTotal);
 
-    time_since_injury_select.addEventListener('change', calculateTotal);
+    oral_exam_select.addEventListener('change', calculateTotal);
 
-    treatment_location_select.addEventListener('change', calculateTotal);
+    emergency_treatment_select.addEventListener('change', calculateTotal);
+
 
 
     // sessionsInput.addEventListener('input', calculateTotal);
 
-    xrayCheckbox.addEventListener('change', calculateTotal);
+    sealantsCheckbox.addEventListener('change', calculateTotal);
 
-    followupCheckbox.addEventListener('change', calculateTotal);
 
-    medicationCheckbox.addEventListener('change', calculateTotal);
+    oral_cancer_screeningCheckbox.addEventListener('change', calculateTotal);
 
 
 
@@ -525,5 +501,4 @@
 
 
 </div>
-
 

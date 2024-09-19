@@ -77,6 +77,67 @@ Route::get('/services/emergency_dentistry', function () {
 
 
 
+
+Route::get('/services/prevention', function () {
+    return view('services.prevention');
+});
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/details/root_canal_treatment', function () {
     return view('details.details_root_canal_treatment_root');
 });
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/details/cosmetic_dentist', function () {
+    return view('details.details_cosmetic_dentist');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/details/dental_implants', function () {
+    return view('details.details_dental_implants');
+});
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/details/teeth_whitening', function () {
+    return view('details.details_teeth_whitening');
+});
+
+
+
