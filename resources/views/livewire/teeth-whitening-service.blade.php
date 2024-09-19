@@ -8,7 +8,7 @@
 
                 <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
 
-                <span class=" text-white py-2 rounded-lg"> Processing Date...</span>
+                <span class="text-white py-2 rounded-lg"> Processing Date...</span>
 
              </div>
         </div>

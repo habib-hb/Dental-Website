@@ -141,3 +141,16 @@ Route::get('/details/teeth_whitening', function () {
 
 
 
+
+
+
+
+
+
+
+
+Route::get('/details/emergency_dentistry', function () {
+    return view('details.details_emergency_dentistry');
+});
+
+
