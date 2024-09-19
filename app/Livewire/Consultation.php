@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Consultation extends Component
 {
-    public $service_name = "Root Canal Treatment";
+    public $service_name = "Consultation";
 
     public $datesArray;
 
@@ -288,7 +288,7 @@ class Consultation extends Component
     }
 
     // Receiving The Javascript Value From The Livewire Component
-    #[On('total_estimated_amount_root_canal_treatment')]
+    #[On('total_estimated_amount_consultation')]
     public function total_estimated_amount_function($total)
     {
 
