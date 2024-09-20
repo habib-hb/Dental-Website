@@ -16,7 +16,7 @@
 
                 <span id='search_text' class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]'}}">Search</span>
 
-                <input id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{$theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus:outline-none">
+                <input wire:model.live='searchtext' id='search_input' type="text" class="mr-2 h-[36px] w-[50vw] md:w-[30vw] rounded-lg {{$theme_mode == 'light' ? 'bg-[#EFF9FF] text-[#070707]' : 'bg-[#070707] text-[#EFF9FF]' }}  shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] px-4 focus:outline-none">
 
 
 
@@ -31,6 +31,33 @@
 
 
         </nav>
+
+
+            {{-- Loading The Searched Data --}}
+            <div class="mx-auto md:max-w-[1280px]">
+                @if ($search_output)
+                    @foreach ($search_output as $post)
+
+                    @if ($theme_mode == 'light')
+                        <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold">' . $post->blog_title . '</p>'!!}</p>
+                        <p>{!! '<p style="color: #121212;">' . $post->blog_excerpt . '</p>'!!}</p>
+                        <hr>
+                    @endif
+
+                    @if ($theme_mode == 'dark')
+                        <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold">' . $post->blog_title . '</p>'!!}</p>
+                        <p>{!! '<p style="color: #ededed;">' . $post->blog_excerpt . '</p>'!!}</p>
+                        <hr>
+                    @endif
+
+
+
+                    @endforeach
+                @endif
+            </div>
+
+
+
 
                 {{-- <div wire:click="changeThemeMode" class="flex justify-center">
 
