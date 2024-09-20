@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\blog_posts;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -189,10 +190,6 @@ Route::get('/details/emergency_dentistry', function () {
 Route::get('/details/prevention', function () {
     return view('details.details_prevention');
 });
-
-
-
-
 
 
 
