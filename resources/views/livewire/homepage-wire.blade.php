@@ -316,6 +316,11 @@
 
                     }
 
+                    setTimeout(() => {
+                        document.getElementById('search_icon').style.display = 'none';
+                        document.getElementById('search_text').style.display = 'none';
+                    }, 1000)
+
 
 
                 })
