@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\blog_posts;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -193,3 +194,17 @@ Route::get('/details/prevention', function () {
 
 
 
+
+
+
+
+
+
+
+
+Route::post('/form_data' , function (Request $request) {
+    $form_data = $request->data;
+
+    return view('text_to_html_test', [
+        'form_data' => $form_data]);
+});
