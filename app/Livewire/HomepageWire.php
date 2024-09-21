@@ -75,6 +75,18 @@ class HomepageWire extends Component
 
 
 
+    #[On('new_load_alert_for_serch_strings')]
+    public function new_load_alert_for_serch_strings()
+    {
+        $this->search_input_field_is_active = false;
+
+        session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+
+
+    }
+
+
+
     // #[On('theme-change')]
     public function changeThemeMode(){
 

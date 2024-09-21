@@ -306,10 +306,29 @@
              })
 
 
+             // Without this , the search bar shows the text previously entered when I come back using the back button even though the actual value of the input field is empty
+             window.addEventListener('load', () => {
+                document.getElementById('search_input').value = '';
+            });
 
 
 
-            document.addEventListener('livewire:init', () => {
+
+
+            document.addEventListener('livewire:initialized', () => {
+
+                 // Sending Data To backend
+                //  setTimeout(() => {
+
+                    if(document.getElementById('search_input').value == ''){
+
+                        Livewire.dispatch('new_load_alert_for_serch_strings', {});
+
+                    }
+
+
+                    // }, 10);
+
 
                 Livewire.on('alert-manager', () => {
 
