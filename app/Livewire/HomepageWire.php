@@ -15,6 +15,8 @@ class HomepageWire extends Component
 
     public $search_output;
 
+    public $search_input_field_is_active;
+
 
     public function mount()
     {
@@ -29,6 +31,8 @@ class HomepageWire extends Component
             $this->theme_mode = session('theme_mode');
 
         }
+
+        $this->search_input_field_is_active = session('search_input_field_is_active');
     }
 
 
@@ -51,10 +55,18 @@ class HomepageWire extends Component
                 return $post;
             });
 
+            $this->search_input_field_is_active = true;
+
+            session(['search_input_field_is_active' => $this->search_input_field_is_active]);
+
 
         }else{
 
             $this->search_output = null;
+
+            $this->search_input_field_is_active = false;
+
+            session(['search_input_field_is_active' => $this->search_input_field_is_active]);
 
         }
 

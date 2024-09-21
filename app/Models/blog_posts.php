@@ -28,6 +28,7 @@ class blog_posts extends Model
         return [
             'blog_title' => $this->blog_title,
             'blog_excerpt' => $this->blog_excerpt,
+            'blog_link' => $this->blog_link
         ];
 
     }
