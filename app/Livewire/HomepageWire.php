@@ -17,6 +17,8 @@ class HomepageWire extends Component
 
     public $search_input_field_is_active;
 
+    public $search_output_length;
+
 
     public function mount()
     {
@@ -39,6 +41,7 @@ class HomepageWire extends Component
 
     public function updated($property)
     {
+
         // $property: The name of the current property that was updated
 
         if ($property === 'searchtext' && !empty($this->searchtext)) {
@@ -54,6 +57,16 @@ class HomepageWire extends Component
 
                 return $post;
             });
+
+
+            $this->search_output_length = $this->search_output->count();
+
+            if($this->search_output_length == 0){
+
+                $this->dispatch('no_results_found');
+
+            }
+
 
             $this->search_input_field_is_active = true;
 

@@ -35,28 +35,29 @@
 
             {{-- Loading The Searched Data --}}
             <div class="mx-auto md:max-w-[1280px]">
+                <p id="no_results_found" class="hidden"></p>
                 @if ($search_output)
                     @foreach ($search_output as $post)
 
-                    @if ($theme_mode == 'light')
-                        <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
-                         onmouseover="this.style.textDecoration=`underline`;"
-                         onmouseout="this.style.textDecoration=`none`;"
-                         onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_title . '</p>'!!}</p>
-                        <p>{!! '<p style="color: #121212; ; cursor:pointer"
-                        onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_excerpt . '</p>'!!}</p>
-                        <hr>
-                    @endif
+                        @if ($theme_mode == 'light')
+                            <p>{!! '<p style="color: #121212;text-transform: uppercase; font-weight: bold ; cursor:pointer;"
+                            onmouseover="this.style.textDecoration=`underline`;"
+                            onmouseout="this.style.textDecoration=`none`;"
+                            onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_title . '</p>'!!}</p>
+                            <p>{!! '<p style="color: #121212; ; cursor:pointer"
+                            onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_excerpt . '</p>'!!}</p>
+                            <hr>
+                        @endif
 
-                    @if ($theme_mode == 'dark')
-                        <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
-                        onmouseover="this.style.textDecoration=`underline`;"
-                         onmouseout="this.style.textDecoration=`none`;"
-                         onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_title . '</p>'!!}</p>
-                        <p>{!! '<p style="color: #ededed; ; cursor:pointer"
-                        onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_excerpt . '</p>'!!}</p>
-                        <hr>
-                    @endif
+                        @if ($theme_mode == 'dark')
+                            <p>{!! '<p style="color: #e7e7e7;text-transform: uppercase; font-weight: bold ; cursor:pointer"
+                            onmouseover="this.style.textDecoration=`underline`;"
+                            onmouseout="this.style.textDecoration=`none`;"
+                            onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_title . '</p>'!!}</p>
+                            <p>{!! '<p style="color: #ededed; ; cursor:pointer"
+                            onclick="window.location.href=`' . $post->blog_link . '`" >' . $post->blog_excerpt . '</p>'!!}</p>
+                            <hr>
+                        @endif
 
 
 
@@ -346,6 +347,23 @@
 
 
                 })
+
+                Livewire.on('no_results_found', () => {
+
+                        // Doing 100ms delay cause the DOM is not loaded yet.
+                        setTimeout(() => {
+                            document.getElementById('no_results_found').textContent = 'No Results Found';
+
+                            if (document.getElementById('no_results_found').classList.contains('hidden')) {
+                                document.getElementById('no_results_found').classList.remove('hidden');
+                            }
+                        }, 10);
+
+
+                    })
+
+
+
 
 
                 })

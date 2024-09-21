@@ -2,7 +2,7 @@
 
 <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}">
 
-    <nav class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+    <nav class="flex justify-center md:justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
         <div class=" flex justify-start md:w-[20vw]">
 
@@ -10,7 +10,7 @@
 
         </div>
 
-        <div id="input_div" class="relative">
+        {{-- <div id="input_div" class="relative">
 
             <img id='search_icon' src="{{session('theme_mode') == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1" alt="">
 
@@ -20,7 +20,7 @@
 
 
 
-        </div>
+        </div> --}}
 
         <div class=" flex justify-end md:w-[20vw]">
 
@@ -177,56 +177,7 @@
 
 
 
-    <script>
-
-        document.getElementById('input_div').addEventListener('click', () => {
-                document.getElementById('search_input').focus();
-            })
-
-            document.getElementById('search_input').addEventListener('focus', () => {
-
-                document.getElementById('search_icon').style.display = 'none';
-                document.getElementById('search_text').style.display = 'none';
-
-             })
-
-
-
-
-             document.getElementById('search_input').addEventListener('blur', () => {
-
-               if(document.getElementById('search_input').value == ''){
-                document.getElementById('search_icon').style.display = 'block';
-                document.getElementById('search_text').style.display = 'block';
-               }
-
-             })
-
-
-             document.addEventListener('livewire:init', () => {
-
-                Livewire.on('alert-manager', () => {
-
-
-                    if(document.getElementById('search_input').value !== ''){
-
-                        // Doing 100ms delay cause the DOM is not loaded yet.
-                        setTimeout(() => {
-                            document.getElementById('search_icon').style.display = 'none';
-                            document.getElementById('search_text').style.display = 'none';
-                        }, 10);
-
-                    }
-
-
-
-                })
-
-
-                })
-
-    </script>
-
+  
 
 </div>
 
