@@ -1,5 +1,8 @@
 
 
+
+
+
 <div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}"  data-theme-mode="{{ session('theme_mode') }}" id="main_div">
 
     <nav class="flex justify-between items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
@@ -37,7 +40,6 @@
         </div>
 
         <div class="flex flex-col mt-2">
-
             <label for="blog_headline" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Blog Headline</label>
 
             <input wire:model="blog_headline" type="text" class="w-[96vw] md:max-w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}}  rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="blog_headline">
@@ -60,7 +62,7 @@
 
         </div>
 
-        <div class="flex flex-col mt-2">
+        <div class="flex flex-col mt-2 mb-6">
 
             <label for="blog_image" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Blog Thumbnail Image</label>
 
@@ -70,19 +72,16 @@
 
         </div>
 
-        {{-- Test --}}
-
-        <button wire:click="save" >Image Save</button>
-
-        <button wire:click="test_image" >Image DD Test</button>
-
-        <button wire:click="test_textarea" >Textarea DD Test</button>
-
-        {{-- End Test --}}
 
 
-        <!-- Place the first <script> tag in your HTML's <head> -->
-        <script src="https://cdn.tiny.cloud/1/l55gbz5vnerknywvd7pxpjk7wsgpu3drem4qpol4u13x5327/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+
+
+
+
+    <!-- Place the first <script> tag in your HTML's <head> -->
+    <script src="https://cdn.tiny.cloud/1/l55gbz5vnerknywvd7pxpjk7wsgpu3drem4qpol4u13x5327/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
         <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
         <script>
@@ -144,11 +143,7 @@
 
                 setTimeout(() => {
                     tinemce_init()
-
-
-
-                }, 10);
-
+                         }, 10);
 
             });
 
@@ -157,10 +152,30 @@
         </script>
 
 
-        <textarea id="tinymce">
+    <textarea id="tinymce">
         Welcome to TinyMCE! <p>Hello World!</p>
         <img  src="https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-6/460957556_899028865618519_6012741073131767582_n.jpg?stp=dst-jpg_p526x296&_nc_cat=1&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFjTKKTYTgnQDBcEY1dnxA1tQz8MNQ7smW1DPww1DuyZbTiNtbdaDMlW6m-HnsN7N7Lfh1fYtYdweGJH3Brnzxx&_nc_ohc=gW0OGw1QfpgQ7kNvgGAEERO&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFnsHhNo3puSgPj_MHbv9KL&oh=00_AYC-wZPIgGfSirTH4Ug6qAcEroW817fsSTSUp0CzlMFjuw&oe=66F59D9F" class="ml-2 h-[64px] max-w-[45vw]" alt="">
-        </textarea>
+    </textarea>
+
+    <div class="flex flex-row justify-center items-center my-8">
+
+        <button wire:click="save" class="bg-[#1a579f] hover:scale-105 w-[300px] text-white font-bold py-2 px-4 rounded">Save</button>
+
+    </div>
+
+    @if (session()->has('message'))
+
+     <p>{{ session('message') }}</p>
+
+    @endif
+
+
+
+
+                {{-- <button wire:click="test_image" >Image DD Test</button>
+
+                <button wire:click="test_textarea" >Textarea DD Test</button> --}}
+
 
 
 

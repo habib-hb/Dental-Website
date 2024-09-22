@@ -16,6 +16,16 @@ class blog_posts extends Model
 
     protected $primaryKey = 'blog_id';
 
+    protected $fillable = [
+        'blog_author',
+        'blog_title',
+        'blog_link',
+        'blog_excerpt',
+        'blog_image',
+        'blog_text',
+        'blog_type',
+    ];
+
     public function searchableAs(): string
     {
         return 'blog_posts';

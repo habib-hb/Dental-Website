@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\blog_posts;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -10,12 +11,24 @@ class AdminBlogs extends Component
 {
     use WithFileUploads;
 
+    public $author_name;
+
+    public $blog_headline;
+
+    public $blog_slug;
+
+    public $blog_excerpt;
 
     public $blog_image;
 
-    public $url;
+    public $blog_area;
 
-    public $textarea_test;
+
+    // Testing
+
+    public $image_url;
+
+    // End Testing
 
     public function save()
     {
@@ -26,28 +39,57 @@ class AdminBlogs extends Component
         // Store the uploaded image and get the file path
         $imagePath = $this->blog_image->store('blog_images', 'public');
 
-        // Generate the full URL to the stored image
-        $this->url = asset('storage/' . $imagePath);
+        // Generate the full image_URL to the stored image
+        $this->image_url = asset('storage/' . $imagePath);
 
+
+        if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area){
+
+            blog_posts::create([
+                'blog_author' => $this->author_name,
+                'blog_title' => $this->blog_headline,
+                'blog_link' => $this->blog_slug,
+                'blog_excerpt' => $this->blog_excerpt,
+                'blog_image' => $this->image_url,
+                'blog_text' => $this->blog_area,
+                'blog_type' => 'custom',
+            ]);
+
+            // $blogPost = new blog_posts();
+            // $blogPost->save();
+
+
+            session()->flash('message', 'Blog Post Created Successfully');
+        }
+
+    }
+
+    public function updated($property)
+    {
+        // $property: The name of the current property that was updated
+
+        if ($property === 'blog_image') {
+            $this->dispatch('alert-manager');
+        }
     }
 
 
     public function test_image(){
-        dd($this->url);
+        dd($this->image_url);
     }
 
 
     #[On('updateTextarea')]
     public function updateTextarea($text){
 
-        $this->textarea_test = $text;
+        $this->blog_area = $text;
 
 
     }
 
     public function test_textarea(){
-       
-        dd($this->textarea_test);
+
+        dd($this->blog_area);
 
 
     }
