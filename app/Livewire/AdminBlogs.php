@@ -55,8 +55,7 @@ class AdminBlogs extends Component
                 'blog_type' => 'custom',
             ]);
 
-            // $blogPost = new blog_posts();
-            // $blogPost->save();
+          
 
 
             session()->flash('message', 'Blog Post Created Successfully');
