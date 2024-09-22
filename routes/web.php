@@ -202,6 +202,19 @@ Route::get('/details/prevention', function () {
 
 
 
+Route::get('/admin_dashboard/blogs', function () {
+    return view('admin_dashboard.blogs');
+});
+
+
+
+
+
+
+
+
+
+
 Route::post('/form_data' , function (Request $request) {
     $form_data = $request->data;
 
