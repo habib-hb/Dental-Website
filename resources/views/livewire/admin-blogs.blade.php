@@ -74,7 +74,9 @@
 
         <button wire:click="save" >Image Save</button>
 
-            <button wire:click="test_image" >Image DD Test</button>
+        <button wire:click="test_image" >Image DD Test</button>
+
+        <button wire:click="test_textarea" >Textarea DD Test</button>
 
         {{-- End Test --}}
 
@@ -84,6 +86,8 @@
 
         <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
         <script>
+
+
         function tinemce_init(){
 
         const themeMode = document.getElementById('main_div').getAttribute('data-theme-mode');
@@ -114,6 +118,19 @@
             // Dark mode logic
             skin: themeMode === 'dark' ? 'oxide-dark' : 'oxide',
             content_css: themeMode === 'dark' ? 'dark' : 'default',
+
+
+            setup: function (editor) {
+
+
+                editor.on('change', function () {
+                    // Update the Livewire property when TinyMCE content changes
+                    Livewire.dispatch('updateTextarea', {text: editor.getContent()});
+                });
+
+
+
+        }
         });
 
     }
@@ -122,10 +139,14 @@
 
     document.addEventListener('livewire:initialized', function () {
 
+
             Livewire.on('alert-manager', () => {
 
                 setTimeout(() => {
                     tinemce_init()
+
+
+
                 }, 10);
 
 
@@ -138,7 +159,7 @@
 
         <textarea id="tinymce">
         Welcome to TinyMCE! <p>Hello World!</p>
-        <img  src="{{session('theme_mode') == 'light' ? asset('images/the_logo_light_mode.png') : asset('images/the_logo_dark_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw]" alt="">
+        <img  src="https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-6/460957556_899028865618519_6012741073131767582_n.jpg?stp=dst-jpg_p526x296&_nc_cat=1&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFjTKKTYTgnQDBcEY1dnxA1tQz8MNQ7smW1DPww1DuyZbTiNtbdaDMlW6m-HnsN7N7Lfh1fYtYdweGJH3Brnzxx&_nc_ohc=gW0OGw1QfpgQ7kNvgGAEERO&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFnsHhNo3puSgPj_MHbv9KL&oh=00_AYC-wZPIgGfSirTH4Ug6qAcEroW817fsSTSUp0CzlMFjuw&oe=66F59D9F" class="ml-2 h-[64px] max-w-[45vw]" alt="">
         </textarea>
 
 

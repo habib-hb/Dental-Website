@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -13,6 +14,8 @@ class AdminBlogs extends Component
     public $blog_image;
 
     public $url;
+
+    public $textarea_test;
 
     public function save()
     {
@@ -28,9 +31,25 @@ class AdminBlogs extends Component
 
     }
 
-    
+
     public function test_image(){
         dd($this->url);
+    }
+
+
+    #[On('updateTextarea')]
+    public function updateTextarea($text){
+
+        $this->textarea_test = $text;
+
+
+    }
+
+    public function test_textarea(){
+       
+        dd($this->textarea_test);
+
+
     }
 
 
