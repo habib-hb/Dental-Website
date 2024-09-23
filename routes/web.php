@@ -202,6 +202,22 @@ Route::get('/details/prevention', function () {
 
 
 
+Route::get('/admin_dashboard', function () {
+    return view('admin_dashboard.admin_dashboard');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/admin_dashboard/blogs', function () {
     return view('admin_dashboard.blogs');
 });
