@@ -77,33 +77,33 @@ class AdminBlogs extends Component
 
     }
 
-    public function updated($property)
-    {
-        // $property: The name of the current property that was updated
+    // public function updated($property)
+    // {
+    //     // $property: The name of the current property that was updated
 
-        if ($property === 'blog_image') {
+    //     if ($property === 'blog_image') {
 
-            $this->loading_image = null;
+    //         $this->loading_image = null;
 
-            $this->dispatch('alert-manager');
-        }
-    }
+    //         $this->dispatch('alert-manager');
+    //     }
+    // }
 
 
 
-    public function updating($property, $value)
-    {
-        // $property: The name of the current property being updated
-        // $value: The value about to be set to the property
+    // public function updating($property, $value)
+    // {
+    //     // $property: The name of the current property being updated
+    //     // $value: The value about to be set to the property
 
-        if ($property === 'blog_image') {
-            $this->loading_image = "Loading...";
+    //     if ($property === 'blog_image') {
+    //         $this->loading_image = "Loading...";
 
-            $this->dispatch('alert-manager');
+    //         $this->dispatch('alert-manager');
 
-            $this->dispatch('reinitialize_blog_form');
-        }
-    }
+    //         $this->dispatch('reinitialize_blog_form');
+    //     }
+    // }
 
 
 
@@ -165,6 +165,8 @@ class AdminBlogs extends Component
 
     public function render()
     {
+        // $this->dispatch('alert-manager');
+
         return view('livewire.admin-blogs');
     }
 }

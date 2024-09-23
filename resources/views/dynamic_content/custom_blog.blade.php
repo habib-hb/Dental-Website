@@ -14,15 +14,7 @@
     <body>
 
 
-
-        <h1>Working</h1>
-
-        <img src="{{$post->blog_image}}" class="h-[200px] w-[200px]" alt="">
-
-        <h1>{{$post->blog_title}}</h1>
-        <h1>{{$post->blog_excerpt}}</h1>
-
-        <h1>{!!$post->blog_text!!}</h1>
+        <livewire:custom-blog blog_image="{{$post->blog_image}}" blog_title="{{$post->blog_title}}" blog_excerpt="{{$post->blog_excerpt}}" :blog_text="$post->blog_text" blog_author="{{$post->blog_author}}" blog_date="{{$post->updated_at}}"/>
 
         @livewireScripts
     </body>

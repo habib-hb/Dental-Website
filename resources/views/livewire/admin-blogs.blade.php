@@ -125,6 +125,7 @@
                 editor.on('change', function () {
                     // Update the Livewire property when TinyMCE content changes
                     Livewire.dispatch('updateTextarea', {text: editor.getContent()});
+
                 });
 
 
@@ -147,69 +148,69 @@
 
             });
 
-            Livewire.on('reinitialize_blog_form', () => {
+            // Livewire.on('reinitialize_blog_form', () => {
 
-                setTimeout(() => {
-                    let tinymce_div = document.getElementById('tinymce_div');
-                    if(!tinymce_div.classList.contains('hidden')){
-                            tinymce_div.classList.add('hidden')
-                    }
+            //     setTimeout(() => {
+            //         let tinymce_div = document.getElementById('tinymce_div');
+            //         if(!tinymce_div.classList.contains('hidden')){
+            //                 tinymce_div.classList.add('hidden')
+            //         }
 
-                    if(tinymce_loading.classList.contains('hidden')){
-                            tinymce_loading.classList.remove('hidden')
-                    }
+            //         if(tinymce_loading.classList.contains('hidden')){
+            //                 tinymce_loading.classList.remove('hidden')
+            //         }
 
-                         }, 10);
+            //              }, 10);
 
-               setTimeout(() => {
-                    let tinymce_div = document.getElementById('tinymce_div');
-                    if(!tinymce_div.classList.contains('hidden')){
-                            tinymce_div.classList.add('hidden')
-                    }
+            //    setTimeout(() => {
+            //         let tinymce_div = document.getElementById('tinymce_div');
+            //         if(!tinymce_div.classList.contains('hidden')){
+            //                 tinymce_div.classList.add('hidden')
+            //         }
 
-                    if(tinymce_loading.classList.contains('hidden')){
-                            tinymce_loading.classList.remove('hidden')
-                    }
+            //         if(tinymce_loading.classList.contains('hidden')){
+            //                 tinymce_loading.classList.remove('hidden')
+            //         }
 
-                    }, 100);
+            //         }, 100);
 
-                setTimeout(() => {
-                    let tinymce_div = document.getElementById('tinymce_div');
-                    if(!tinymce_div.classList.contains('hidden')){
-                            tinymce_div.classList.add('hidden')
-                    }
+            //     setTimeout(() => {
+            //         let tinymce_div = document.getElementById('tinymce_div');
+            //         if(!tinymce_div.classList.contains('hidden')){
+            //                 tinymce_div.classList.add('hidden')
+            //         }
 
-                    if(tinymce_loading.classList.contains('hidden')){
-                            tinymce_loading.classList.remove('hidden')
-                    }
+            //         if(tinymce_loading.classList.contains('hidden')){
+            //                 tinymce_loading.classList.remove('hidden')
+            //         }
 
-                    }, 500);
+            //         }, 500);
 
 
-                setTimeout(() => {
-                    let tinymce_div = document.getElementById('tinymce_div');
-                    if(!tinymce_div.classList.contains('hidden')){
-                            tinymce_div.classList.add('hidden')
-                    }
+            //     setTimeout(() => {
+            //         let tinymce_div = document.getElementById('tinymce_div');
+            //         if(!tinymce_div.classList.contains('hidden')){
+            //                 tinymce_div.classList.add('hidden')
+            //         }
 
-                    if(tinymce_loading.classList.contains('hidden')){
-                            tinymce_loading.classList.remove('hidden')
-                    }
-                    }, 1000);
+            //         if(tinymce_loading.classList.contains('hidden')){
+            //                 tinymce_loading.classList.remove('hidden')
+            //         }
+            //         }, 1000);
 
-                setTimeout(() => {
-                    tinymce_div.classList.remove('hidden')
-                    tinymce_loading.classList.add('hidden')
-                    tinemce_init()
-                    }, 2000);
+            //     setTimeout(() => {
+            //         tinymce_div.classList.remove('hidden')
+            //         tinymce_loading.classList.add('hidden')
+            //         tinemce_init()
+            //         }, 2000);
 
-            });
+            // });
 
     })
 
         </script>
 
-    <div id="tinymce_div"  class="">
+    <div id="tinymce_div"  class=""  wire:ignore>
 
     <textarea id="tinymce">
         Welcome to TinyMCE! <p>Hello World!</p>
@@ -218,19 +219,21 @@
 
     </div>
 
+    {{-- <p>If you notice a problem with the "Blog Text" section, click on this "<a class="text-[#1a579f] text-lg underline" onclick="tinemce_init()">Fix</a>".</p> --}}
+
     {{-- Loading Text For Text Area After Image Upload --}}
-    <div id="tinymce_loading" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10 hidden">
+    {{-- <div id="tinymce_loading" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10 hidden"> --}}
 
-       <div class="flex flex-row justify-center items-center px-2 gap-2">
+       {{-- <div class="flex flex-row justify-center items-center px-2 gap-2"> --}}
 
-                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+                {{-- <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt=""> --}}
 
-                <span class=" text-white py-2 rounded-lg"> Processing Image Upload...</span>
+                {{-- <span class=" text-white py-2 rounded-lg"> Processing Image Upload...</span> --}}
 
-        </div>
+        {{-- </div> --}}
 
 
-    </div>
+    {{-- </div> --}}
 
 
 
