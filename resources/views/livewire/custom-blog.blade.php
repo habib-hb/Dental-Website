@@ -76,7 +76,7 @@
 
 
     {{-- The Blog Text Section --}}
-    <div class="max-w-[800px] mx-auto py-4 px-4">
+    <div class="max-w-[800px] mx-auto py-4 px-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">
         {!!$blog_text!!}
     </div>
 
