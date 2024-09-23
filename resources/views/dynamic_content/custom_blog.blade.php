@@ -13,11 +13,16 @@
     </head>
     <body>
 
-        @if ($form_data)
-            <p>{!! $form_data !!}</p>
-        @endif
 
 
+        <h1>Working</h1>
+
+        <img src="{{$post->blog_image}}" class="h-[200px] w-[200px]" alt="">
+
+        <h1>{{$post->blog_title}}</h1>
+        <h1>{{$post->blog_excerpt}}</h1>
+
+        <h1>{!!$post->blog_text!!}</h1>
 
         @livewireScripts
     </body>

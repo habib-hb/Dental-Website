@@ -24,26 +24,30 @@ class AdminBlogs extends Component
     public $blog_area;
 
 
-    // Testing
+    // Operational
 
     public $image_url;
 
-    // End Testing
+    public $loading_image;
+
+
 
     public function save()
     {
-        $this->validate([
-            'blog_image' => 'image|max:1024', // Image validation (1MB max)
-        ]);
 
-        // Store the uploaded image and get the file path
-        $imagePath = $this->blog_image->store('blog_images', 'public');
-
-        // Generate the full image_URL to the stored image
-        $this->image_url = asset('storage/' . $imagePath);
 
 
         if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area){
+
+            $this->validate([
+                'blog_image' => 'image|max:1024', // Image validation (1MB max)
+            ]);
+
+            // Store the uploaded image and get the file path
+            $imagePath = $this->blog_image->store('blog_images', 'public');
+
+            // Generate the full image_URL to the stored image
+            $this->image_url = asset('storage/' . $imagePath);
 
             blog_posts::create([
                 'blog_author' => $this->author_name,
@@ -55,10 +59,20 @@ class AdminBlogs extends Component
                 'blog_type' => 'custom',
             ]);
 
-          
 
 
-            session()->flash('message', 'Blog Post Created Successfully');
+
+            session()->flash('form_completion_message', 'Blog Post Created Successfully');
+
+            $this->dispatch('alert-manager');
+
+
+        }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area){
+
+            session()->flash('form_error_message', 'Please fill all the fields');
+
+            $this->dispatch('alert-manager');
+
         }
 
     }
@@ -68,9 +82,30 @@ class AdminBlogs extends Component
         // $property: The name of the current property that was updated
 
         if ($property === 'blog_image') {
+
+            $this->loading_image = null;
+
             $this->dispatch('alert-manager');
         }
     }
+
+
+
+    public function updating($property, $value)
+    {
+        // $property: The name of the current property being updated
+        // $value: The value about to be set to the property
+
+        if ($property === 'blog_image') {
+            $this->loading_image = "Loading...";
+
+            $this->dispatch('alert-manager');
+
+            $this->dispatch('reinitialize_blog_form');
+        }
+    }
+
+
 
 
     public function test_image(){
@@ -106,6 +141,23 @@ class AdminBlogs extends Component
             session(['theme_mode' => 'light']);
 
         }
+
+        $this->dispatch('alert-manager');
+
+    }
+
+    public function clear_form_completion_message(){
+
+        session()->flash('form_completion_message', null);
+
+        $this->dispatch('alert-manager');
+
+    }
+
+
+    public function clear_form_error_message(){
+
+        session()->flash('form_error_message', null);
 
         $this->dispatch('alert-manager');
 

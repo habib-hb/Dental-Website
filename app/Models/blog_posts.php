@@ -24,6 +24,8 @@ class blog_posts extends Model
         'blog_image',
         'blog_text',
         'blog_type',
+        'created_at',
+        'updated_at'
     ];
 
     public function searchableAs(): string

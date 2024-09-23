@@ -215,9 +215,7 @@ Route::get('/admin_dashboard/blogs', function () {
 
 
 
-Route::post('/form_data' , function (Request $request) {
-    $form_data = $request->data;
-
-    return view('text_to_html_test', [
-        'form_data' => $form_data]);
+Route::get('/blogs/{slug}', function ($slug) {
+    $post = blog_posts::where('blog_link', $slug)->first();
+    return view('dynamic_content.custom_blog', ['post' => $post]);
 });
