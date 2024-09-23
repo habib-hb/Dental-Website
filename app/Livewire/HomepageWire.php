@@ -55,6 +55,10 @@ class HomepageWire extends Component
                 $post->blog_title = str_ireplace($this->searchtext, $highlighted, e($post->blog_title));
                 $post->blog_excerpt = str_ireplace($this->searchtext, $highlighted, e($post->blog_excerpt));
 
+                if($post->blog_type == 'custom'){
+                    $post->blog_link = '/blogs/' . $post->blog_link;
+                }
+
                 return $post;
             });
 

@@ -30,6 +30,10 @@ class AdminBlogs extends Component
 
     public $loading_image;
 
+    public $slug_already_in_use;
+
+    public $slug_available;
+
 
 
     public function save()
@@ -37,7 +41,7 @@ class AdminBlogs extends Component
 
 
 
-        if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area){
+        if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_available){
 
             $this->validate([
                 'blog_image' => 'image|max:1024', // Image validation (1MB max)
@@ -67,9 +71,9 @@ class AdminBlogs extends Component
             $this->dispatch('alert-manager');
 
 
-        }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area){
+        }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available){
 
-            session()->flash('form_error_message', 'Please fill all the fields');
+            session()->flash('form_error_message', 'Please fill all the fields correctly');
 
             $this->dispatch('alert-manager');
 
@@ -77,17 +81,38 @@ class AdminBlogs extends Component
 
     }
 
-    // public function updated($property)
-    // {
-    //     // $property: The name of the current property that was updated
+    public function updated($property)
+    {
+        // $property: The name of the current property that was updated
 
-    //     if ($property === 'blog_image') {
+        if ($property === 'blog_slug') {
 
-    //         $this->loading_image = null;
+            $this->blog_slug = str_replace(' ', '-', $this->blog_slug);
 
-    //         $this->dispatch('alert-manager');
-    //     }
-    // }
+            // Database Check for already existing slugs
+            $database_check = blog_posts::where('blog_link', $this->blog_slug)->get();
+
+
+            if($database_check->count() > 0){
+
+                $this->slug_already_in_use ='This slug is already in use';
+
+                $this->slug_available = null;
+
+
+
+            }else{
+
+                $this->slug_available =  "The slug is available";
+
+                $this->slug_already_in_use = null;
+
+            }
+
+
+
+        }
+    }
 
 
 
