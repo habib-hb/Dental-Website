@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 
 class CustomBlog extends Component
@@ -21,12 +22,14 @@ class CustomBlog extends Component
 
     public function mount($blog_image, $blog_title, $blog_excerpt, $blog_text , $blog_author, $blog_date){
 
+        $formattedDate = Carbon::parse($blog_date)->format('jS F, Y');
+
         $this->blog_image = $blog_image;
         $this->blog_title = $blog_title;
         $this->blog_excerpt = $blog_excerpt;
         $this->blog_text = $blog_text;
         $this->blog_author = $blog_author;
-        $this->blog_date = $blog_date;
+        $this->blog_date = $formattedDate;
 
     }
 
