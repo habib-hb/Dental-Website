@@ -76,6 +76,11 @@ class AdminAppointments extends Component
     }
 
 
+    public function markAsUnfulfilled($id){
+        dd($id);
+    }
+
+
     public function render()
     {
         return view('livewire.admin-appointments');

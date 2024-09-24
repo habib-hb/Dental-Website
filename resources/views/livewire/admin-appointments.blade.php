@@ -81,10 +81,12 @@
 
             <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Problem: </b>{{$appointment['written_problem']}}</p>
 
+            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4 text-lg"><b>Estimated Fee: </b>{{$appointment['estimated_price'] ? $appointment['estimated_price'] : 'Not Available'}}</p>
+
 
             <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
-                <button class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110">Mark As Unfulfilled</button>
-                <button class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110">Mark As Fulfilled</button>
+                <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110">Mark As Unfulfilled</button>
+                <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110">Mark As Fulfilled</button>
             </div>
 
     </div>
