@@ -67,24 +67,24 @@
             <h2 class="text-3xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['appointment_time']}}</h2>
             <p class="text-lg {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"> {{ \Carbon\Carbon::parse($appointment['appointment_date'])->format('jS F, Y') }}</p>
 
-            <p class="text-2xl font-semibold py-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Root Canal Treatment</p>
+            <p class="text-2xl font-semibold py-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['service_name'] ? $appointment['service_name'] : 'Not Entered'}}</p>
 
             <p class="text-xl font-semibold mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Patient Details</p>
 
-            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Name: </b> Habib</p>
+            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Name: </b>{{$appointment['name']}}</p>
 
-            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Age: </b> Habib</p>
+            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Age: </b>{{$appointment['age']}}</p>
 
-            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Gender: </b> Habib</p>
+            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Gender: </b>{{$appointment['gender']}}b</p>
 
-            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Phone: </b> Habib</p>
+            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Phone: </b>{{$appointment['contact_number']}}</p>
 
-            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Problem: </b> Habib</p>
+            <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"><b>Problem: </b>{{$appointment['written_problem']}}</p>
 
 
             <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
-                <button class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg">Mark As Unfulfilled</button>
-                <button class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg">Mark As Fulfilled</button>
+                <button class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110">Mark As Unfulfilled</button>
+                <button class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110">Mark As Fulfilled</button>
             </div>
 
     </div>
