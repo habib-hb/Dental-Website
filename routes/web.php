@@ -231,6 +231,20 @@ Route::get('/admin_dashboard/blogs', function () {
 
 
 
+
+Route::get('/admin_dashboard/banner_headline', function () {
+    return view('admin_dashboard.banner_headline');
+});
+
+
+
+
+
+
+
+
+
+
 Route::get('/blogs/{slug}', function ($slug) {
     $post = blog_posts::where('blog_link', $slug)->first();
     return view('dynamic_content.custom_blog', ['post' => $post]);
