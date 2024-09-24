@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class BannerHeadline extends Component
+class AdminBannerHeadline extends Component
 {
     public function render()
     {
-        return view('livewire.banner-headline');
+        return view('livewire.admin-banner-headline');
     }
 }
