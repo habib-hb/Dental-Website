@@ -72,7 +72,7 @@ class AdminAppointments extends Component
     public function clear_no_more_appointments(){
 
         session()->flash('no_more_appointments', null);
-        
+
     }
 
 

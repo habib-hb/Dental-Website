@@ -94,12 +94,21 @@
 
 
 
+        {{-- If No Appointment Data --}}
+        @if(count($all_appointments) == 0)
+            <div class="flex flex-col items-center h-[100vh]">
+
+                <p class="mt-16">No Appointments Found</p>
+
+            </div>
+        @endif
+
 
     </div>
 
 
     <div class="flex justify-center mt-8">
-         <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110">More</button>
+         <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}">More</button>
     </div>
 
 
