@@ -68,7 +68,7 @@
 
     <div class="flex flex-col w-[96vw] h-[100vh] md:max-w-[800px] mx-auto mt-4">
 
-
+        <h1 class="text-xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} text-center">Set Banner Headline</h1>
 
         <div class="flex flex-col mt-8">
 
