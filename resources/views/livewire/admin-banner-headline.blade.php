@@ -18,6 +18,43 @@
     </nav>
 
 
+    {{-- Notifications --}}
+
+        @if (session()->has('banner_message'))
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{ session('banner_message') }}</p>
+
+            </div>
+
+            <button wire:click="clear_banner_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+        </div>
+
+        @endif
+
+
+        @if (session()->has('banner_error_message'))
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit mx-auto w-[90%] max-w-[400px]  bg-[#9f1a1a] py-4 rounded-lg z-10">
+                <div class="flex flex-row justify-between items-center px-8">
+
+                    <p class="text-white text-center">{{ session('banner_error_message') }}</p>
+
+                </div>
+
+                <button wire:click="clear_banner_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+        @endif
+
+    {{-- End Notifications --}}
+
+
 
     <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all">
 
@@ -50,7 +87,10 @@
 
 
 
+
+
     </div>
+
 
 
  {{-- Footer Element --}}

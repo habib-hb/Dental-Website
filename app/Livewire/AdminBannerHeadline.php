@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\banner_headline;
 use Livewire\Component;
 
 class AdminBannerHeadline extends Component
@@ -12,11 +13,36 @@ class AdminBannerHeadline extends Component
 
 
     public function save(){
+
             if(!$this->banner_headline){
-                dd("Please Fill All the fields");
+
+                session()->flash('banner_error_message', 'Banner Headline Cann\'t Be Empty');
+
+                return;
             }
-            dd($this->banner_headline);
-    }
+
+            //Database Check
+            $database_check_banner_headline = banner_headline::where('banner_type', "homepage")->first();
+
+            if(!$database_check_banner_headline){
+            banner_headline::create([
+                'banner_text' => $this->banner_headline,
+                'banner_type' => "homepage"
+            ]);
+
+            session()->flash('banner_message', 'Banner Headline Created Successfully');
+
+        }else{
+
+            $database_check_banner_headline->update([
+                'banner_text' => $this->banner_headline
+            ]);
+
+            session()->flash('banner_message', 'Banner Headline Updated Successfully');
+
+        }
+
+        }
 
 
 
@@ -34,6 +60,20 @@ class AdminBannerHeadline extends Component
         }
 
         $this->dispatch('alert-manager');
+
+    }
+
+
+    public function clear_banner_message(){
+
+        session()->flash('banner_message', null);
+
+    }
+
+
+    public function clear_banner_error_message(){
+
+        session()->flash('banner_error_message', null);
 
     }
 
