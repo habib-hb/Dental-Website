@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\banner_headline;
 use App\Models\blog_posts;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -19,6 +20,8 @@ class HomepageWire extends Component
 
     public $search_output_length;
 
+    public $banner_headline;
+
 
     public function mount()
     {
@@ -35,6 +38,19 @@ class HomepageWire extends Component
         }
 
         $this->search_input_field_is_active = session('search_input_field_is_active');
+
+        //Database test for banner_headline
+        $banner_headline_check = banner_headline::where('banner_type', "homepage")->first();
+
+        if($banner_headline_check){
+
+            $this->banner_headline = $banner_headline_check->banner_text;
+
+        }else{
+
+            $this->banner_headline = 'We use only the best quality materials on the market in order to provide the best products to our patients, So don’t worry about anything and book yourself.';
+            
+        }
     }
 
 
