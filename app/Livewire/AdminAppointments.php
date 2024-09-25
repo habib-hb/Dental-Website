@@ -77,7 +77,35 @@ class AdminAppointments extends Component
 
 
     public function markAsUnfulfilled($id){
-        dd($id);
+
+
+        $update = \App\Models\booked_patient_details::find($id);
+        $update->appointment_status = 'Unfulfilled';
+        $update->save();
+
+        session()->flash('appointment_unfulfilled', 'Appointment Has Been Marked Unfulfilled');
+
+    }
+
+    public function markAsFulfilled($id){
+
+        $update = \App\Models\booked_patient_details::find($id);
+        $update->appointment_status = 'Fulfilled';
+        $update->save();
+
+        session()->flash('appointment_fulfilled', 'Appointment Has Been Marked Fulfilled');
+    }
+
+    public function clear_appointment_unfulfilled(){
+
+        session()->flash('appointment_unfulfilled', null);
+
+    }
+
+    public function clear_appointment_fulfilled(){
+
+        session()->flash('appointment_fulfilled', null);
+
     }
 
 

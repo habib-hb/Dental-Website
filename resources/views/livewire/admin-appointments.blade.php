@@ -57,6 +57,64 @@
 
 
 
+            {{-- Messages --}}
+            @if (session()->has('no_more_appointments'))
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-row justify-between items-center px-8">
+
+
+                    <p class="text-white text-left">{{session('no_more_appointments')}}</p>
+
+                </div>
+
+                <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+            @endif
+
+
+
+            @if (session()->has('appointment_unfulfilled'))
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Unfulfilled</p>
+
+                    <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p>
+
+                </div>
+
+                <button wire:click="clear_appointment_unfulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+            @endif
+
+
+
+            @if (session()->has('appointment_fulfilled'))
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Fulfilled</p>
+
+                    <p class="text-white text-left">{{session('appointment_fulfilled')}}</p>
+
+                </div>
+
+                <button wire:click="clear_appointment_fulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+            @endif
+
+
+
+
     {{--Appointment Data --}}
     <div class="mt-8 flex flex-col gap-4">
 
@@ -112,25 +170,6 @@
     <div class="flex justify-center mt-8">
          <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}">More</button>
     </div>
-
-
-
-
-    @if (session()->has('no_more_appointments'))
-
-    <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
-        <div class="flex flex-row justify-between items-center px-8">
-
-
-            <p class="text-white text-left">{{session('no_more_appointments')}}</p>
-
-        </div>
-
-        <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
-
-    </div>
-
-    @endif
 
 
 
