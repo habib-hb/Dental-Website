@@ -77,21 +77,21 @@
 
 
             {{-- @if (session()->has('appointment_unfulfilled') && session('appointment_unfulfilled') != 'Close') --}}
-            @if ($appointment_unfulfilled_notification)
+            @if ($appointment_fulfilled_notification)
 
-            <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+            <div id="appointment_fulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
                 <div class="flex flex-col justify-between items-center px-8">
 
-                    <p class="text-white text-3xl font-semibold">Unfulfilled</p>
+                    <p class="text-white text-3xl font-semibold">Fulfilled</p>
 
                     {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
-                    <p class="text-white text-center">{{$appointment_unfulfilled_notification}}</p>
+                    <p class="text-white text-center">{{$appointment_fulfilled_notification}}</p>
 
                 </div>
 
                 {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
 
-                <button wire:click="clear_appointment_unfulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_appointment_fulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
 
 
 
@@ -130,14 +130,14 @@
 
 
 
-    <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Fulfilled Appointments</h1>
+    <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Unfulfilled Appointments</h1>
 
     {{--Appointment Data --}}
     <div class="mt-4 flex flex-col gap-4">
 
         @foreach ($all_appointments as $appointment)
 
-        <div class="flex flex-col justify-center  items-center w-[96vw]  md:max-w-[800px]  md:p-8 p-4  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_unfulfilled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_restored_selected_id)) ? 'hidden' : ''}}">
+        <div class="flex flex-col justify-center  items-center w-[96vw]  md:max-w-[800px]  md:p-8 p-4  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_fulfilled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_restored_selected_id)) ? 'hidden' : ''}}">
 
             <h2 class="text-3xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['appointment_time']}}</h2>
             <p class="text-lg {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"> {{ \Carbon\Carbon::parse($appointment['appointment_date'])->format('jS F, Y') }}</p>
@@ -163,7 +163,7 @@
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
                     <button wire:click="restoreAppointment({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Restore Appointment</button>
 
-                    <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
+                    <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
                     
                 </div>
           
@@ -203,7 +203,7 @@
     <div class="flex flex-row justify-center items-center gap-16 mt-16">
         <button class="px-4 w-[240px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='http://127.0.0.1:8000/admin_dashboard/appointments'">Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
 
-        <button class="px-4 w-[240px]  py-2 bg-red-800 text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='http://127.0.0.1:8000/admin_dashboard/appointments/unfulfilled_appointments'">Unfulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[240px]  py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='http://127.0.0.1:8000/admin_dashboard/appointments/fulfilled_appointments'">Fulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
     </div>
 
 
