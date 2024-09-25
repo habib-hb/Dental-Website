@@ -260,6 +260,20 @@ Route::get('/admin_dashboard/appointments', function () {
 
 
 
+Route::get('/admin_dashboard/appointments/fulfilled_appointments', function () {
+    return view('admin_dashboard.fulfilled_appointments');
+});
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/blogs/{slug}', function ($slug) {
     $post = blog_posts::where('blog_link', $slug)->first();

@@ -21,5 +21,6 @@ class booked_patient_details extends Model
        'written_problem',
        'appointment_date',
        'appointment_time',
+       'appointment_status'
     ];
 }

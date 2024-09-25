@@ -6,7 +6,7 @@ use Livewire\Component;
 
 use Livewire\WithPagination;
 
-class AdminAppointments extends Component
+class AdminFulfilledAppointments extends Component
 {
 
     use WithPagination;
@@ -23,16 +23,16 @@ class AdminAppointments extends Component
 
     public $appointment_unfulfilled_notification = null;
 
-    public $appointment_fulfilled_selected_id = [];
+    public $appointment_restored_selected_id = [];
 
-    public $appointment_fulfilled_notification = null;
+    public $appointment_restored_notification = null;
 
 
 
 
     public function mount(){
 
-        $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
+        $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();
@@ -54,7 +54,7 @@ class AdminAppointments extends Component
 
     public function loadMore(){
 
-        $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
+        $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Fulfilled')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
         ->take($this->database_limit)
         ->get();
@@ -116,16 +116,16 @@ class AdminAppointments extends Component
 
     }
 
-    public function markAsFulfilled($id){
+    public function restoreAppointment($id){
 
         $update = \App\Models\booked_patient_details::find($id);
-        $update->appointment_status = 'Fulfilled';
+        $update->appointment_status = null;
         $update->save();
 
         // session()->flash('appointment_fulfilled', 'Appointment Has Been Marked Fulfilled');
-        $this->appointment_fulfilled_selected_id[]=$id;
+        $this->appointment_restored_selected_id[]=$id;
 
-        $this->appointment_fulfilled_notification="Appointment Has Been Marked Fulfilled";
+        $this->appointment_restored_notification="Appointment Has Been Restored";
     }
 
     public function clear_appointment_unfulfilled(){
@@ -138,11 +138,11 @@ class AdminAppointments extends Component
 
     }
 
-    public function clear_appointment_fulfilled(){
+    public function clear_appointment_restored(){
 
         // session()->flash('appointment_fulfilled', null);
 
-        $this->appointment_fulfilled_notification=null;
+        $this->appointment_restored_notification=null;
 
 
 
@@ -151,6 +151,6 @@ class AdminAppointments extends Component
 
     public function render()
     {
-        return view('livewire.admin-appointments');
+        return view('livewire.admin-fulfilled-appointments');
     }
 }
