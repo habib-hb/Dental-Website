@@ -237,9 +237,9 @@
 
                 <div class="flex flex-row justify-between items-center py-4 gap-4">
 
-                    <button wire:click="delete_confirmed" class="text-white border-2 border-white px-4 rounded-lg">Delete</button>
+                    <button wire:click="delete_confirmed" class="text-white border-2 border-white px-4 rounded-lg hover:scale-110">Delete</button>
 
-                    <button wire:click="clear_appointment_deletable_id" class="text-white border-2 border-white px-4 rounded-lg">Cancel</button>
+                    <button wire:click="clear_appointment_deletable_id" class="text-white border-2 border-white px-4 rounded-lg hover:scale-110">Cancel</button>
 
                 </div>
 
@@ -260,7 +260,7 @@
 
 
 
-    <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Fulfilled Appointments</h1>
+    <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Unsettled Appointments</h1>
 
     {{--Appointment Data --}}
     <div class="mt-4 flex flex-col gap-4">
