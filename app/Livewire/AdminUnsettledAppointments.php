@@ -252,6 +252,13 @@ class AdminUnsettledAppointments extends Component
 
                 // $this->appointment_restored_notification="Appointment Has Been Restored";
 
+        //Closing the window if already opened
+        if($this->currently_activated_panel_id == $id){
+            $this->currently_activated_panel_id=null;
+            return;
+        }
+
+
         $this->currently_activated_panel_id=$id;
 
         $this->clicked_date = null;

@@ -203,7 +203,7 @@
 
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
-                    <button wire:click="currently_activated_panel({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1" /></button>
+                    <button wire:click="currently_activated_panel({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$currently_activated_panel_id == $appointment['booked_patient_id'] ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
                     <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
 
@@ -213,7 +213,7 @@
 
             {{-- Settle Appointment Panel --}}
 
-            <div class="{{$currently_activated_panel_id == $appointment['booked_patient_id'] ? '' : 'hidden'}} mt-8">
+            <div class="{{$currently_activated_panel_id == $appointment['booked_patient_id'] ? '' : 'hidden'}} mt-8" >
 
                             <div class="flex flex-row justify-start md:justify-center w-[100%]">
                                     <p class="text-lg md:text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please Select A Date : {{$select_date_string}}</p>
