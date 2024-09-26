@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\available_schedules;
 use App\Models\booked_appointments;
+use App\Models\booked_patient_details;
 use DateTime;
 use Livewire\Component;
 
@@ -38,13 +39,15 @@ class AdminUnsettledAppointments extends Component
 
     public $clicked_time;
 
+    public $date_not_selected_notification;
 
+    public $time_not_selected_notification;
 
 
     //System Variables
-    public $appointment_unfulfilled_selected_id = [];
+    public $appointment_settled_selected_id = [];
 
-    public $appointment_unfulfilled_notification = null;
+    public $appointment_settled_notification = null;
 
     public $appointment_restored_selected_id = [];
 
@@ -227,19 +230,19 @@ class AdminUnsettledAppointments extends Component
     }
 
 
-    public function markAsUnfulfilled($id){
+    // public function markAsUnfulfilled($id){
 
 
-        $update = \App\Models\booked_patient_details::find($id);
-        $update->appointment_status = 'Unfulfilled';
-        $update->save();
+    //     $update = \App\Models\booked_patient_details::find($id);
+    //     $update->appointment_status = 'Unfulfilled';
+    //     $update->save();
 
-        // session()->flash('appointment_unfulfilled', 'Appointment Has Been Marked Unfulfilled');
-        $this->appointment_unfulfilled_selected_id[]=$id;
+    //     // session()->flash('appointment_unfulfilled', 'Appointment Has Been Marked Unfulfilled');
+    //     $this->appointment_unfulfilled_selected_id[]=$id;
 
-        $this->appointment_unfulfilled_notification="Appointment Has Been Marked Unfulfilled";
+    //     $this->appointment_unfulfilled_notification="Appointment Has Been Marked Unfulfilled";
 
-    }
+    // }
 
     public function currently_activated_panel($id){
 
@@ -269,11 +272,11 @@ class AdminUnsettledAppointments extends Component
 
     }
 
-    public function clear_appointment_unfulfilled(){
+    public function clear_appointment_settled_notification(){
 
         // session()->flash('appointment_unfulfilled', "Close");
 
-        $this->appointment_unfulfilled_notification=null;
+        $this->appointment_settled_notification=null;
 
 
 
@@ -286,6 +289,79 @@ class AdminUnsettledAppointments extends Component
         $this->appointment_restored_notification=null;
 
 
+
+    }
+
+
+    public function clear_date_not_selected_notification(){
+
+        // session()->flash('appointment_fulfilled', null);
+
+        $this->date_not_selected_notification=null;
+
+
+
+    }
+
+    public function clear_time_not_selected_notification(){
+
+        // session()->flash('appointment_fulfilled', null);
+
+        $this->time_not_selected_notification=null;
+
+
+
+    }
+
+
+
+    public function settleSubmit(){
+
+        if($this->currently_activated_panel_id != null && $this->clicked_date != null && $this->clicked_time != null){
+
+             // "booked_appointments" Table Management
+             $appointments_on_the_specific_date=booked_appointments::where('date' , $this->clicked_date)->get();
+
+             if(count($appointments_on_the_specific_date) > 0){
+
+                 $decoded_appointments = json_decode($appointments_on_the_specific_date[0]->appointments, true);
+
+                 $updated_decoded_appointments = array_merge($decoded_appointments, [$this->clicked_time]);
+                 $updated_encoded_appointments = json_encode($updated_decoded_appointments);
+                 $appointments_on_the_specific_date[0]->update(['appointments' => $updated_encoded_appointments]);
+
+             }else{
+
+                 $appointments_on_the_specific_date = new booked_appointments();
+                 $appointments_on_the_specific_date->date = $this->clicked_date;
+                 $appointments_on_the_specific_date->appointments = json_encode([$this->clicked_time]);
+                 $appointments_on_the_specific_date->save();
+
+             }
+
+
+            // Updating Patient Details Table
+            booked_patient_details::where('booked_patient_id', $this->currently_activated_panel_id)->update(['appointment_date' => $this->clicked_date, 'appointment_time' => $this->clicked_time, 'appointment_status' => null]);
+
+            $this->appointment_settled_selected_id[] = $this->currently_activated_panel_id;
+
+            $this->appointment_settled_notification="Appointment Has Been Settled";
+
+            
+
+        }elseif($this->currently_activated_panel_id == null){
+
+            dd("ID is null");
+
+        }elseif($this->clicked_date == null){
+
+            $this->date_not_selected_notification="Please Select A Date";
+
+        }elseif($this->clicked_time == null){
+
+            $this->time_not_selected_notification="Please Select A Time";
+
+        }
 
     }
 

@@ -100,6 +100,76 @@
 
 
             {{-- Messages --}}
+            @if ($date_not_selected_notification)
+
+            <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Date</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{$date_not_selected_notification}}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+
+                <button wire:click="clear_date_not_selected_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+
+
+            </div>
+
+            @endif
+
+
+
+            @if ($time_not_selected_notification)
+
+            <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Time</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{$time_not_selected_notification}}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+
+                <button wire:click="clear_time_not_selected_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+
+
+            </div>
+
+            @endif
+
+
+
+            @if ($appointment_settled_notification)
+
+            <div id="appointment_fulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Settled</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_fulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{$appointment_settled_notification}}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+
+                <button wire:click="clear_appointment_settled_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+            @endif
+
+
+
             @if (session()->has('no_more_appointments'))
 
             <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
@@ -118,54 +188,6 @@
 
 
 
-            {{-- @if (session()->has('appointment_unfulfilled') && session('appointment_unfulfilled') != 'Close') --}}
-            @if ($appointment_unfulfilled_notification)
-
-            <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
-                <div class="flex flex-col justify-between items-center px-8">
-
-                    <p class="text-white text-3xl font-semibold">Unfulfilled</p>
-
-                    {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
-                    <p class="text-white text-center">{{$appointment_unfulfilled_notification}}</p>
-
-                </div>
-
-                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
-
-                <button wire:click="clear_appointment_unfulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
-
-
-
-            </div>
-
-            @endif
-
-
-
-            {{-- @if (session()->has('appointment_fulfilled')) --}}
-
-            @if ($appointment_restored_notification)
-
-            <div id="appointment_fulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
-                <div class="flex flex-col justify-between items-center px-8">
-
-                    <p class="text-white text-3xl font-semibold">Restored</p>
-
-                    {{-- <p class="text-white text-left">{{session('appointment_fulfilled')}}</p> --}}
-                    <p class="text-white text-center">{{$appointment_restored_notification}}</p>
-
-                </div>
-
-                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
-
-                <button wire:click="clear_appointment_restored" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
-
-            </div>
-
-            @endif
-
-
 
 
 
@@ -179,7 +201,7 @@
 
         @foreach ($all_appointments as $appointment)
 
-        <div class="flex flex-col justify-center  items-center w-[96vw]  md:max-w-[800px]  md:p-8 p-4  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_unfulfilled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_restored_selected_id)) ? 'hidden' : ''}}">
+        <div class="flex flex-col justify-center  items-center w-[96vw]  md:max-w-[800px]  md:p-8 p-4  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_settled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_restored_selected_id)) ? 'hidden' : ''}}">
 
             <h2 class="text-3xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['appointment_time']}}</h2>
             <p class="text-lg {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"> {{ \Carbon\Carbon::parse($appointment['appointment_date'])->format('jS F, Y') }}</p>
@@ -211,67 +233,74 @@
 
 
 
-            {{-- Settle Appointment Panel --}}
+        {{-- Settle Appointment Panel --}}
 
-            <div class="{{$currently_activated_panel_id == $appointment['booked_patient_id'] ? '' : 'hidden'}} mt-8" >
+        <div class="{{$currently_activated_panel_id == $appointment['booked_patient_id'] ? '' : 'hidden'}} mt-8" >
 
-                            <div class="flex flex-row justify-start md:justify-center w-[100%]">
-                                    <p class="text-lg md:text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please Select A Date : {{$select_date_string}}</p>
-                            </div>
-
-
-
-
-                            {{-- Dates Cards --}}
-                            <div class="flex flex-row flex-wrap gap-2 justify-center w-[100%] md:max-w-[800px] md:gap-4 mt-2">
-
-
-                                @foreach ($datesArray as $dates)
-
-                                    <div wire:click="selectedDate('{{$dates['identifier']}}')" class="flex flex-col justify-center items-center h-[90px] w-[18%] {{$clicked_date == $dates['identifier'] ? 'bg-[#1A579F]' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#202329]')}}   rounded-lg mb-1   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-105 cursor-pointer">
-
-                                        <p class="text-3xl {{$clicked_date == $dates['identifier'] ? 'text-white' : (session('theme_mode') == 'light' ? 'text-[#6B779A]' : 'text-white')}}">{{$dates['day']}}</p>
-
-                                        <p class="text-sm  {{$clicked_date == $dates['identifier'] ? 'text-white' : (session('theme_mode') == 'light' ? 'text-[#6B779A]' : 'text-white')}}">{{$dates['day_name_abbr']}}</p>
-
-                                    </div>
-
-                                @endforeach
+                        <div class="flex flex-row justify-start md:justify-center w-[100%]">
+                                <p class="text-lg md:text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please Select A Date : {{$select_date_string}}</p>
+                        </div>
 
 
 
-                            </div>
+
+                        {{-- Dates Cards --}}
+                        <div class="flex flex-row flex-wrap gap-2 justify-center w-[100%] md:max-w-[800px] md:gap-4 mt-2">
 
 
+                            @foreach ($datesArray as $dates)
 
-                            {{-- Times Section --}}
-                            <div class="mt-8 {{$clicked_date == '' ? 'hidden' : ''}}">
+                                <div wire:click="selectedDate('{{$dates['identifier']}}')" class="flex flex-col justify-center items-center h-[90px] w-[18%] {{$clicked_date == $dates['identifier'] ? 'bg-[#1A579F]' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#202329]')}}   rounded-lg mb-1   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-105 cursor-pointer">
 
+                                    <p class="text-3xl {{$clicked_date == $dates['identifier'] ? 'text-white' : (session('theme_mode') == 'light' ? 'text-[#6B779A]' : 'text-white')}}">{{$dates['day']}}</p>
 
-                                <h2 class="text-2xl text-center my-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please Select A Time</h2>
-                                <div>
-
-                                    @foreach ($timesArray as $time)
-
-                                        @if (in_array($time, $bookedTimesArray))
-
-                                            <p wire:click="timeBookedAlert('{{$time}}')" class="text-center p-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#505050] text-[#d3d3d3]'}}   mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] opacity-20 ">{{$time}}</p>
-
-                                        @else
-
-                                            <p wire:click="selectedTime('{{$time}}')" class="text-center p-2 {{$clicked_time == $time ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  hover:scale-105 cursor-pointer">{{$time}}</p>
-
-                                        @endif
-
-                                    @endforeach
+                                    <p class="text-sm  {{$clicked_date == $dates['identifier'] ? 'text-white' : (session('theme_mode') == 'light' ? 'text-[#6B779A]' : 'text-white')}}">{{$dates['day_name_abbr']}}</p>
 
                                 </div>
 
+                            @endforeach
+
+
+
+                        </div>
+
+
+
+                        {{-- Times Section --}}
+                        <div class="mt-8 {{$clicked_date == '' ? 'hidden' : ''}}">
+
+
+                            <h2 class="text-2xl text-center my-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Please Select A Time</h2>
+                            <div>
+
+                                @foreach ($timesArray as $time)
+
+                                    @if (in_array($time, $bookedTimesArray))
+
+                                        <p wire:click="timeBookedAlert('{{$time}}')" class="text-center p-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#505050] text-[#d3d3d3]'}}   mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] opacity-20 ">{{$time}}</p>
+
+                                    @else
+
+                                        <p wire:click="selectedTime('{{$time}}')" class="text-center p-2 {{$clicked_time == $time ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  hover:scale-105 cursor-pointer">{{$time}}</p>
+
+                                    @endif
+
+                                @endforeach
+
                             </div>
 
-                </div>
+                        </div>
 
-                {{-- End Settle Appointment Panel --}}
+
+
+                        <div class="flex flex-col justify-center items-center mt-8">
+                            <button wire:click="settleSubmit" class="px-16 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle</button>
+                        </div>
+
+
+            </div>
+
+            {{-- End Settle Appointment Panel --}}
 
 
 
