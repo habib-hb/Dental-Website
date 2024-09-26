@@ -290,6 +290,21 @@ Route::get('/admin_dashboard/appointments/unfulfilled_appointments', function ()
 
 
 
+Route::get('/admin_dashboard/appointments/unsettled_appointments', function () {
+    return view('admin_dashboard.unsettled_appointments');
+});
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/blogs/{slug}', function ($slug) {
     $post = blog_posts::where('blog_link', $slug)->first();
     return view('dynamic_content.custom_blog', ['post' => $post]);

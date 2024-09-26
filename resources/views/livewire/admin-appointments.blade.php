@@ -128,7 +128,7 @@
 
 
 
-            
+
 
     <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Appointments</h1>
 
@@ -163,9 +163,9 @@
                     <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
                     <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
                 </div>
-            
 
-          
+
+
 
 
 
@@ -180,7 +180,7 @@
         @if(count($all_appointments) == 0)
             <div class="flex flex-col items-center h-[100vh]">
 
-                <p class="mt-16">No Appointments Found</p>
+                <p class="mt-16 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No Appointments Found</p>
 
             </div>
         @endif

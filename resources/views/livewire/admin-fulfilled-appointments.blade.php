@@ -159,16 +159,16 @@
             <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4 text-lg"><b>Estimated Fee: </b>{{$appointment['estimated_price'] ? $appointment['estimated_price'] : 'Not Available'}}</p>
 
 
-         
+
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
                     <button wire:click="restoreAppointment({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Restore Appointment</button>
 
                     <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
-                    
-                </div>
-          
 
-           
+                </div>
+
+
+
 
 
 
@@ -184,7 +184,7 @@
         @if(count($all_appointments) == 0)
             <div class="flex flex-col items-center h-[100vh]">
 
-                <p class="mt-16">No Appointments Found</p>
+                <p class="mt-16 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No Appointments Found</p>
 
             </div>
         @endif
