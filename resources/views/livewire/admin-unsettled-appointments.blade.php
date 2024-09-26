@@ -57,7 +57,7 @@
 
 
 
-        <!-- Show a loading spinner while Doing Date Processing -->
+        <!-- Date Processing Spinner -->
         <div wire:loading wire:target="currently_activated_panel" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
             <div class="flex flex-row justify-center items-center px-2 gap-2">
 
@@ -84,7 +84,7 @@
 
 
 
-        <!-- Show a loading spinner while Doing Time Processing -->
+
           <div wire:loading wire:target="selectedTime" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
             <div class="flex flex-row justify-center items-center px-2 gap-2">
@@ -94,6 +94,8 @@
              </div>
 
         </div>
+
+        <!-- End Date Processing Spinner -->
 
 
 
@@ -148,6 +150,9 @@
 
 
 
+
+
+
             @if ($appointment_settled_notification)
 
             <div id="appointment_fulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
@@ -186,6 +191,16 @@
 
             @endif
 
+            {{-- End Messages --}}
+
+
+
+
+
+            {{-- Confirmation Widgets --}}
+
+
+            {{-- End Confirmation Widgets --}}
 
 
 
@@ -227,7 +242,7 @@
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
                     <button wire:click="currently_activated_panel({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$currently_activated_panel_id == $appointment['booked_patient_id'] ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
-                    <button wire:click="markAsUnfulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Unfulfilled</button>
+                    <button wire:click="delete_appointment({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Delete Appointment</button>
 
                 </div>
 

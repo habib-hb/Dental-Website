@@ -49,6 +49,8 @@ class AdminUnsettledAppointments extends Component
 
     public $appointment_settled_notification = null;
 
+    public $appointment_deletable_id;
+
     public $appointment_restored_selected_id = [];
 
     public $appointment_restored_notification = null;
@@ -314,6 +316,14 @@ class AdminUnsettledAppointments extends Component
     }
 
 
+    public function delete_appointment($id){
+
+        // This id will be deleted once the user confirms
+        $this->appointment_deletable_id = $id;
+
+    }
+
+
 
     public function settleSubmit(){
 
@@ -347,7 +357,7 @@ class AdminUnsettledAppointments extends Component
 
             $this->appointment_settled_notification="Appointment Has Been Settled";
 
-            
+
 
         }elseif($this->currently_activated_panel_id == null){
 
