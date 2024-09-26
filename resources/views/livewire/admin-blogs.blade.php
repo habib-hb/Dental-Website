@@ -156,63 +156,6 @@
 
             });
 
-            // Livewire.on('reinitialize_blog_form', () => {
-
-            //     setTimeout(() => {
-            //         let tinymce_div = document.getElementById('tinymce_div');
-            //         if(!tinymce_div.classList.contains('hidden')){
-            //                 tinymce_div.classList.add('hidden')
-            //         }
-
-            //         if(tinymce_loading.classList.contains('hidden')){
-            //                 tinymce_loading.classList.remove('hidden')
-            //         }
-
-            //              }, 10);
-
-            //    setTimeout(() => {
-            //         let tinymce_div = document.getElementById('tinymce_div');
-            //         if(!tinymce_div.classList.contains('hidden')){
-            //                 tinymce_div.classList.add('hidden')
-            //         }
-
-            //         if(tinymce_loading.classList.contains('hidden')){
-            //                 tinymce_loading.classList.remove('hidden')
-            //         }
-
-            //         }, 100);
-
-            //     setTimeout(() => {
-            //         let tinymce_div = document.getElementById('tinymce_div');
-            //         if(!tinymce_div.classList.contains('hidden')){
-            //                 tinymce_div.classList.add('hidden')
-            //         }
-
-            //         if(tinymce_loading.classList.contains('hidden')){
-            //                 tinymce_loading.classList.remove('hidden')
-            //         }
-
-            //         }, 500);
-
-
-            //     setTimeout(() => {
-            //         let tinymce_div = document.getElementById('tinymce_div');
-            //         if(!tinymce_div.classList.contains('hidden')){
-            //                 tinymce_div.classList.add('hidden')
-            //         }
-
-            //         if(tinymce_loading.classList.contains('hidden')){
-            //                 tinymce_loading.classList.remove('hidden')
-            //         }
-            //         }, 1000);
-
-            //     setTimeout(() => {
-            //         tinymce_div.classList.remove('hidden')
-            //         tinymce_loading.classList.add('hidden')
-            //         tinemce_init()
-            //         }, 2000);
-
-            // });
 
     })
 
@@ -221,8 +164,7 @@
     <div id="tinymce_div"  class=""  wire:ignore>
 
     <textarea id="tinymce">
-        Welcome to TinyMCE! <p>Hello World!</p>
-        <img  src="https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-6/460957556_899028865618519_6012741073131767582_n.jpg?stp=dst-jpg_p526x296&_nc_cat=1&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFjTKKTYTgnQDBcEY1dnxA1tQz8MNQ7smW1DPww1DuyZbTiNtbdaDMlW6m-HnsN7N7Lfh1fYtYdweGJH3Brnzxx&_nc_ohc=gW0OGw1QfpgQ7kNvgGAEERO&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFnsHhNo3puSgPj_MHbv9KL&oh=00_AYC-wZPIgGfSirTH4Ug6qAcEroW817fsSTSUp0CzlMFjuw&oe=66F59D9F" class="ml-2 h-[64px] max-w-[45vw]" alt="">
+       Start Doing Your Magic Here :)
     </textarea>
 
     </div>

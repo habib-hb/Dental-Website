@@ -52,7 +52,7 @@
     <div class="mt-8 flex flex-col gap-4">
 
 
-        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110" onclick="window.location.href='/admin_dashboard/banner_headline'">
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 cursor-pointer" onclick="window.location.href='/admin_dashboard/banner_headline'">
 
             <img src="{{asset('images/banner_headline.gif')}}" class="h-[64px] rounded-lg" alt="">
 
@@ -61,7 +61,7 @@
         </div>
 
 
-        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110">
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 cursor-pointer" onclick="window.location.href='/admin_dashboard/appointments'">
 
             <img src="{{asset('images/appointments.gif')}}" class="h-[64px] rounded-lg" alt="">
 
@@ -70,7 +70,7 @@
         </div>
 
 
-        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110" onclick="window.location.href='/admin_dashboard/blogs'">
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 cursor-pointer" onclick="window.location.href='/admin_dashboard/blogs'">
 
             <img src="{{asset('images/blogs.gif')}}" class="h-[64px] rounded-lg" alt="">
 
@@ -79,7 +79,7 @@
         </div>
 
 
-        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110">
+        <div class="flex flex-col gap-2 justify-center  items-center  w-[96vw]  md:max-w-[800px]  md:px-8 py-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] md:hover:scale-110 cursor-pointer">
 
             <img src="{{asset('images/schedule_management.gif')}}" class="h-[64px] rounded-lg" alt="">
 

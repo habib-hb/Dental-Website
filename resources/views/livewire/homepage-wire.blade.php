@@ -265,7 +265,7 @@
                 <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hidden md:block opacity-50">|</p>
 
                 <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 ">
-                    <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline">Admin Dashboard</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
+                    <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline" onclick="window.location.href='http://127.0.0.1:8000/admin_dashboard'">Admin Dashboard</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
                      </div>
                     <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  hidden md:block opacity-50">|</p>
 
