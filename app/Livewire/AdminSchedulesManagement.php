@@ -7,6 +7,15 @@ use Livewire\Component;
 class AdminSchedulesManagement extends Component
 {
 
+    public $start_time_hour;
+
+    public $start_time_minute;
+
+    public $end_time_hour;
+
+    public $end_time_minute;
+
+    public $am_or_pm;
 
     public function changeThemeMode(){
 
@@ -25,7 +34,24 @@ class AdminSchedulesManagement extends Component
 
     }
 
-    
+
+    public function setAM(){
+
+        $this->am_or_pm = 'AM';
+
+    }
+
+    public function setPM(){
+
+        $this->am_or_pm = 'PM';
+
+    }
+
+
+    public function addSchedule(){
+        dd($this->start_time_hour . $this->start_time_minute . $this->end_time_hour . $this->end_time_minute . $this->am_or_pm);
+    }
+
 
     public function render()
     {
