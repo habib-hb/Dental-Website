@@ -6,6 +6,27 @@ use Livewire\Component;
 
 class AdminSchedulesManagement extends Component
 {
+
+
+    public function changeThemeMode(){
+
+        if(session('theme_mode') == 'light'){
+
+            session(['theme_mode' => 'dark']);
+
+        }else{
+
+
+            session(['theme_mode' => 'light']);
+
+        }
+
+        $this->dispatch('alert-manager');
+
+    }
+
+    
+
     public function render()
     {
         return view('livewire.admin-schedules-management');
