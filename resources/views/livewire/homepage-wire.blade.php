@@ -282,7 +282,7 @@
               </div>
 
 
-              <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px]" alt="">
+              <img id='footer_icon' src="{{$theme_mode == 'light' ? asset('images/footer_logo.png') : asset('images/footer_logo.png')}}" class="h-[44px]" alt="">
 
               <p class=" text-center {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">All Rights Reserved @2024</p>
 
@@ -336,7 +336,11 @@
 
              // Without this , the search bar shows the text previously entered when I come back using the back button even though the actual value of the input field is empty
              window.addEventListener('load', () => {
-                document.getElementById('search_input').value = '';
+
+                setTimeout(() => {
+                    document.getElementById('search_input').value = '';
+                    }, 100);
+                    
             });
 
 
