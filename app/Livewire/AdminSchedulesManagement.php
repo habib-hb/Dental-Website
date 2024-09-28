@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\available_schedules;
+use App\Models\booked_appointments;
 use App\Models\booked_patient_details;
 use DateTime;
 use Livewire\Component;
@@ -140,6 +141,14 @@ class AdminSchedulesManagement extends Component
                     'testing' => $date['identifier']
 
             ]);
+
+            // Deleting The Existing Booked_Appointments Database
+            $database_check= booked_appointments::where('date' , $date['identifier'])->get();
+
+            if(count($database_check) > 0){
+            booked_appointments::where('date' , $date['identifier'])->delete();
+            }
+
        }
 
        $this->notification = 'Schedules Added Successfully';
