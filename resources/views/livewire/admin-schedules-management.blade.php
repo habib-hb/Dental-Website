@@ -45,22 +45,32 @@
 
 
         {{-- Schedule List --}}
-        <div class="flex flex-col justify-center items-center mt-8 max-w-[800px] mx-auto">
+        <div class="flex flex-col justify-center items-center mt-8 max-w-[800px] mx-auto {{count($added_schedules) > 0 ? '' : 'hidden'}}">
 
             <h2 class="text-xl font-semibold mb-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Schedule List</h2>
 
-            <p class="text-center py-2 px-8 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  cursor-pointer">11:10 - 12:00 AM</p>
+            @foreach ($added_schedules as $key => $schedule)
+
+            <p class="text-center py-2 px-8 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] ">{{$schedule}}</p>
+
+            @endforeach
+
+            {{-- <p class="text-center py-2 px-8 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  cursor-pointer">11:10 - 12:00 AM</p>
 
             <p class="text-center py-2 px-8 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  cursor-pointer">11:10 - 12:00 AM</p>
 
-            <p class="text-center py-2 px-8 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  cursor-pointer">11:10 - 12:00 AM</p>
+            <p class="text-center py-2 px-8 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  cursor-pointer">11:10 - 12:00 AM</p> --}}
 
             {{-- <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No new schedule added</p> --}}
 
             {{-- Save Button --}}
-            <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-4 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110">Save</button>
+            <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-4 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="saveScheduleList">Save</button>
 
         </div>
+
+        @if($notification == "Schedules Added Successfully")
+            <p>{{$notification}}</p>
+        @endif
 
 
 
@@ -143,9 +153,9 @@
 
                     <div class="flex flex-row gap-4 mt-2">
 
-                        <button wire:click="setAM" class="h-[35px] w-[100px] rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">AM</button>
+                        <button wire:click="setAM" class="h-[35px] w-[100px] rounded-lg {{$am_or_pm == 'AM' ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">AM</button>
 
-                        <button wire:click="setPM" class="h-[35px] w-[100px] rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">PM</button>
+                        <button wire:click="setPM" class="h-[35px] w-[100px] rounded-lg {{$am_or_pm == 'PM' ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">PM</button>
 
                     </div>
 
