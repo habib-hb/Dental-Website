@@ -34,11 +34,55 @@
 
         <div class="flex flex-col justify-center items-center mt-8 max-w-[800px] mx-auto px-4 md:px-0">
 
-            <h1 class="text-2xl font-semibold text-left md:text-center w-full {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Schedules Input Panel</h1>
+            <h1 class="text-2xl font-semibold text-center md:text-center w-full {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Schedules Input Panel</h1>
 
             <p class="text-left md:text-center mt-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">After Adding All The Schedules, Click On The “Save” Button To Set The New Schedule List Live For Appointments. The New Schedule List Will Replace The Old Schedule List. All The Appointments Enlisted From The Old Schedule List Will Be Moved To "Unsettled Appointments" Panel. From There You Can Resettle The Appointments By Clicking The "Settle Appointment" Button And Selecting A New Schedule.</p>
 
         </div>
+
+
+
+      {{-- Processing Messages --}}
+
+      {{-- End Processing Messages --}}
+
+
+
+      {{-- Notifications --}}
+
+      @if($notification == "Schedules Added Successfully")
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{$notification }}</p>
+
+            </div>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+        </div>
+
+     @endif
+
+      @if($notification == "Please fill all the fields")
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{$notification }}</p>
+
+            </div>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+        </div>
+
+     @endif
+
+      {{-- End Notifications --}}
 
 
 
@@ -66,11 +110,19 @@
             {{-- Save Button --}}
             <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-4 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="saveScheduleList">Save</button>
 
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+
+                {{-- Reset Button --}}
+                <button class="bg-[#1A579F]  text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="resetScheduleList">Reset List</button>
+
+                {{-- Delete Last Item --}}
+                <button class="bg-[#1A579F] text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="deleteLastListItem">Delete Last Item</button>
+            </div>
+
+
         </div>
 
-        @if($notification == "Schedules Added Successfully")
-            <p>{{$notification}}</p>
-        @endif
+
 
 
 
@@ -94,7 +146,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Hour</p>
 
-                        <input wire:model="start_time_hour" type="number" max="12" min="1"  class="w-[50vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="start_time_hour" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
 
                     </div>
 
@@ -102,7 +154,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Minute</p>
 
-                        <input wire:model="start_time_minute" type="number" max="59" min="0"  class="w-[50vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="start_time_minute" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
 
                     </div>
 
@@ -125,7 +177,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Hour</p>
 
-                        <input wire:model="end_time_hour" type="number" max="12" min="1"  class="w-[50vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="end_time_hour" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
 
                     </div>
 
@@ -133,7 +185,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Minute</p>
 
-                        <input wire:model="end_time_minute" type="number" max="59" min="0"  class="w-[50vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="end_time_minute" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
 
                     </div>
 

@@ -81,7 +81,17 @@ class AdminSchedulesManagement extends Component
             $this->end_time_minute = '0' . $this->end_time_minute;
         }
 
-        $this->added_schedules[] = $this->start_time_hour. ":" . $this->start_time_minute . " - " . $this->end_time_hour. ":" . $this->end_time_minute . " " . $this->am_or_pm;
+        if($this->start_time_hour && $this->start_time_minute && $this->end_time_hour && $this->end_time_minute && $this->am_or_pm){
+
+            $this->added_schedules[] = $this->start_time_hour. ":" . $this->start_time_minute . " - " . $this->end_time_hour. ":" . $this->end_time_minute . " " . $this->am_or_pm;
+
+        }else{
+
+            
+            $this->notification = 'Please fill all the fields';
+
+        }
+
 
 
 
@@ -153,6 +163,29 @@ class AdminSchedulesManagement extends Component
 
        $this->notification = 'Schedules Added Successfully';
 
+       $this->added_schedules= [];
+
+
+    }
+
+
+    public function resetScheduleList(){
+
+        $this->added_schedules = [];
+
+    }
+
+    public function deleteLastListItem(){
+
+        array_pop($this->added_schedules);
+
+    }
+
+
+
+    public function clear_notification(){
+
+        $this->notification = null;
 
     }
 
