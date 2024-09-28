@@ -91,8 +91,10 @@ class AdminSchedulesManagement extends Component
    public function saveScheduleList(){
 
         // Creating New Schedule
+        available_schedules::truncate();
+
         available_schedules::create([
-            'type' => "Testing",
+            'type' => "general",
             'schedules' => json_encode($this->added_schedules)
         ]);
 
@@ -134,7 +136,9 @@ class AdminSchedulesManagement extends Component
 
             // Find if there is an existing schedule
             booked_patient_details::where('appointment_date' , $date['identifier'])->update([
+                    'appointment_status' => 'Unsettled',
                     'testing' => $date['identifier']
+
             ]);
        }
 

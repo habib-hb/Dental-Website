@@ -126,6 +126,30 @@
 
 
 
+            @if (session()->has('message'))
+
+            <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Unavailable</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{session('message')}}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+
+                <button wire:click="clear_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+
+
+            </div>
+
+            @endif
+
+
+
             @if ($time_not_selected_notification)
 
             <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">

@@ -397,6 +397,20 @@ class AdminUnsettledAppointments extends Component
 
 
 
+    public function timeBookedAlert($time){
+
+        session()->flash('message', 'Schedule for ' . $time . ' is already booked. Please select another time.');
+
+    }
+
+    public function clear_message(){
+
+        session()->flash('message', null);
+        
+    }
+
+
+
     public function settleSubmit(){
 
         if($this->currently_activated_panel_id != null && $this->clicked_date != null && $this->clicked_time != null){
