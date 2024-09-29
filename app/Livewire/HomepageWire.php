@@ -49,7 +49,7 @@ class HomepageWire extends Component
         }else{
 
             $this->banner_headline = 'We use only the best quality materials on the market in order to provide the best products to our patients, So don’t worry about anything and book yourself.';
-            
+
         }
     }
 
@@ -71,9 +71,9 @@ class HomepageWire extends Component
                 $post->blog_title = str_ireplace($this->searchtext, $highlighted, e($post->blog_title));
                 $post->blog_excerpt = str_ireplace($this->searchtext, $highlighted, e($post->blog_excerpt));
 
-                if($post->blog_type == 'custom'){
-                    $post->blog_link = '/blogs/' . $post->blog_link;
-                }
+                // if($post->blog_type == 'custom'){
+                //     $post->blog_link = '/blogs/' . $post->blog_link;
+                // }
 
                 return $post;
             });
