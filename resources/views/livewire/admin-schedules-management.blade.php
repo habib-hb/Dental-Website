@@ -124,7 +124,7 @@
             {{-- <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No new schedule added</p> --}}
 
             {{-- Weekly Holidays Button --}}
-            <button wire:click="show_weekly_holidays_options" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-2">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$weekly_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+            <button wire:click="show_weekly_holidays_options" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-2">Set Weekly Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$weekly_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
                 <div class="flex flex-col justify-center gap-3 items-center mt-2 {{$weekly_holidays_option_selected ? '' : 'hidden'}}">
 
