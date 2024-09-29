@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\available_schedules;
 use App\Models\booked_appointments;
 use App\Models\booked_patient_details;
+use App\Models\holidays;
 use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -81,9 +82,25 @@ class DentalImplantsService extends Component
             $datesArray = [];
             $today = new DateTime();
 
+            $holidays_database_query=holidays::where('holidays_category', 'weekly')->get();
+
+            // Checking if there is at least one result
+            if ($holidays_database_query->isNotEmpty()) {
+
+                // Decoding the 'holidays' field from the first row
+                $holidays_get_holidays_field = json_decode($holidays_database_query[0]->holidays);
+
+            } else {
+
+                // Handling the case where no results are found
+                $holidays_get_holidays_field = [];
+
+            }
+
             while(true){
 
-                if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                    // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                if(!in_array(strtoupper($today->format('D')), $holidays_get_holidays_field)){
 
                 $dateInfo = [
                     'day' => $today->format('d'),

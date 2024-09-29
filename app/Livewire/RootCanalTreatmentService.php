@@ -100,7 +100,7 @@ class RootCanalTreatmentService extends Component
 
             while(true){
 
-                // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                     // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
                 if(!in_array(strtoupper($today->format('D')), $holidays_get_holidays_field)){
 
                 $dateInfo = [
