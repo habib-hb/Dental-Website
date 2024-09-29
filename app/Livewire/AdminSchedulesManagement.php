@@ -184,12 +184,25 @@ class AdminSchedulesManagement extends Component
             }
 
 
-            // Updating The Holidays Database
+
+
+       }
+
+        // Updating The Holidays Database
+        if($holidays_database_query->isNotEmpty()){
+
             holidays::where('holidays_category' , 'weekly')->update([
                 'holidays' => json_encode($this->added_weekly_holidays)
             ]);
 
-       }
+        }else{
+
+            holidays::create([
+                'holidays_category' => 'weekly',
+                'holidays' => json_encode($this->added_weekly_holidays)
+            ]);
+
+        }
 
        $this->notification = 'Schedules Added Successfully';
 
