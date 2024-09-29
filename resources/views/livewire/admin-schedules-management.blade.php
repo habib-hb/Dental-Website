@@ -40,6 +40,26 @@
 
       {{-- Processing Messages --}}
 
+        <div wire:loading wire:target="show_weekly_holidays_options" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
+        <div wire:loading wire:target="add_weekly_holidays" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
       {{-- End Processing Messages --}}
 
 
@@ -103,10 +123,33 @@
 
             {{-- <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No new schedule added</p> --}}
 
-            {{-- Save Button --}}
-            <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-4 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="saveScheduleList">Save</button>
+            {{-- Weekly Holidays Button --}}
+            <button wire:click="show_weekly_holidays_options" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-2">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$weekly_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+                <div class="flex flex-col justify-center gap-3 items-center mt-2 {{$weekly_holidays_option_selected ? '' : 'hidden'}}">
+
+                    <p wire:click="add_weekly_holidays('SAT')" class="text-center w-[170px] py-2 px-8 {{in_array('SAT', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' :  (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Saturday</p>
+
+                    <p wire:click="add_weekly_holidays('SUN')" class="text-center w-[170px] py-2 px-8 {{ in_array('SUN', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Sunday</p>
+
+                    <p wire:click="add_weekly_holidays('MON')" class="text-center w-[170px] py-2 px-8 {{ in_array('MON', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Monday</p>
+
+                    <p wire:click="add_weekly_holidays('TUE')" class="text-center w-[170px] py-2 px-8 {{ in_array('TUE', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Tuesday</p>
+
+                    <p wire:click="add_weekly_holidays('WED')" class="text-center w-[170px] py-2 px-8 {{ in_array('WED', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Wednessday</p>
+
+                    <p wire:click="add_weekly_holidays('THU')" class="text-center w-[170px] py-2 px-8 {{ in_array('THU', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Thursday</p>
+
+                    <p wire:click="add_weekly_holidays('FRI')" class="text-center w-[170px] py-2 px-8 {{ in_array('FRI', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Friday</p>
+
+
+                </div>
+
+
+            {{-- Save Button --}}
+            <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-8 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="saveScheduleList">Save</button>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
 
                 {{-- Reset Button --}}
                 <button class="bg-[#1A579F]  text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="resetScheduleList">Reset List</button>

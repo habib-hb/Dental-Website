@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\available_schedules;
 use App\Models\booked_appointments;
 use App\Models\booked_patient_details;
+use App\Models\holidays;
 use DateTime;
 use Livewire\Component;
 
@@ -24,6 +25,13 @@ class AdminSchedulesManagement extends Component
     public $added_schedules = [];
 
     public $notification;
+
+    public $added_weekly_holidays = [];
+
+
+
+    // Operational
+    public $weekly_holidays_option_selected;
 
     public function changeThemeMode(){
 
@@ -87,7 +95,7 @@ class AdminSchedulesManagement extends Component
 
         }else{
 
-            
+
             $this->notification = 'Please fill all the fields';
 
         }
@@ -114,9 +122,25 @@ class AdminSchedulesManagement extends Component
         $datesArray = [];
         $today = new DateTime();
 
+        $holidays_database_query=holidays::where('holidays_category', 'weekly')->get();
+
+        // Checking if there is at least one result
+        if ($holidays_database_query->isNotEmpty()) {
+
+            // Decoding the 'holidays' field from the first row
+            $holidays_get_holidays_field = json_decode($holidays_database_query[0]->holidays);
+
+        } else {
+
+            // Handling the case where no results are found
+            $holidays_get_holidays_field = [];
+
+        }
+
             while(true){
 
-                if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                if(!in_array(strtoupper($today->format('D')), $holidays_get_holidays_field)){
 
                 $dateInfo = [
                     'day' => $today->format('d'),
@@ -159,6 +183,12 @@ class AdminSchedulesManagement extends Component
             booked_appointments::where('date' , $date['identifier'])->delete();
             }
 
+
+            // Updating The Holidays Database
+            holidays::where('holidays_category' , 'weekly')->update([
+                'holidays' => json_encode($this->added_weekly_holidays)
+            ]);
+
        }
 
        $this->notification = 'Schedules Added Successfully';
@@ -186,6 +216,42 @@ class AdminSchedulesManagement extends Component
     public function clear_notification(){
 
         $this->notification = null;
+
+    }
+
+
+
+
+    public function show_weekly_holidays_options(){
+
+        if($this->weekly_holidays_option_selected){
+
+          $this->weekly_holidays_option_selected = null;
+
+        }else{
+
+          $this->weekly_holidays_option_selected = true;
+
+        }
+
+    }
+
+    public function add_weekly_holidays($day){
+
+        if(in_array($day, $this->added_weekly_holidays)){
+
+            // Finding the index of the element
+            $key = array_search($day, $this->added_weekly_holidays);
+
+            // Remove the element from the array
+            if ($key !== false) {
+                unset($this->added_weekly_holidays[$key]);
+            }
+
+        }else{
+
+            $this->added_weekly_holidays[] = $day;
+        }
 
     }
 
