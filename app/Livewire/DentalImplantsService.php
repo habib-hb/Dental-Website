@@ -97,10 +97,29 @@ class DentalImplantsService extends Component
 
             }
 
+
+            // Testing
+            $annual_holidays_database_query=holidays::where('holidays_category', 'annual')->get();
+
+            // Checking if there is at least one result
+            if ($annual_holidays_database_query->isNotEmpty()) {
+
+                // Decoding the 'holidays' field from the first row
+                $annual_holidays_get_holidays_field = json_decode($annual_holidays_database_query[0]->holidays);
+
+            } else {
+
+                // Handling the case where no results are found
+                $annual_holidays_get_holidays_field = [];
+
+            }
+            // End Testing
+
+
             while(true){
 
-                    // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
-                if(!in_array(strtoupper($today->format('D')), $holidays_get_holidays_field)){
+                     // if(strtoupper($today->format('D')) !== 'FRI' && strtoupper($today->format('D')) !== 'SAT'){
+                if(!in_array(strtoupper($today->format('D')), $holidays_get_holidays_field) && !in_array($today->format('Y-m-d'), $annual_holidays_get_holidays_field)){
 
                 $dateInfo = [
                     'day' => $today->format('d'),
