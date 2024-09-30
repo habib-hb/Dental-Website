@@ -11,7 +11,7 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
     </head>
-    <body>
+    <body class="{{session('theme_mode') == 'dark' ? 'dark' : ''}} bg-[#EFF9FF] dark:bg-black">
 
 
 

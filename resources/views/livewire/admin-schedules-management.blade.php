@@ -60,6 +60,16 @@
             </div>
         </div>
 
+        <div wire:loading wire:target="selectAnnualHolidays" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
       {{-- End Processing Messages --}}
 
 
@@ -117,6 +127,59 @@
         </div>
 
      @endif
+
+
+     @if($notification == "New Date Added Successfully")
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{$notification }}</p>
+
+            </div>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+        </div>
+
+     @endif
+
+
+
+     @if($notification == "Date Added Successfully")
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{$notification }}</p>
+
+            </div>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+        </div>
+
+     @endif
+
+
+
+     @if($notification == "The Date Was Already Added")
+
+     <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+         <div class="flex flex-row justify-between items-center px-8">
+
+
+             <p class="text-white text-left">{{$notification }}</p>
+
+         </div>
+
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+     </div>
+
+  @endif
 
       {{-- End Notifications --}}
 
@@ -206,7 +269,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Hour</p>
 
-                        <input wire:model="start_time_hour" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="start_time_hour" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="age">
 
                     </div>
 
@@ -214,7 +277,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Minute</p>
 
-                        <input wire:model="start_time_minute" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="start_time_minute" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="age">
 
                     </div>
 
@@ -237,7 +300,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Hour</p>
 
-                        <input wire:model="end_time_hour" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="end_time_hour" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="age">
 
                     </div>
 
@@ -245,7 +308,7 @@
 
                         <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Minute</p>
 
-                        <input wire:model="end_time_minute" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] outline-none px-2" id="age">
+                        <input wire:model="end_time_minute" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="age">
 
                     </div>
 
@@ -298,21 +361,25 @@
 
             {{-- Select Annual Holidays Section --}}
 
-            <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Select Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{false ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+            <button wire:click="selectAnnualHolidays" class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Select Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$annual_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
 
-            <div class="flex flex-col justify-center items-center mt-4">
+            <div class="flex flex-col justify-center items-center my-4 {{$annual_holidays_option_selected ? '' : 'hidden'}}">
 
-                <div class="relative max-w-sm dark">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                        </svg>
+
+
+                    <div class="relative max-w-sm">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <input  id="datepicker-format" datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" type="text" class="date_selector bg-[#deeaf8]  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-[#202329]  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none border-none   shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" placeholder="Select date">
+
                     </div>
-                    <input id="datepicker-format" datepicker datepicker-format="yyyy-mm-dd" type="text" class=" dark bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
 
-                </div>
 
+                    <button onclick="submitAnnualHolidays()" class="h-[35px] w-[100px] rounded-lg bg-[#1A579F] mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Save</button>
 
 
             </div>
@@ -351,6 +418,38 @@
     <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
 
 </div>
+
+
+
+
+
+
+
+<script>
+
+    document.addEventListener('livewire:initialized', () => {
+
+        Livewire.on('alert-manager', () => {
+
+            setTimeout(() => {
+
+                document.body.classList.contains('dark') ? document.body.classList.remove('dark') : document.body.classList.add('dark');
+
+            }, 100);
+
+        })
+
+    })
+
+
+    let submitAnnualHolidays = ()=>{
+        let date_value = document.getElementById('datepicker-format').value;
+
+        Livewire.dispatch('save_selected_date', {date:date_value});
+    }
+
+
+</script>
 
 
 </div>

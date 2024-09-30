@@ -7,6 +7,7 @@ use App\Models\booked_appointments;
 use App\Models\booked_patient_details;
 use App\Models\holidays;
 use DateTime;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AdminSchedulesManagement extends Component
@@ -28,10 +29,14 @@ class AdminSchedulesManagement extends Component
 
     public $added_weekly_holidays = [];
 
+    public $selected_date;
+
 
 
     // Operational
     public $weekly_holidays_option_selected;
+
+    public $annual_holidays_option_selected;
 
     public function changeThemeMode(){
 
@@ -274,6 +279,66 @@ class AdminSchedulesManagement extends Component
         }
 
     }
+
+
+
+    public function selectAnnualHolidays(){
+
+        if($this->annual_holidays_option_selected){
+
+            $this->annual_holidays_option_selected = null;
+
+        }else{
+
+            $this->annual_holidays_option_selected = true;
+
+        }
+
+    }
+
+    #[On('save_selected_date')]
+    public function selected_date($date){
+
+        $this->selected_date = $date;
+
+        // dd($this->selected_date);
+        $database_check = holidays::where('holidays_category' , 'annual')->get();
+
+        if($database_check->isNotEmpty()){
+
+                $added_annual_holidays = json_decode($database_check[0]->holidays);
+                //Adding $this->selected_date to the array
+
+                if(!in_array($this->selected_date, $added_annual_holidays)){
+
+                    $added_annual_holidays[] = $this->selected_date;
+
+                    holidays::where('holidays_category' , 'annual')->update([
+                        'holidays' => json_encode($added_annual_holidays)
+                    ]);
+
+                    $this->notification = 'New Date Added Successfully';
+
+                }else{
+                    $this->notification = 'The Date Was Already Added';
+                }
+
+            }else{
+
+                holidays::create([
+                    'holidays_category' => 'annual',
+                    'holidays' => json_encode([$this->selected_date])
+                ]);
+
+                $this->notification = 'Date Added Successfully';
+
+            }
+
+
+
+
+    }
+
 
 
     public function render()
