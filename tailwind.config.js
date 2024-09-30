@@ -5,11 +5,15 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         './app/**/*.php',
+        "./node_modules/flowbite/**/*.js"
       ],
+
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+],
 }
 
 

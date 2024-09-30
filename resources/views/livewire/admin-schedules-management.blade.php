@@ -1,5 +1,5 @@
 
-<div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}"  data-theme-mode="{{ session('theme_mode') }}" id="main_div">
+<div class="flex flex-col w-full m-0 p-0 min-h-[100vh] {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}}"  data-theme-mode="{{ session('theme_mode') }} " id="main_div">
 
     <nav class="flex justify-center items-center h-[82px] w-[96vw]  md:max-w-[1280px]  md:px-8 mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
@@ -285,6 +285,48 @@
 
 
         </div>
+
+
+
+
+
+        {{-- Annual Holidays Section --}}
+
+         <div class="flex flex-col justify-center items-center mt-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg">
+
+            <h1 class="flex flex-row text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">To Select Special Annual Holidays Or Annual Off Days, Click The "Select Annual Holidays" Button Below. If You Want To View Already Submitted Holidays Or Delete Specific Holidays, Click The "Submitted Annual Holidays" Button.</h1>
+
+            {{-- Select Annual Holidays Section --}}
+
+            <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Select Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{false ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+
+
+            <div class="flex flex-col justify-center items-center mt-4">
+
+                <div class="relative max-w-sm dark">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                        </svg>
+                    </div>
+                    <input id="datepicker-format" datepicker datepicker-format="yyyy-mm-dd" type="text" class=" dark bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+
+                </div>
+
+
+
+            </div>
+
+
+            {{-- End Select Annual Holidays Section --}}
+
+
+            {{-- Submitted Annual Holidays Button --}}
+            <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Submitted Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{false ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+
+        </div>
+
+        {{-- End Annual Holidays Section --}}
 
 
 
