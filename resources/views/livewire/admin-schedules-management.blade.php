@@ -82,7 +82,27 @@
 
      @endif
 
+
+
       @if($notification == "Please fill all the fields")
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-left">{{$notification }}</p>
+
+            </div>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+        </div>
+
+     @endif
+
+
+
+      @if($notification == "Please keep at least one working day")
 
         <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
             <div class="flex flex-row justify-between items-center px-8">
@@ -156,7 +176,7 @@
 
                 {{-- Delete Last Item --}}
                 <button class="bg-[#1A579F] text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="deleteLastListItem">Delete Last Item</button>
-                
+
             </div>
 
 

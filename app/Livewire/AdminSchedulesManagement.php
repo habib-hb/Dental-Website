@@ -109,6 +109,11 @@ class AdminSchedulesManagement extends Component
 
    public function saveScheduleList(){
 
+    if(count($this->added_weekly_holidays) == 7){
+        $this->notification = 'Please keep at least one working day';
+        return;
+    }
+
         // Creating New Schedule
         available_schedules::truncate();
 
@@ -215,6 +220,8 @@ class AdminSchedulesManagement extends Component
     public function resetScheduleList(){
 
         $this->added_schedules = [];
+
+        $this->added_weekly_holidays = [];
 
     }
 
