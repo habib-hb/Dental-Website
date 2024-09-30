@@ -31,12 +31,38 @@ class AdminSchedulesManagement extends Component
 
     public $selected_date;
 
+    public $database_holidays=[];
+
 
 
     // Operational
     public $weekly_holidays_option_selected;
 
     public $annual_holidays_option_selected;
+
+    public $submitted_annual_holidays_option_selected;
+
+
+
+    public function mount(){
+
+
+       $database_check = holidays::where('holidays_category' , 'annual')->get();
+
+       if($database_check->isNotEmpty()){
+
+               $added_annual_holidays = json_decode($database_check[0]->holidays);
+               //Adding $this->selected_date to the array
+
+               $this->database_holidays = $added_annual_holidays;
+
+           }else{
+
+               $this->database_holidays = [];
+
+           }
+
+    }
 
     public function changeThemeMode(){
 
@@ -67,6 +93,10 @@ class AdminSchedulesManagement extends Component
         $this->am_or_pm = 'PM';
 
     }
+
+
+
+
 
 
     public function addSchedule(){
@@ -296,8 +326,30 @@ class AdminSchedulesManagement extends Component
 
     }
 
+
+    public function submittedAnnualHolidays(){
+
+        if($this->submitted_annual_holidays_option_selected){
+
+            $this->submitted_annual_holidays_option_selected = null;
+
+        }else{
+
+            $this->submitted_annual_holidays_option_selected = true;
+            
+        }
+
+    }
+
     #[On('save_selected_date')]
-    public function selected_date($date){
+    public function save_selected_date($date){
+
+        if($date == null || empty($date) || $date==''){
+
+            $this->notification = 'Please Select A Date';
+
+            return;
+        }
 
         $this->selected_date = $date;
 
@@ -317,6 +369,8 @@ class AdminSchedulesManagement extends Component
                         'holidays' => json_encode($added_annual_holidays)
                     ]);
 
+                    $this->database_holidays = $added_annual_holidays;
+
                     $this->notification = 'New Date Added Successfully';
 
                 }else{
@@ -330,12 +384,50 @@ class AdminSchedulesManagement extends Component
                     'holidays' => json_encode([$this->selected_date])
                 ]);
 
+                $this->database_holidays = [$this->selected_date];
+
                 $this->notification = 'Date Added Successfully';
 
             }
 
 
 
+
+    }
+
+
+
+
+    public function deleteHoliday($date){
+
+        // Finding the record
+        $holidayRecord = holidays::where('holidays_category', 'annual')->get();
+
+        if ($holidayRecord->isNotEmpty()) {
+            // Decoding the holidays JSON string into an array
+            $decoded_holidays = json_decode($holidayRecord[0]->holidays, true); // true to get an array
+
+            // Checking if decoding succeeded
+            if (is_array($decoded_holidays)) {
+                // Filtering out the date from the holidays array using array_filter
+                $filtered_array = array_filter($decoded_holidays, function($holiday) use ($date) {
+                    // You can customize the comparison logic here (e.g., trimming spaces, strict comparison)
+                    return trim($holiday) !== trim($date);
+                });
+
+                // Re-indexing the array to ensure valid JSON
+                $filtered_array = array_values($filtered_array);
+
+                // Updating the record with the new holidays array
+                holidays::where('holidays_category', 'annual')->update([
+                    'holidays' => json_encode($filtered_array)
+                ]);
+
+                // Updating the class properties
+                $this->database_holidays = $filtered_array;
+                $this->notification = 'Holiday Deleted Successfully';
+            }
+        }
 
     }
 
