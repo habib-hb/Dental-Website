@@ -156,6 +156,7 @@
 
                 {{-- Delete Last Item --}}
                 <button class="bg-[#1A579F] text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="deleteLastListItem">Delete Last Item</button>
+                
             </div>
 
 
