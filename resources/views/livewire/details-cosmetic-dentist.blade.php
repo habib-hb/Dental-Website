@@ -6,7 +6,9 @@
 
         <div class=" flex justify-start md:w-[20vw]">
 
-        <img  src="{{session('theme_mode') == 'light' ? asset('images/the_logo_light_mode.png') : asset('images/the_logo_dark_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw]" alt="" onclick="window.location.href='/'">
+            <img  src="{{asset('images/the_logo_light_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? '' : 'hidden'}}" onclick="window.location.href='/'" alt="">
+
+            <img  src="{{asset('images/the_logo_dark_mode.png')}}" class="ml-2 h-[64px] max-w-[45vw] {{session('theme_mode') == 'light' ? 'hidden' : ''}}" onclick="window.location.href='/'"  alt="">
 
         </div>
 
