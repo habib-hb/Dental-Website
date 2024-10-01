@@ -83,6 +83,24 @@
 
                 </div> --}}
 
+
+        {{-- Loaders --}}
+            <!-- Show a loading spinner while Doing Theme Change Processing -->
+            <div wire:loading wire:target="changeThemeMode" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+                <div class="flex flex-row justify-center items-center px-2 gap-2">
+                    <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                    <span class=" text-white py-2 rounded-lg"> Processing Theme Change...</span>
+                </div>
+
+
+            </div>
+        {{-- End Loaders --}}
+
+        
+
+
         <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all">
 
             <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{$theme_mode == 'light' ? '' : 'hidden'}}">
