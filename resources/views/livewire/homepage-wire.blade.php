@@ -15,7 +15,11 @@
 
             <div id="input_div" class="relative">
 
-                <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt="">
+                <img id="{{session('theme_mode') == 'light' ? 'search_icon' : ''}}" src="{{asset('images/search_light_mode.gif')}}" class="{{session('theme_mode') == 'light' ? '' : 'hidden'}} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt="">
+
+                <img id="{{session('theme_mode') == 'light' ? '' : 'search_icon'}}" src="{{asset('images/search_dark_mode.gif')}}" class="{{session('theme_mode') == 'light' ? 'hidden' : ''}} absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt="">
+
+                   {{-- <img id='search_icon' src="{{$theme_mode == 'light' ? asset('images/search_light_mode.gif') : asset('images/search_dark_mode.gif')}}" class="absolute top-1/2 left-2 -translate-y-1/2 h-[80%] mt-1 {{$search_input_field_is_active ? 'hidden' : ''}}" alt=""> --}}
 
                 <span id='search_text' class="absolute top-1/2 left-10 -translate-y-1/2 h-[80%] mt-1 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#EFF9FF]'}} {{$search_input_field_is_active ? 'hidden' : ''}}">Search</span>
 
