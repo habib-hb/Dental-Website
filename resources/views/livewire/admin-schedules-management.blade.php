@@ -413,14 +413,17 @@
             <div class="flex flex-col justify-center items-center my-4 {{$annual_holidays_option_selected ? '' : 'hidden'}}">
 
 
-
+                    <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Format(yyyy-mm-dd)</p>
                     <div class="relative max-w-sm">
+
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        <input  id="datepicker-format" datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" datepicker-orientation="bottom left" type="text" class="date_selector bg-[#deeaf8]  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-[#202329]  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none border-none   shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" placeholder="Select date">
+
+                        <input  id="datepicker-format" datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" datepicker-orientation="top left" type="text" class="date_selector bg-[#deeaf8]  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-[#202329]  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none border-none   shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" placeholder="Select date">
 
                     </div>
 
@@ -438,11 +441,11 @@
             <button wire:click="submittedAnnualHolidays" class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Submitted Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$submitted_annual_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
 
-                <div class="flex flex-col w-full h-[70vh] overflow-auto {{session('theme_mode') == 'light' ? 'bg-white' : 'bg-black'}} items-center  my-4  px-4 py-4 md:px-8 {{$submitted_annual_holidays_option_selected ? '' : 'hidden'}}">
+                <div class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black'}} items-center  my-4  px-4 py-4 md:px-8 {{$submitted_annual_holidays_option_selected ? '' : 'hidden'}} rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
                     @foreach ($database_holidays as $date)
 
-                        <div class="flex w-full flex-col justify-center items-center py-4 mt-4 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]'}} rounded-lg">
+                        <div class="flex w-full flex-col justify-center items-center py-4 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#1e1d1d]'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]">
 
                             <p class="text-2xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{ (new DateTime($date))->format('jS F, Y') }}</p>
 
@@ -450,6 +453,13 @@
                     </div>
 
                     @endforeach
+
+
+                    @if (count($database_holidays) == 0)
+
+                        <p class="text-lg text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No Submitted Holidays</p>
+
+                    @endif
 
 
 
