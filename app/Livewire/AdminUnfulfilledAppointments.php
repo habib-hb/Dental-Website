@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\booked_appointments;
+use App\Models\booked_patient_details;
 use Livewire\Component;
 
 use Livewire\WithPagination;
@@ -18,6 +20,7 @@ class AdminUnfulfilledAppointments extends Component
     public $database_limit = 10;
 
 
+
     //System Variables
     public $appointment_fulfilled_selected_id = [];
 
@@ -26,6 +29,16 @@ class AdminUnfulfilledAppointments extends Component
     public $appointment_restored_selected_id = [];
 
     public $appointment_restored_notification = null;
+
+   public $appointment_deletable_id;
+
+   public $appointment_deletable_identification_date;
+
+   public $appointment_deletable_identification_time;
+
+   public $appointment_deleted_selected_id = [];
+
+   public $appointment_deleted_notification = null;
 
 
 
@@ -147,6 +160,71 @@ class AdminUnfulfilledAppointments extends Component
 
 
     }
+
+
+
+    public function delete_appointment($id , $date , $time){
+
+        // This deletion will be done once the user confirms
+        $this->appointment_deletable_id = $id;
+
+        $this->appointment_deletable_identification_date= $date;
+
+        $this->appointment_deletable_identification_time= $time;
+
+
+
+    }
+
+
+
+    public function delete_confirmed(){
+
+        // "booked_appointments" Table Management
+        $appointments_on_the_specific_date=booked_appointments::where('date' , $this->appointment_deletable_identification_date)->get();
+
+        if(count($appointments_on_the_specific_date) > 0){
+
+            $decoded_appointments = json_decode($appointments_on_the_specific_date[0]->appointments, true);
+
+            // Removing $this->clicked_time from the $decoded_appointments array
+            $updated_decoded_appointments = array_filter($decoded_appointments, function($appointment) {
+               return $appointment !== $this->appointment_deletable_identification_time;
+           });
+
+           // Re-indexing the array to ensure it's sequentially indexed if needed
+            $updated_decoded_appointments = array_values($updated_decoded_appointments);
+
+            $updated_encoded_appointments = json_encode($updated_decoded_appointments);
+
+            $appointments_on_the_specific_date[0]->update(['appointments' => $updated_encoded_appointments]);
+
+        }
+
+       $delete = booked_patient_details::find($this->appointment_deletable_id);
+       $delete->delete();
+
+       $this->appointment_deleted_selected_id[] = $this->appointment_deletable_id;
+
+       $this->appointment_deleted_notification="Appointment Has Been Deleted";
+
+       $this->appointment_deletable_id = null;
+
+       $this->appointment_deletable_identification_date = null;
+
+       $this->appointment_deletable_identification_time = null;
+
+
+   }
+
+
+   public function clear_appointment_deleted_notification(){
+
+    $this->appointment_deleted_notification=null;
+
+}
+
+
 
 
     public function render()

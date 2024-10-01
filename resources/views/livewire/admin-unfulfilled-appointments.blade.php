@@ -46,6 +46,43 @@
     </div>
 
 
+
+        {{-- Confirmation Widgets --}}
+        @if ($appointment_deletable_id)
+
+        <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+            <div class="flex flex-col justify-between items-center px-8">
+
+                <p class="text-white text-3xl font-semibold">Confirmation</p>
+
+                {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+                <p class="text-white text-center">Are You Sure You Want To Delete This Appointment?</p>
+
+            </div>
+
+            {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+
+            <div class="flex flex-row justify-between items-center py-4 gap-4">
+
+                <button wire:click="delete_confirmed" class="text-white border-2 border-white px-4 rounded-lg hover:scale-110">Delete</button>
+
+                <button wire:click="clear_appointment_deletable_id" class="text-white border-2 border-white px-4 rounded-lg hover:scale-110">Cancel</button>
+
+            </div>
+
+
+
+
+        </div>
+
+        @endif
+
+
+        {{-- End Confirmation Widgets --}}
+
+
+
+
         <!-- Show a loading spinner while Doing Theme Change Processing -->
         <div wire:loading wire:target="changeThemeMode" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
@@ -138,6 +175,27 @@
             @endif
 
 
+            @if ($appointment_deleted_notification)
+
+            <div id="appointment_fulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+                <div class="flex flex-col justify-between items-center px-8">
+
+                    <p class="text-white text-3xl font-semibold">Deleted</p>
+
+                    {{-- <p class="text-white text-left">{{session('appointment_fulfilled')}}</p> --}}
+                    <p class="text-white text-center">{{$appointment_deleted_notification}}</p>
+
+                </div>
+
+                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+
+                <button wire:click="clear_appointment_deleted_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+
+            </div>
+
+            @endif
+
+
 
 
 
@@ -151,7 +209,7 @@
 
         @foreach ($all_appointments as $appointment)
 
-        <div class="flex flex-col justify-center  items-center w-[96vw]  md:max-w-[800px]  md:p-8 px-4 py-8  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_fulfilled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_restored_selected_id)) ? 'hidden' : ''}}">
+        <div class="flex flex-col justify-center  items-center w-[96vw]  md:max-w-[800px]  md:p-8 px-4 py-8  mx-auto mt-2 rounded-lg {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] {{(in_array($appointment['booked_patient_id'], $appointment_fulfilled_selected_id) || in_array($appointment['booked_patient_id'], $appointment_restored_selected_id) || in_array($appointment['booked_patient_id'], $appointment_deleted_selected_id)) ? 'hidden' : ''}}">
 
             <h2 class="flex flex-row text-3xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$appointment['appointment_time']}}</h2>
             <p class="flex flex-row text-lg {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}"> {{ \Carbon\Carbon::parse($appointment['appointment_date'])->format('jS F, Y') }}</p>
@@ -175,7 +233,14 @@
 
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
+
                     <button wire:click="restoreAppointment({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Restore Appointment</button>
+
+
+
+                    <button wire:click="delete_appointment({{ $appointment['booked_patient_id'] }}, '{{ $appointment['appointment_date'] }}', '{{ $appointment['appointment_time'] }}')" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Delete Appointment</button>
+
+
 
                     <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
 

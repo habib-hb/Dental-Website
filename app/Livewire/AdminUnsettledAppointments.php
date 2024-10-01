@@ -357,10 +357,6 @@ class AdminUnsettledAppointments extends Component
 
              $appointments_on_the_specific_date[0]->update(['appointments' => $updated_encoded_appointments]);
 
-         }else{
-
-             dd("Error");
-
          }
 
         $delete = booked_patient_details::find($this->appointment_deletable_id);
@@ -406,7 +402,7 @@ class AdminUnsettledAppointments extends Component
     public function clear_message(){
 
         session()->flash('message', null);
-        
+
     }
 
 
@@ -460,6 +456,9 @@ class AdminUnsettledAppointments extends Component
         }
 
     }
+
+
+
 
 
     public function render()
