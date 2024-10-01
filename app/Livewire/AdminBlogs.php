@@ -90,7 +90,7 @@ class AdminBlogs extends Component
             $this->blog_slug = str_replace(' ', '-', $this->blog_slug);
 
             // Database Check for already existing slugs
-            $database_check = blog_posts::where('blog_link', $this->blog_slug)->get();
+            $database_check = blog_posts::where('blog_link', '/blogs/' . $this->blog_slug)->get();
 
 
             if($database_check->count() > 0){

@@ -3,9 +3,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Date Selector</title>
+    <title>Emergency Dentistry</title>
     @vite('resources/css/app.css')
     @livewireStyles
+
+      <!-- Favicon -->
+      <link rel="icon" href="{{ asset('favicons/emergency_dentistry_fav.png') }}" type="image/png">
 </head>
 <body>
 

@@ -4,12 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Prevention -Blog</title>
 
 
 
         @vite('resources/css/app.css')
         @livewireStyles
+
+          <!-- Favicon -->
+          <link rel="icon" href="{{ asset('favicons/prevention_fav.png') }}" type="image/png">
     </head>
     <body>
 

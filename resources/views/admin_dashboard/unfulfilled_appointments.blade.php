@@ -4,12 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Unfulfilled Appointments</title>
 
 
-              
+
         @vite('resources/css/app.css')
         @livewireStyles
+
+         <!-- Favicon -->
+         <link rel="icon" href="{{ asset('favicons/unfulfilled_appointments_fav.png') }}" type="image/png">
     </head>
     <body>
 
