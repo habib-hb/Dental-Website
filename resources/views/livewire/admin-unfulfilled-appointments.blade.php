@@ -60,7 +60,7 @@
 
             </div>
 
-            {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+            {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
             <div class="flex flex-row justify-between items-center py-4 gap-4">
 
@@ -119,7 +119,7 @@
 
                 </div>
 
-                <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -140,9 +140,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_appointment_fulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_appointment_fulfilled" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
 
 
@@ -166,9 +166,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_appointment_restored" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_appointment_restored" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -187,9 +187,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_appointment_deleted_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_appointment_deleted_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -234,15 +234,16 @@
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
 
-                    <button wire:click="restoreAppointment({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Restore Appointment</button>
+                    <button wire:click="restoreAppointment({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110
+ transition-all shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Restore Appointment</button>
 
 
 
-                    <button wire:click="delete_appointment({{ $appointment['booked_patient_id'] }}, '{{ $appointment['appointment_date'] }}', '{{ $appointment['appointment_time'] }}')" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Delete Appointment</button>
+                    <button wire:click="delete_appointment({{ $appointment['booked_patient_id'] }}, '{{ $appointment['appointment_date'] }}', '{{ $appointment['appointment_time'] }}')" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Delete Appointment</button>
 
 
 
-                    <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
+                    <button wire:click="markAsFulfilled({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Mark As Fulfilled</button>
 
                 </div>
 
@@ -273,7 +274,8 @@
 
 
     <div class="flex justify-center mt-8">
-         <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
+         <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110
+ transition-all  {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
     </div>
 
 
@@ -282,11 +284,13 @@
 
     {{-- Bottom Buttons --}}
     <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-16">
-        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments'">Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110
+transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments'">Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
 
-        <button class="px-4 w-[260px]  py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/fulfilled_appointments'">Fulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[260px]  py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/fulfilled_appointments'">Fulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
 
-        <button class="px-4 w-[260px]  py-2 bg-[#494c50] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/unsettled_appointments'">Unsettled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[260px]  py-2 bg-[#494c50] text-white rounded-lg hover:scale-110
+transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/unsettled_appointments'">Unsettled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
     </div>
 
 

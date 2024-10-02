@@ -58,7 +58,7 @@
 
 
         </div>
-        
+
 
         <!-- Show a loading spinner while Doing Date Processing -->
         <div wire:loading wire:target="loadMore" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
@@ -130,9 +130,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_date_not_selected_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_date_not_selected_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
 
 
@@ -154,9 +154,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
 
 
@@ -178,9 +178,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_time_not_selected_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_time_not_selected_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
 
 
@@ -205,9 +205,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_appointment_settled_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_appointment_settled_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -228,9 +228,9 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_fulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
-                <button wire:click="clear_appointment_deleted_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_appointment_deleted_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -248,7 +248,7 @@
 
                 </div>
 
-                <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -273,7 +273,7 @@
 
                 </div>
 
-                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button> --}}
+                {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
 
                 <div class="flex flex-row justify-between items-center py-4 gap-4">
 
@@ -331,9 +331,9 @@
 
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
-                    <button wire:click="currently_activated_panel({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$currently_activated_panel_id == $appointment['booked_patient_id'] ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+                    <button wire:click="currently_activated_panel({{$appointment['booked_patient_id']}})" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle Appointment <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$currently_activated_panel_id == $appointment['booked_patient_id'] ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
-                    <button wire:click="delete_appointment({{ $appointment['booked_patient_id'] }}, '{{ $appointment['appointment_date'] }}', '{{ $appointment['appointment_time'] }}')" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Delete Appointment</button>
+                    <button wire:click="delete_appointment({{ $appointment['booked_patient_id'] }}, '{{ $appointment['appointment_date'] }}', '{{ $appointment['appointment_time'] }}')" class="px-4 py-2 w-[200px] bg-red-800 text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Delete Appointment</button>
 
                 </div>
 
@@ -356,7 +356,7 @@
 
                             @foreach ($datesArray as $dates)
 
-                                <div wire:click="selectedDate('{{$dates['identifier']}}')" class="flex flex-col justify-center items-center h-[90px] w-[18%] {{$clicked_date == $dates['identifier'] ? 'bg-[#1A579F]' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#202329]')}}   rounded-lg mb-1   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-105 cursor-pointer">
+                                <div wire:click="selectedDate('{{$dates['identifier']}}')" class="flex flex-col justify-center items-center h-[90px] w-[18%] {{$clicked_date == $dates['identifier'] ? 'bg-[#1A579F]' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8]' : 'bg-[#202329]')}}   rounded-lg mb-1   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-105 transition-all cursor-pointer">
 
                                     <p class="text-3xl {{$clicked_date == $dates['identifier'] ? 'text-white' : (session('theme_mode') == 'light' ? 'text-[#6B779A]' : 'text-white')}}">{{$dates['day']}}</p>
 
@@ -387,7 +387,7 @@
 
                                     @else
 
-                                        <p wire:click="selectedTime('{{$time}}')" class="text-center p-2 {{$clicked_time == $time ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  hover:scale-105 cursor-pointer">{{$time}}</p>
+                                        <p wire:click="selectedTime('{{$time}}')" class="text-center p-2 {{$clicked_time == $time ? 'bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}  mb-3 rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]  hover:scale-105 transition-all cursor-pointer">{{$time}}</p>
 
                                     @endif
 
@@ -400,7 +400,7 @@
 
 
                         <div class="flex flex-col justify-center items-center mt-8">
-                            <button wire:click="settleSubmit" class="px-16 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle</button>
+                            <button wire:click="settleSubmit" class="px-16 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Settle</button>
                         </div>
 
 
@@ -435,7 +435,8 @@
 
 
     <div class="flex justify-center mt-8">
-         <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
+         <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110
+ transition-all  {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
     </div>
 
 
@@ -444,11 +445,13 @@
 
     {{-- Bottom Buttons --}}
     <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-16">
-        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments'">Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110
+transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments'">Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
 
-        <button class="px-4 w-[260px]  py-2 bg-red-800 text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/unfulfilled_appointments'">Unfulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[260px]  py-2 bg-red-800 text-white rounded-lg hover:scale-110 transition-all  {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/unfulfilled_appointments'">Unfulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
 
-        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/fulfilled_appointments'">Fulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
+        <button class="px-4 w-[260px] py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110
+transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard/appointments/fulfilled_appointments'">Fulfilled Appointments<img src="{{asset('images/external_link_dark_mode.png')}}" class="inline -mt-1" alt=""/></button>
     </div>
 
 

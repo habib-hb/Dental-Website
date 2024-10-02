@@ -44,7 +44,7 @@
 
             </div>
 
-            <button wire:click="clear_banner_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_banner_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -60,7 +60,7 @@
 
                 </div>
 
-                <button wire:click="clear_banner_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_banner_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 
@@ -94,7 +94,7 @@
 
 
         <div wire:click="save" class="flex justify-center items-center">
-            <button class="px-16 py-2 bg-[#1A579F] text-white rounded-lg mt-8 hover:scale-110">Save</button>
+            <button class="px-16 py-2 bg-[#1A579F] text-white rounded-lg mt-8 hover:scale-110 transition-all">Save</button>
         </div>
 
 

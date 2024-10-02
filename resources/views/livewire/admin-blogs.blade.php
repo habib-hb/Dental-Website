@@ -204,7 +204,7 @@
 
     <div class="flex flex-row justify-center items-center my-8 {{$loading_image ? 'hidden' : ''}}">
 
-        <button wire:click="save" class="bg-[#1a579f] hover:scale-105 w-[300px] text-white font-bold py-2 px-4 rounded">Save</button>
+        <button wire:click="save" class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded">Save</button>
 
     </div>
 
@@ -220,7 +220,7 @@
 
             </div>
 
-            <button wire:click="clear_form_completion_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_form_completion_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -240,7 +240,7 @@
 
                 </div>
 
-                <button wire:click="clear_form_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+                <button wire:click="clear_form_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
             </div>
 

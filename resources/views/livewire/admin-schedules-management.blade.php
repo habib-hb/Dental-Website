@@ -133,7 +133,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -151,7 +151,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -169,7 +169,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -186,7 +186,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -204,7 +204,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -222,7 +222,7 @@
 
          </div>
 
-         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
      </div>
 
@@ -239,7 +239,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -257,7 +257,7 @@
 
         </div>
 
-        <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+        <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
     </div>
 
@@ -274,7 +274,7 @@
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
         </div>
 
@@ -293,7 +293,7 @@
 
          </div>
 
-         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
      </div>
 
@@ -325,38 +325,38 @@
             {{-- <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No new schedule added</p> --}}
 
             {{-- Weekly Holidays Button --}}
-            <button wire:click="show_weekly_holidays_options" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-2">Set Weekly Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$weekly_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+            <button wire:click="show_weekly_holidays_options" class="px-4 py-2 w-[200px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-2">Set Weekly Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$weekly_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
                 <div class="flex flex-col justify-center gap-3 items-center mt-2 {{$weekly_holidays_option_selected ? '' : 'hidden'}}">
 
-                    <p wire:click="add_weekly_holidays('SAT')" class="text-center w-[170px] py-2 px-8 {{in_array('SAT', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' :  (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Saturday</p>
+                    <p wire:click="add_weekly_holidays('SAT')" class="text-center w-[170px] py-2 px-8 {{in_array('SAT', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' :  (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Saturday</p>
 
-                    <p wire:click="add_weekly_holidays('SUN')" class="text-center w-[170px] py-2 px-8 {{ in_array('SUN', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Sunday</p>
+                    <p wire:click="add_weekly_holidays('SUN')" class="text-center w-[170px] py-2 px-8 {{ in_array('SUN', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Sunday</p>
 
-                    <p wire:click="add_weekly_holidays('MON')" class="text-center w-[170px] py-2 px-8 {{ in_array('MON', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Monday</p>
+                    <p wire:click="add_weekly_holidays('MON')" class="text-center w-[170px] py-2 px-8 {{ in_array('MON', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Monday</p>
 
-                    <p wire:click="add_weekly_holidays('TUE')" class="text-center w-[170px] py-2 px-8 {{ in_array('TUE', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Tuesday</p>
+                    <p wire:click="add_weekly_holidays('TUE')" class="text-center w-[170px] py-2 px-8 {{ in_array('TUE', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Tuesday</p>
 
-                    <p wire:click="add_weekly_holidays('WED')" class="text-center w-[170px] py-2 px-8 {{ in_array('WED', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Wednessday</p>
+                    <p wire:click="add_weekly_holidays('WED')" class="text-center w-[170px] py-2 px-8 {{ in_array('WED', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Wednessday</p>
 
-                    <p wire:click="add_weekly_holidays('THU')" class="text-center w-[170px] py-2 px-8 {{ in_array('THU', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Thursday</p>
+                    <p wire:click="add_weekly_holidays('THU')" class="text-center w-[170px] py-2 px-8 {{ in_array('THU', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Thursday</p>
 
-                    <p wire:click="add_weekly_holidays('FRI')" class="text-center w-[170px] py-2 px-8 {{ in_array('FRI', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 ">Friday</p>
+                    <p wire:click="add_weekly_holidays('FRI')" class="text-center w-[170px] py-2 px-8 {{ in_array('FRI', $added_weekly_holidays) ? ' bg-[#1A579F] text-white' : (session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-[#484d5f]' : 'bg-[#202329] text-white')}}   rounded-lg   shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] cursor-pointer hover:scale-110 transition-all ">Friday</p>
 
 
                 </div>
 
 
             {{-- Save Button --}}
-            <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-8 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="saveScheduleList">Save</button>
+            <button class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-8 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" wire:click="saveScheduleList">Save</button>
 
             <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
 
                 {{-- Reset Button --}}
-                <button class="bg-[#1A579F]  text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="resetScheduleList">Reset List</button>
+                <button class="bg-[#1A579F]  text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" wire:click="resetScheduleList">Reset List</button>
 
                 {{-- Delete Last Item --}}
-                <button class="bg-[#1A579F] text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110" wire:click="deleteLastListItem">Delete Last Item</button>
+                <button class="bg-[#1A579F] text-white font-semibold py-2 w-[160px]  rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" wire:click="deleteLastListItem">Delete Last Item</button>
 
             </div>
 
@@ -458,7 +458,7 @@
 
 
 
-            <button wire:click="addSchedule" class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-8 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110">Add Schedule</button>
+            <button wire:click="addSchedule" class="bg-[#1A579F] text-white font-semibold py-2 px-8 mt-8 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all">Add Schedule</button>
 
 
             <p class="text-sm text-center mt-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Added Schedules Will Be Listed Above. Press The "Save" Button From There To Make The New Schedule List Live.</p>
@@ -479,7 +479,7 @@
 
             {{-- Select Annual Holidays Section --}}
 
-            <button wire:click="selectAnnualHolidays" class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Select Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$annual_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+            <button wire:click="selectAnnualHolidays" class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Select Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$annual_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
 
             <div class="flex flex-col justify-center items-center my-4 {{$annual_holidays_option_selected ? '' : 'hidden'}}">
@@ -510,7 +510,7 @@
 
 
             {{-- Submitted Annual Holidays Section --}}
-            <button wire:click="submittedAnnualHolidays" class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Submitted Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$submitted_annual_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
+            <button wire:click="submittedAnnualHolidays" class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Submitted Annual Holidays <img src="{{asset('images/press_down.png')}}" class="w-[14px] inline -mt-1 {{$submitted_annual_holidays_option_selected ? 'rotate-180' : 'rotate-0'}}  transition-all" /></button>
 
 
                 <div class="flex flex-col gap-4 w-full max-h-[70vh] overflow-auto {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-black'}} items-center  my-4  px-4 py-4 md:px-8 {{$submitted_annual_holidays_option_selected ? '' : 'hidden'}} rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
@@ -521,7 +521,7 @@
 
                             <p class="text-2xl {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{ (new DateTime($date))->format('jS F, Y') }}</p>
 
-                            <button wire:click="deleteHoliday('{{$date}}')" class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 ">Delete</button>
+                            <button wire:click="deleteHoliday('{{$date}}')" class="h-[35px] w-[100px] rounded-lg bg-red-800 mt-2 md:mt-4 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110  transition-all">Delete</button>
                     </div>
 
                     @endforeach

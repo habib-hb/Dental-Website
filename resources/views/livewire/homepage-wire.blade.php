@@ -98,7 +98,7 @@
             </div>
         {{-- End Loaders --}}
 
-        
+
 
 
         <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all">
@@ -284,22 +284,22 @@
 
               <div class="flex flex-col md:flex-row justify-center md:justify-between items-center w-[96vw] md:max-w-[500px] mb-4">
 
-                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 ">
-                <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline">Blogs</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
+                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
+                <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline"  onclick="window.location.href='{{env('BASE_LINK')}}/blog_showcase'">Blogs</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
                  </div>
                 <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hidden md:block opacity-50">|</p>
 
-                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 ">
+                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
                     <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline" onclick="window.location.href='{{env('BASE_LINK')}}/admin_dashboard'">Admin Dashboard</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
                      </div>
                     <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  hidden md:block opacity-50">|</p>
 
-                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 ">
+                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
                     <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline">Privacy Policy</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
                         </div>
                     <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  hidden md:block opacity-50">|</p>
 
-                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 ">
+                <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
                     <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline">About Us</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
                         </div>
 

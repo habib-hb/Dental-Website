@@ -64,7 +64,7 @@
 
          </div>
 
-         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
 
      </div>
 
@@ -107,7 +107,7 @@
             @foreach ($blogs as $blog)
 
 
-                <div class="flex flex-col md:flex-row justify-center items-center md:justify-start w-[96vw] max-w-[1200px] py-8 md:px-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mx-auto rounded-lg hover:scale-105 transition-all" onclick="window.location.href='{{$blog['blog_link']}}'">
+                <div class="flex flex-col md:flex-row justify-center items-center md:justify-start w-[96vw] max-w-[1200px] py-8 md:px-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mx-auto rounded-lg md:hover:scale-105 transition-all" onclick="window.location.href='{{$blog['blog_link']}}'">
 
                     <img src="{{$blog['blog_image']}}" class="max-w-[200px] max-h-[200px] rounded-lg" alt="">
 
@@ -136,7 +136,7 @@
 
 
             <div class="flex justify-center mt-8">
-                <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($blogs) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
+                <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all {{count($blogs) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
            </div>
 
 
