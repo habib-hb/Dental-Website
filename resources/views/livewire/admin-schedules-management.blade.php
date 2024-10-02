@@ -473,7 +473,7 @@
 
         {{-- Annual Holidays Section --}}
 
-         <div class="flex flex-col justify-center items-center mt-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg">
+         <div class="flex flex-col justify-center items-center mt-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} px-4 py-8 mx-auto w-[96vw] max-w-[800px] rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
 
             <h1 class="flex flex-row text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">To Select Special Annual Holidays Or Annual Off Days, Click The "Select Annual Holidays" Button Below. If You Want To View Already Submitted Holidays Or Delete Specific Holidays, Click The "Submitted Annual Holidays" Button.</h1>
 

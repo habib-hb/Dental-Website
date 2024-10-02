@@ -7,11 +7,11 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class AdminBlogs extends Component
+class AdminBlogsEdit extends Component
 {
     use WithFileUploads;
 
-    public $author_name="backend Edited";
+    public $author_name;
 
     public $blog_headline;
 
@@ -34,6 +34,11 @@ class AdminBlogs extends Component
 
     public $slug_available;
 
+
+
+    public function mount(){
+        
+    }
 
 
     public function save()
@@ -192,6 +197,6 @@ class AdminBlogs extends Component
     {
         // $this->dispatch('alert-manager');
 
-        return view('livewire.admin-blogs');
+        return view('livewire.admin-blogs-edit');
     }
 }

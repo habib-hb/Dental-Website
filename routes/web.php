@@ -231,6 +231,34 @@ Route::get('/admin_dashboard/blogs', function () {
 
 
 
+Route::get('/admin_dashboard/blogs/blogs_manage', function () {
+    return view('admin_dashboard.blogs_manage');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admin_dashboard/blogs/blogs_manage/blog_edit/{blog_slug}', function ($blog_slug) {
+    return view('admin_dashboard.blog_edit', ['blog_slug' => $blog_slug ]);
+});
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/admin_dashboard/banner_headline', function () {
     return view('admin_dashboard.banner_headline');
@@ -341,4 +369,7 @@ Route::get('/blog_showcase', function () {
     return view('blog_showcase');
 
 });
+
+
+
 
