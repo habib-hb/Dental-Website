@@ -2,11 +2,24 @@
 
 namespace App\Livewire;
 
+use App\Models\blog_posts;
 use Livewire\Component;
 
 class BlogShowcase extends Component
 {
 
+
+    public $blogs;
+
+
+    public function mount(){
+
+        $database_query = blog_posts::where('blog_type', 'custom')->get();
+        $this->blogs = $database_query;
+
+        // dd($this->blogs);
+
+    }
 
 
     public function changeThemeMode(){
@@ -25,7 +38,7 @@ class BlogShowcase extends Component
         $this->dispatch('alert-manager');
 
     }
-    
+
 
 
     public function render()

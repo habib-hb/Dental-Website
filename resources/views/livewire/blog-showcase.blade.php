@@ -65,7 +65,30 @@
 
 
 
-        <main class="h-[100vh]">
+        <main class="flex flex-col gap-8 py-8">
+
+
+            @foreach ($blogs as $blog)
+
+
+                <div class="flex flex-col md:flex-row justify-center items-center md:justify-start w-[96vw] max-w-[1200px] py-8 md:px-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mx-auto rounded-lg hover:scale-105 transition-all" onclick="window.location.href='{{$blog->blog_link}}'">
+
+                    <img src="{{$blog->blog_image}}" class="max-w-[200px] max-h-[200px] rounded-lg" alt="">
+
+                    <div class="mt-4 px-4">
+
+                        <h1 class="text-2xl text-center md:text-left font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$blog->blog_title}}</h1>
+
+                        <p class="mt-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$blog->blog_excerpt}}...<a class=" {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-[#5893d6]'}} font-medium" href="{{$blog->blog_link}}">Read More</a></p>
+
+                    </div>
+
+                </div>
+
+
+            @endforeach
+
+
 
         </main>
 
