@@ -37,6 +37,42 @@
 
             </div> --}}
 
+
+    {{-- Loading Spinner --}}
+    <div wire:loading wire:target="loadMore" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+            <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Loading More Date...</span>
+
+        </div>
+    </div>
+    {{-- End Loading Spinner --}}
+
+
+
+
+    {{-- Messages --}}
+     @if ($notification == "No More Blog Posts Found")
+
+     <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+         <div class="flex flex-row justify-between items-center px-8">
+
+
+             <p class="text-white text-left">{{$notification}}</p>
+
+         </div>
+
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+
+     </div>
+
+     @endif
+    {{-- End Messages --}}
+
+
+
     <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all">
 
         <img src="{{asset('images/light_mode_toggler.png')}}" class="h-[44px] {{session('theme_mode') == 'light' ? '' : 'hidden'}}">
@@ -71,15 +107,15 @@
             @foreach ($blogs as $blog)
 
 
-                <div class="flex flex-col md:flex-row justify-center items-center md:justify-start w-[96vw] max-w-[1200px] py-8 md:px-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mx-auto rounded-lg hover:scale-105 transition-all" onclick="window.location.href='{{$blog->blog_link}}'">
+                <div class="flex flex-col md:flex-row justify-center items-center md:justify-start w-[96vw] max-w-[1200px] py-8 md:px-8 {{session('theme_mode') == 'light' ? 'bg-[#d6e0ec]' : 'bg-[#1e1d1d]'}} mx-auto rounded-lg hover:scale-105 transition-all" onclick="window.location.href='{{$blog['blog_link']}}'">
 
-                    <img src="{{$blog->blog_image}}" class="max-w-[200px] max-h-[200px] rounded-lg" alt="">
+                    <img src="{{$blog['blog_image']}}" class="max-w-[200px] max-h-[200px] rounded-lg" alt="">
 
                     <div class="mt-4 px-4">
 
-                        <h1 class="text-2xl text-center md:text-left font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$blog->blog_title}}</h1>
+                        <h1 class="text-2xl text-center md:text-left font-semibold {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$blog['blog_title']}}</h1>
 
-                        <p class="mt-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$blog->blog_excerpt}}...<a class=" {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-[#5893d6]'}} font-medium" href="{{$blog->blog_link}}">Read More</a></p>
+                        <p class="mt-2 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">{{$blog['blog_excerpt']}}...<a class=" {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-[#5893d6]'}} font-medium" href="{{$blog['blog_link']}}">Read More</a></p>
 
                     </div>
 
@@ -87,6 +123,21 @@
 
 
             @endforeach
+
+
+             {{-- If No Appointment Data --}}
+        @if(count($blogs) == 0)
+        <div class="flex flex-col items-center h-[100vh]">
+
+            <p class="mt-16 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">No Blogs Found</p>
+
+        </div>
+         @endif
+
+
+            <div class="flex justify-center mt-8">
+                <button wire:click="loadMore" class="px-8 py-2 bg-[#1A579F] text-white rounded-lg hover:scale-110 {{count($blogs) == 0 ? 'hidden' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Load More...</button>
+           </div>
 
 
 

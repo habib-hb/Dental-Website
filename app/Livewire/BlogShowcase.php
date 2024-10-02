@@ -9,17 +9,59 @@ class BlogShowcase extends Component
 {
 
 
-    public $blogs;
+    public $blogs=[];
+
+    public $database_offset = 0;
+
+    public $database_limit = 10;
+
+    //system variables
+    public $notification;
 
 
     public function mount(){
 
-        $database_query = blog_posts::where('blog_type', 'custom')->get();
-        $this->blogs = $database_query;
+        $database_query = blog_posts::where('blog_type', 'custom')
+        ->skip($this->database_offset)
+        ->take($this->database_limit)
+        ->get();
+
+        $this->blogs = $database_query->toArray();
 
         // dd($this->blogs);
 
+        // Increase the offset for the next load
+        $this->database_offset += $this->database_limit;
+
     }
+
+    public function loadMore(){
+
+        $database_query = blog_posts::where('blog_type', 'custom')
+        ->skip($this->database_offset)
+        ->take($this->database_limit)
+        ->get();
+
+
+
+
+        if($database_query->isEmpty()){
+
+            $this->notification = 'No More Blog Posts Found';
+
+        }
+
+        //Merging Both collections
+        $this->blogs = array_merge($this->blogs, $database_query->toArray());
+
+
+         // Increase the offset for the next load
+         $this->database_offset += $this->database_limit;
+
+
+    }
+
+    
 
 
     public function changeThemeMode(){
@@ -36,6 +78,13 @@ class BlogShowcase extends Component
         }
 
         $this->dispatch('alert-manager');
+
+    }
+
+
+    public function clear_notification(){
+
+        $this->notification = null;
 
     }
 
