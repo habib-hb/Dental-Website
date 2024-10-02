@@ -126,7 +126,18 @@ class AdminSchedulesManagement extends Component
 
         if($this->start_time_hour && $this->start_time_minute && $this->end_time_hour && $this->end_time_minute && $this->am_or_pm){
 
-            $this->added_schedules[] = $this->start_time_hour. ":" . $this->start_time_minute . " - " . $this->end_time_hour. ":" . $this->end_time_minute . " " . $this->am_or_pm;
+            $the_schedule = $this->start_time_hour. ":" . $this->start_time_minute . " - " . $this->end_time_hour. ":" . $this->end_time_minute . " " . $this->am_or_pm;
+
+            //Duplicate Check
+
+            if(in_array($the_schedule, $this->added_schedules)){
+                $this->notification = 'The Schedule Has Already Been Added Above';
+                return;
+            }
+
+            $this->added_schedules[] = $the_schedule;
+
+            $this->notification = 'The Schedule Has Been Added Above';
 
         }else{
 
@@ -336,7 +347,7 @@ class AdminSchedulesManagement extends Component
         }else{
 
             $this->submitted_annual_holidays_option_selected = true;
-            
+
         }
 
     }

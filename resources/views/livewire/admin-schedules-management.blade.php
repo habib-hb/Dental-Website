@@ -54,7 +54,7 @@
 
 
         </div>
-        
+
 
         <div wire:loading wire:target="show_weekly_holidays_options" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
             <div class="flex flex-row justify-center items-center px-2 gap-2">
@@ -97,6 +97,26 @@
             </div>
         </div>
 
+        <div wire:loading wire:target="setAM" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
+        <div wire:loading wire:target="setPM" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing...</span>
+
+            </div>
+        </div>
+
       {{-- End Processing Messages --}}
 
 
@@ -109,11 +129,11 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{$notification }}</p>
+                <p class="text-white text-center">{{$notification }}</p>
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
         </div>
 
@@ -127,11 +147,11 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{$notification }}</p>
+                <p class="text-white text-center">{{$notification }}</p>
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
         </div>
 
@@ -145,11 +165,11 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{$notification }}</p>
+                <p class="text-white text-center">{{$notification }}</p>
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
         </div>
 
@@ -162,11 +182,11 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{$notification }}</p>
+                <p class="text-white text-center">{{$notification }}</p>
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
         </div>
 
@@ -180,11 +200,11 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{$notification }}</p>
+                <p class="text-white text-center">{{$notification }}</p>
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
         </div>
 
@@ -198,11 +218,11 @@
          <div class="flex flex-row justify-between items-center px-8">
 
 
-             <p class="text-white text-left">{{$notification }}</p>
+             <p class="text-white text-center">{{$notification }}</p>
 
          </div>
 
-         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
      </div>
 
@@ -215,11 +235,11 @@
             <div class="flex flex-row justify-between items-center px-8">
 
 
-                <p class="text-white text-left">{{$notification }}</p>
+                <p class="text-white text-center">{{$notification }}</p>
 
             </div>
 
-            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
         </div>
 
@@ -233,15 +253,51 @@
         <div class="flex flex-row justify-between items-center px-8">
 
 
-            <p class="text-white text-left">{{$notification }}</p>
+            <p class="text-white text-center">{{$notification }}</p>
 
         </div>
 
-        <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2">Close</button>
+        <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
     </div>
 
     @endif
+
+
+    @if($notification == "The Schedule Has Been Added Above")
+
+        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+            <div class="flex flex-row justify-between items-center px-8">
+
+
+                <p class="text-white text-center">{{$notification }}</p>
+
+            </div>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+
+        </div>
+
+     @endif
+
+
+
+
+     @if($notification == "The Schedule Has Already Been Added Above")
+
+     <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+         <div class="flex flex-row justify-between items-center px-8">
+
+
+             <p class="text-white text-center">{{$notification }}</p>
+
+         </div>
+
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+
+     </div>
+
+     @endif
 
       {{-- End Notifications --}}
 

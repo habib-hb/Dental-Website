@@ -325,3 +325,20 @@ Route::get('/blogs/{slug}', function ($slug) {
     return view('dynamic_content.custom_blog', ['post' => $post]);
 });
 
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/blog_showcase', function () {
+
+    return view('blog_showcase');
+
+});
+
