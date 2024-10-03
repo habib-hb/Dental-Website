@@ -93,7 +93,7 @@
        {{-- ********* Price Estimator ********** --}}
         <input id="estimated_price" type="hidden">
         <div class="relative">
-            <div class="flex flex-row justify-between items-center mx-auto md:max-w-[800px] py-2 mt-2 w-full">
+            <div class="flex flex-row justify-between items-center mx-auto md:max-w-[800px] py-2 mt-2  px-2 md:px-0  w-full">
                 <img src="{{session('theme_mode') == 'light' ? asset('images/back_light_mode.png') : asset('images/back_dark_mode.png')}}" class="h-[48px] w-[48px] cursor-pointer hover:scale-105" onclick="window.history.back()" alt="">
                 <h2 class="text-2xl text-center {{session('theme_mode') == 'light' ? 'text-[#1A579F]' : 'text-white'}} ">Cosmetic Dentistry Price Estimator</h2>
                 <div class="w-[48px]"></div>

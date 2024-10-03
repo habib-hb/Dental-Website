@@ -283,7 +283,7 @@
 
         <h1 class="flex flex-row text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">To Edit Or Delete Blogs, Click On The "Manage Blogs" Button Below</h1>
 
-        <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Manage Blogs <img src="{{asset('images/external_link_dark_mode.png')}}" class="w-[14px] inline -mt-1 transition-all" /></button>
+        <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"  onclick="window.location.href='/admin_dashboard/blogs/blogs_manage'">Manage Blogs <img src="{{asset('images/external_link_dark_mode.png')}}" class="w-[14px] inline -mt-1 transition-all" /></button>
 
     </div>
     {{-- End Blogs Edit Section --}}

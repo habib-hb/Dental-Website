@@ -373,3 +373,22 @@ Route::get('/blog_showcase', function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+Route::get('/privacy_policy', function () {
+
+    return view('privacy_policy');
+
+});
+
+
+
+

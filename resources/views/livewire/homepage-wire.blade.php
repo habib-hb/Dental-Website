@@ -124,7 +124,7 @@
 
             <p class="text-sm   text-center px-4 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">{{$banner_headline}}</p>
 
-            <p class="text-lg font-medium text-center mt-8 px-4 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Click On “Select” To Get The Estimated Fee and Appointment. If You Want To Know More About, Click On The “Details” Button.</p>
+            <p class="text-lg font-medium text-center mt-8 px-4 {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Click on 'Select' to get the estimated fee and book an appointment. If you want to know more, click on the 'Details' button</p>
 
         </div>
 
@@ -295,7 +295,7 @@
                     <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  hidden md:block opacity-50">|</p>
 
                 <div class="flex flex-row justify-center items-center cursor-pointer hover:scale-105 transition-all">
-                    <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline">Privacy Policy</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
+                    <p class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}} hover:underline" onclick="window.location.href='{{env('BASE_LINK')}}/privacy_policy'">Privacy Policy</p><img src="{{session('theme_mode') == 'light' ? asset('images/external_link_light_mode.png') : asset('images/external_link_dark_mode.png')}}" class="h-[12px] w-[12px]" alt="">
                         </div>
                     <p  class="{{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}  hidden md:block opacity-50">|</p>
 
@@ -428,6 +428,102 @@
 
 
         </script>
+
+
+
+        {{-- Test About me --}}
+
+
+             <!-- Main Container -->
+  <div class="max-w-4xl mx-auto p-8">
+
+    <img src="" alt="">
+
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-blue-600">About Me</h1>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Hello, I'm Habib!</h2>
+      <p class="text-lg leading-relaxed">
+        I'm a full-stack Laravel developer from Bangladesh, passionate about building functional, user-centered web applications. My love for coding has led me to work on various exciting projects. With a focus on Laravel and front-end technologies, I enjoy bringing ideas to life and solving complex problems with clean, maintainable code.
+      </p>
+    </section>
+
+    <!-- Dental Project Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">My Dental Project</h2>
+      <p class="text-lg leading-relaxed">
+        Recently, I completed a commercial-level dental project where I implemented several essential features, including:
+      </p>
+      <ul class="list-disc list-inside mb-4">
+        <li>Price estimation system for various dental services</li>
+        <li>Blog upload and control system for easy content management</li>
+        <li>Appointment booking and appointment editing system</li>
+        <li>Calendar feature to manage bookings and schedules</li>
+        <li>Schedules management system for seamless appointment organization</li>
+      </ul>
+      <p class="text-lg leading-relaxed">
+        I built this project using Laravel and Livewire to ensure a smooth user experience with real-time updates and responsive design. Working on this project allowed me to dive deep into user-centric features for healthcare and medical services, which was both challenging and rewarding.
+      </p>
+    </section>
+
+    <!-- E-commerce Project Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">E-commerce Project</h2>
+      <p class="text-lg leading-relaxed">
+        Another major project I developed is a comprehensive e-commerce platform using Laravel and React.js. This project includes a variety of robust features, such as:
+      </p>
+      <ul class="list-disc list-inside mb-4">
+        <li>Product upload and edit system</li>
+        <li>User management system</li>
+        <li>Admin management for full control over site activities</li>
+        <li>Order management for smooth handling of customer orders</li>
+        <li>Comments management for user engagement</li>
+        <li>Banner upload system for promotional content</li>
+      </ul>
+      <p class="text-lg leading-relaxed">
+        You can check out the project live at <a href="https://ecommerce.valueadderhabib.com" class="text-blue-500 hover:underline">ecommerce.valueadderhabib.com</a>. This e-commerce platform allowed me to explore complex backend logic and dynamic front-end features, enhancing my skills in both Laravel and React.js.
+      </p>
+    </section>
+
+    <!-- My Approach Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">My Approach to Development</h2>
+      <p class="text-lg leading-relaxed">
+        I believe in writing clean, maintainable code that scales easily and performs efficiently. My favorite framework, Laravel, provides the perfect balance between simplicity and power, allowing me to focus on crafting solutions that meet both business goals and user needs.
+      </p>
+      <p class="text-lg leading-relaxed">
+        I also enjoy using Livewire for real-time, dynamic functionality without the complexity of a full front-end framework. My approach is to always stay curious and keep learning, whether it's diving deeper into JavaScript frameworks or exploring the latest Laravel features.
+      </p>
+    </section>
+
+    <!-- Hobbies and Interests Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Hobbies and Interests</h2>
+      <p class="text-lg leading-relaxed">
+        Outside of coding, I enjoy watching travel blogs and infotainment videos on YouTube. These videos not only help me unwind but also spark creativity and broaden my perspective. Learning about different cultures, places, and interesting facts keeps my curiosity alive and gives me new ideas for my work.
+      </p>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Looking Ahead</h2>
+      <p class="text-lg leading-relaxed">
+        As I continue to grow as a developer, I’m always on the lookout for new challenges and opportunities. Whether it’s working on more complex web applications, experimenting with new technologies, or contributing to projects that make a positive impact, I’m excited about what the future holds.
+      </p>
+      <p class="text-lg leading-relaxed">
+        If you’d like to connect, collaborate, or simply have a conversation, feel free to reach out! Let’s create something amazing together.
+      </p>
+    </section>
+
+  </div>
+
+        {{-- End Test About me --}}
+
+
 
 
 </div>
