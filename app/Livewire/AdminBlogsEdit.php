@@ -60,13 +60,12 @@ class AdminBlogsEdit extends Component
 
             $this->blog_image = $database_query[0]->blog_image;
 
+            $this->temporary_image = $database_query[0]->blog_image;
+
             $this->blog_area = $database_query[0]->blog_text;
 
 
         }
-
-
-
 
     }
 
@@ -151,7 +150,10 @@ class AdminBlogsEdit extends Component
 
 
         if($property === 'blog_image'){
-            $imagePath = $this->blog_image->storeAs('tmp', 'temp_image_' . time() . '.' . $this->blog_image->extension());
+            $imagePath = $this->blog_image->store('temp_blog_images', 'public');
+
+            //Full Link
+            $imagePath = asset('storage/' . $imagePath);
 
             $this->temporary_image = $imagePath;
 

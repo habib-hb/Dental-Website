@@ -32,6 +32,18 @@
 
     </div>
 
+     <div wire:loading wire:target="blog_image" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing Image...</span>
+        </div>
+
+
+    </div>
+
+
 
 
     <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all">
@@ -89,9 +101,9 @@
 
             <label for="blog_image" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Blog Thumbnail Image</label>
 
-            <img src="{{$blog_image}}" class="mx-auto md:mx-0 my-4 h-[200px] w-[200px]"  alt="">
+            <img src="{{$temporary_image}}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"  alt="">
 
-            <p>{{$blog_image}}</p>
+            <p>{{$temporary_image}}</p>
 
             <input wire:model="blog_image" type="file" accept="image/*" class="w-[96vw] md:max-w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="blog_image" />
 
