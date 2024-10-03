@@ -85,11 +85,17 @@
 
         </div>
 
-        <div class="flex flex-col mt-2 mb-6">
+        <div class="flex flex-col mt-2 mb-16">
 
             <label for="blog_image" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Blog Thumbnail Image</label>
 
+            <img src="{{$blog_image}}" class="mx-auto md:mx-0 my-4 h-[200px] w-[200px]"  alt="">
+
+            <p>{{$blog_image}}</p>
+
             <input wire:model="blog_image" type="file" accept="image/*" class="w-[96vw] md:max-w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="blog_image" />
+
+
 
             @error('blog_image') <span class="text-red-500">{{ $message }}</span> @enderror
 
@@ -176,10 +182,11 @@
 
         </script>
 
+
     <div id="tinymce_div"  class=""  wire:ignore>
 
     <textarea id="tinymce">
-       Start Doing Your Magic Here :)
+       {{$blog_area}}
     </textarea>
 
     </div>

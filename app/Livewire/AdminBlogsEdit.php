@@ -11,6 +11,8 @@ class AdminBlogsEdit extends Component
 {
     use WithFileUploads;
 
+    public $identifier_slug;
+
     public $author_name;
 
     public $blog_headline;
@@ -34,10 +36,38 @@ class AdminBlogsEdit extends Component
 
     public $slug_available;
 
+    public $temporary_image;
 
 
-    public function mount(){
-        
+
+    public function mount($blog_slug){
+
+        $this->identifier_slug = $blog_slug;
+
+       $database_query = blog_posts::where('blog_link', '/blogs/' . $blog_slug)->get();
+
+       $database_query_array = $database_query->toArray();
+
+        if( count($database_query_array) > 0){
+
+            $this->author_name = $database_query[0]->blog_author;
+
+            $this->blog_headline = $database_query[0]->blog_title;
+
+            $this->blog_slug = $blog_slug;
+
+            $this->blog_excerpt = $database_query[0]->blog_excerpt;
+
+            $this->blog_image = $database_query[0]->blog_image;
+
+            $this->blog_area = $database_query[0]->blog_text;
+
+
+        }
+
+
+
+
     }
 
 
@@ -114,6 +144,16 @@ class AdminBlogsEdit extends Component
 
             }
 
+
+
+        }
+
+
+
+        if($property === 'blog_image'){
+            $imagePath = $this->blog_image->storeAs('tmp', 'temp_image_' . time() . '.' . $this->blog_image->extension());
+
+            $this->temporary_image = $imagePath;
 
 
         }

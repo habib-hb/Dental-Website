@@ -18,7 +18,7 @@
 
 
 
-        <livewire:admin-blogs-edit/>
+        <livewire:admin-blogs-edit blog_slug="{{ $blog_slug }}"/>
 
         @livewireScripts
     </body>
