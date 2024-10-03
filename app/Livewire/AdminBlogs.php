@@ -11,7 +11,7 @@ class AdminBlogs extends Component
 {
     use WithFileUploads;
 
-    public $author_name="backend Edited";
+    public $author_name;
 
     public $blog_headline;
 
@@ -33,6 +33,8 @@ class AdminBlogs extends Component
     public $slug_already_in_use;
 
     public $slug_available;
+
+    public $temporary_image;
 
 
 
@@ -112,6 +114,20 @@ class AdminBlogs extends Component
 
 
         }
+
+
+        if($property === 'blog_image'){
+            $imagePath = $this->blog_image->store('temp_blog_images', 'public');
+
+            //Full Link
+            $imagePath = asset('storage/' . $imagePath);
+
+            $this->temporary_image = $imagePath;
+
+
+        }
+
+
     }
 
 

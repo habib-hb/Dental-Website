@@ -60,7 +60,7 @@ class AdminBlogsEdit extends Component
 
             $this->blog_image = $database_query[0]->blog_image;
 
-            $this->temporary_image = $database_query[0]->blog_image;
+            $this->temporary_image = $database_query[0]->blog_image; // This will be used to show the picture temporarily on the frontend
 
             $this->blog_area = $database_query[0]->blog_text;
 
@@ -70,10 +70,7 @@ class AdminBlogsEdit extends Component
     }
 
 
-    public function save()
-    {
-
-
+    public function save(){
 
         if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_available){
 
@@ -87,10 +84,21 @@ class AdminBlogsEdit extends Component
             // Generate the full image_URL to the stored image
             $this->image_url = asset('storage/' . $imagePath);
 
-            blog_posts::create([
+            // blog_posts::create([
+                // 'blog_author' => $this->author_name,
+                // 'blog_title' => $this->blog_headline,
+                // 'blog_link' =>  '/blogs/' . $this->blog_slug,
+                // 'blog_excerpt' => $this->blog_excerpt,
+                // 'blog_image' => $this->image_url,
+                // 'blog_text' => $this->blog_area,
+                // 'blog_type' => 'custom',
+            // ]);
+
+
+            blog_posts::where('blog_link', '/blogs/' . $this->identifier_slug)->update([
                 'blog_author' => $this->author_name,
                 'blog_title' => $this->blog_headline,
-                'blog_link' =>  '/blogs/' . $this->blog_slug,
+                'blog_link' =>  '/blogs/' . $this->blog_slug,//this is the updated one from the user
                 'blog_excerpt' => $this->blog_excerpt,
                 'blog_image' => $this->image_url,
                 'blog_text' => $this->blog_area,
@@ -100,9 +108,11 @@ class AdminBlogsEdit extends Component
 
 
 
-            session()->flash('form_completion_message', 'Blog Post Created Successfully');
+            session()->flash('form_completion_message', 'Blog Post Updated Successfully');
 
             $this->dispatch('alert-manager');
+
+            return redirect()->to('/admin_dashboard/blogs/blogs_manage/blog_edit/' . $this->blog_slug);
 
 
         }else if(!$this->author_name || !$this->blog_headline || !$this->blog_slug || !$this->blog_excerpt || !$this->blog_image || !$this->blog_area || !$this->slug_available){
@@ -178,13 +188,6 @@ class AdminBlogsEdit extends Component
     // }
 
 
-
-
-    public function test_image(){
-        dd($this->image_url);
-    }
-
-
     #[On('updateTextarea')]
     public function updateTextarea($text){
 
@@ -193,12 +196,7 @@ class AdminBlogsEdit extends Component
 
     }
 
-    public function test_textarea(){
 
-        dd($this->blog_area);
-
-
-    }
 
 
     public function changeThemeMode(){

@@ -103,7 +103,6 @@
 
             <img src="{{$temporary_image}}" class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"  alt="">
 
-            <p>{{$temporary_image}}</p>
 
             <input wire:model="blog_image" type="file" accept="image/*" class="w-[96vw] md:max-w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="blog_image" />
 
@@ -112,10 +111,6 @@
             @error('blog_image') <span class="text-red-500">{{ $message }}</span> @enderror
 
         </div>
-
-
-
-
 
 
 
@@ -223,7 +218,7 @@
 
     <div class="flex flex-row justify-center items-center my-8 {{$loading_image ? 'hidden' : ''}}">
 
-        <button wire:click="save" class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Save</button>
+        <button wire:click="save" class="bg-[#1a579f] hover:scale-110 transition-all w-[200px] text-white font-bold py-2 px-4 rounded-lg  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Update</button>
 
     </div>
 

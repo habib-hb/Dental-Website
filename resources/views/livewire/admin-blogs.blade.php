@@ -32,6 +32,17 @@
 
     </div>
 
+    <div wire:loading wire:target="blog_image" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Processing Image...</span>
+        </div>
+
+
+    </div>
+
 
 
     <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all">
@@ -88,6 +99,10 @@
         <div class="flex flex-col mt-2 mb-6">
 
             <label for="blog_image" class="opacity-80 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Blog Thumbnail Image</label>
+
+            @if ($temporary_image)
+                <img src="{{$temporary_image}}"  class="mx-auto md:mx-0 my-4 max-h-[200px] max-w-[200px]"  alt="">
+            @endif
 
             <input wire:model="blog_image" type="file" accept="image/*" class="w-[96vw] md:max-w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="blog_image" />
 
@@ -269,7 +284,7 @@
 
         <h1 class="flex flex-row text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">To Edit Or Delete Blogs, Click On The "Manage Blogs" Button Below</h1>
 
-        <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Manage Blogs <img src="{{asset('images/external_link_dark_mode.png')}}" class="w-[14px] inline -mt-1 transition-all" /></button>
+        <button class="px-4 py-2 w-[280px] bg-[#1A579F] text-white rounded-lg hover:scale-110 transition-all mt-4 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="window.location.href='/admin_dashboard/blogs/blogs_manage'">Manage Blogs <img src="{{asset('images/external_link_dark_mode.png')}}" class="w-[14px] inline -mt-1 transition-all" /></button>
 
     </div>
     {{-- End Blogs Edit Section --}}
