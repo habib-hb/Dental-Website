@@ -69,7 +69,63 @@
      </div>
 
      @endif
+
+
+
+     @if ($notification == "The Blog Has Been Deleted Successfully")
+
+     <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+         <div class="flex flex-row justify-between items-center px-8">
+
+
+             <p class="text-white text-left">{{$notification}}</p>
+
+         </div>
+
+         <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+     </div>
+
+     @endif
+
     {{-- End Messages --}}
+
+
+
+    {{-- Confirmation Messages --}}
+
+    @if ($notification == "Are You Sure You Want To Delete This Blog?")
+
+    <div id="appointment_unfulfilled" class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-red-800 py-4 rounded-lg z-10">
+        <div class="flex flex-col justify-between items-center px-8">
+
+            <p class="text-white text-3xl font-semibold">Confirmation</p>
+
+            {{-- <p class="text-white text-left">{{session('appointment_unfulfilled')}}</p> --}}
+            <p class="text-white text-center">{{$notification}}</p>
+
+        </div>
+
+        {{-- <button onclick="document.getElementById('appointment_unfulfilled').remove()" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button> --}}
+
+        <div class="flex flex-row justify-between items-center py-4 gap-4">
+
+            <button wire:click="delete_confirmed" class="text-white border-2 border-white px-4 rounded-lg hover:scale-110">Delete</button>
+
+            <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg hover:scale-110">Cancel</button>
+
+        </div>
+
+
+
+
+    </div>
+
+    @endif
+
+    {{-- End Confirmation Messages --}}
+
+
 
 
 
@@ -120,7 +176,7 @@
                         <div class="mt-4 flex flex-row gap-4">
                             <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='/admin_dashboard/blogs/blogs_manage/blog_edit/{{ str_replace('/blogs/', '', $blog['blog_link']) }}'">Edit</button>
 
-                            <button class="h-[45px] w-[120px] rounded-lg bg-red-800 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" >Delete</button>
+                            <button wire:click="delete_blog({{$blog['blog_id']}})" class="h-[45px] w-[120px] rounded-lg bg-red-800 text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" >Delete</button>
                         </div>
 
 

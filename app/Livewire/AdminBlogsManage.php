@@ -15,8 +15,11 @@ class AdminBlogsManage extends Component
 
     public $database_limit = 10;
 
+
     //system variables
     public $notification;
+
+    public $deletable_blog_id;
 
 
     public function mount(){
@@ -60,6 +63,37 @@ class AdminBlogsManage extends Component
          // Increase the offset for the next load
          $this->database_offset += $this->database_limit;
 
+
+    }
+
+
+
+    public function delete_blog($id){
+
+       $this->deletable_blog_id = $id;
+
+       $this->notification = 'Are You Sure You Want To Delete This Blog?';
+
+    }
+
+
+    public function delete_confirmed(){
+
+        blog_posts::where('blog_id', $this->deletable_blog_id)->delete();
+
+        //Rearrenging the data
+        $database_query = blog_posts::where('blog_type', 'custom')
+        ->orderBy('updated_at', 'desc')
+        ->take($this->database_offset)
+        ->get();
+
+        $this->blogs = $database_query->toArray();
+
+
+
+
+
+        $this->notification = 'The Blog Has Been Deleted Successfully';
 
     }
 
