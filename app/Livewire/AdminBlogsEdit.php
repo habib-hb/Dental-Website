@@ -38,6 +38,10 @@ class AdminBlogsEdit extends Component
 
     public $temporary_image;
 
+    public $image_changed;
+
+    public $slug_is_compatible = true;
+
 
 
     public function mount($blog_slug){
@@ -72,17 +76,26 @@ class AdminBlogsEdit extends Component
 
     public function save(){
 
-        if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_available){
 
-            $this->validate([
-                'blog_image' => 'image|max:1024', // Image validation (1MB max)
-            ]);
+        if($this->author_name && $this->blog_headline && $this->blog_slug && $this->blog_excerpt && $this->blog_image  && $this->blog_area && $this->slug_is_compatible){
 
-            // Store the uploaded image and get the file path
-            $imagePath = $this->blog_image->store('blog_images', 'public');
 
-            // Generate the full image_URL to the stored image
-            $this->image_url = asset('storage/' . $imagePath);
+            if($this->image_changed){
+
+                $this->validate([
+                    'blog_image' => 'image|max:1024', // Image validation (1MB max)
+                ]);
+
+                // Store the uploaded image and get the file path
+                $imagePath = $this->blog_image->store('blog_images', 'public');
+
+                // Generate the full image_URL to the stored image
+                $this->image_url = asset('storage/' . $imagePath);
+
+                $this->temporary_image = $this->image_url;
+
+
+            }
 
             // blog_posts::create([
                 // 'blog_author' => $this->author_name,
@@ -100,7 +113,7 @@ class AdminBlogsEdit extends Component
                 'blog_title' => $this->blog_headline,
                 'blog_link' =>  '/blogs/' . $this->blog_slug,//this is the updated one from the user
                 'blog_excerpt' => $this->blog_excerpt,
-                'blog_image' => $this->image_url,
+                'blog_image' => $this->temporary_image,
                 'blog_text' => $this->blog_area,
                 'blog_type' => 'custom',
             ]);
@@ -137,11 +150,13 @@ class AdminBlogsEdit extends Component
             $database_check = blog_posts::where('blog_link', '/blogs/' . $this->blog_slug)->get();
 
 
-            if($database_check->count() > 0){
+            if($database_check->count() > 0 && $database_check[0]->blog_link !== '/blogs/' . $this->identifier_slug){
 
                 $this->slug_already_in_use ='This slug is already in use';
 
                 $this->slug_available = null;
+
+                $this->slug_is_compatible = false;
 
 
 
@@ -150,6 +165,8 @@ class AdminBlogsEdit extends Component
                 $this->slug_available =  "The slug is available";
 
                 $this->slug_already_in_use = null;
+
+                $this->slug_is_compatible = true;
 
             }
 
@@ -166,6 +183,8 @@ class AdminBlogsEdit extends Component
             $imagePath = asset('storage/' . $imagePath);
 
             $this->temporary_image = $imagePath;
+
+            $this->image_changed = true;
 
 
         }

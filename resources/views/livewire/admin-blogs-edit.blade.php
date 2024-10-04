@@ -106,9 +106,10 @@
 
             <input wire:model="blog_image" type="file" accept="image/*" class="w-[96vw] md:max-w-full py-2 {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2" id="blog_image" />
 
+            <p class="text-sm {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">The Image Has To Be Less Than 1 MB</p>
 
 
-            @error('blog_image') <span class="text-red-500">{{ $message }}</span> @enderror
+
 
         </div>
 
