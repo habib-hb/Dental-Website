@@ -487,4 +487,3 @@ Route::get('/generate-sitemap', function () {
 });
 
 
-
