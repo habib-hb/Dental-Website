@@ -70,7 +70,7 @@
     <div class="flex flex-col w-[96%] max-w-[800px] mx-auto {{session('theme_mode') == 'light' ? 'bg-[#EFF9FF]' : 'bg-[#090909]'}} mt-4 rounded-lg items-center justify-center ">
 
         <div class="{{session('theme_mode') == 'light' ? 'bg-[#4189d1]' : ''}}  mt-6 rounded-lg border-1  bg-[#EFF9FF]">
-            <img src="{{$blog_image}}" class="w-[90vw] md:h-[400px] md:w-[400px] rounded-lg    {{session('theme_mode') == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
+            <img src="{{$blog_image}}" class="w-[90vw] md:max-h-[400px] md:max-w-[400px] rounded-lg    {{session('theme_mode') == 'light' ? 'opacity-90' : ''}}  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" alt="">
         </div>
 
         <h1 class="text-center text-2xl font-medium {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">{{$blog_title}}</h1>

@@ -44,6 +44,62 @@
     </div>
 
 
+     <div wire:loading wire:target="save" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+        <div class="flex flex-row justify-center items-center px-2 gap-2">
+            <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+            <span class=" text-white py-2 rounded-lg"> Updating...</span>
+        </div>
+
+
+    </div>
+
+
+    {{-- End Show a loading spinner while Doing Theme Change Processing --}}
+
+
+
+    {{-- Notifications --}}
+
+                {{-- From Completion Notification --}}
+                @if (session()->has('form_completion_message'))
+
+                <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                    <div class="flex flex-row justify-between items-center px-8">
+
+
+                        <p class="text-white text-left">{{ session('form_completion_message') }}</p>
+
+                    </div>
+
+                    <button wire:click="clear_form_completion_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+                </div>
+
+            @endif
+
+
+
+
+
+            {{-- Form Error Message --}}
+            @if (session()->has('form_error_message'))
+
+                    <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit mx-auto w-[90%] max-w-[400px]  bg-[#9f1a1a] py-4 rounded-lg z-10">
+                        <div class="flex flex-row justify-between items-center px-8">
+
+                            <p class="text-white text-center">{{ session('form_error_message') }}</p>
+
+                        </div>
+
+                        <button wire:click="clear_form_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
+
+                    </div>
+
+            @endif
+    {{-- End Notifications --}}
+
 
 
     <div wire:click="changeThemeMode" class="flex justify-center w-fit mx-auto mt-6 md:hover:scale-105 transition-all cursor-pointer">
@@ -224,42 +280,7 @@
     </div>
 
 
-    {{-- From Completion Notification --}}
-    @if (session()->has('form_completion_message'))
 
-        <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
-            <div class="flex flex-row justify-between items-center px-8">
-
-
-                <p class="text-white text-left">{{ session('form_completion_message') }}</p>
-
-            </div>
-
-            <button wire:click="clear_form_completion_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
-
-        </div>
-
-    @endif
-
-
-
-
-
-    {{-- Form Error Message --}}
-    @if (session()->has('form_error_message'))
-
-            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit mx-auto w-[90%] max-w-[400px]  bg-[#9f1a1a] py-4 rounded-lg z-10">
-                <div class="flex flex-row justify-between items-center px-8">
-
-                    <p class="text-white text-center">{{ session('form_error_message') }}</p>
-
-                </div>
-
-                <button wire:click="clear_form_error_message" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110 transition-all">Close</button>
-
-            </div>
-
-    @endif
 
 
 

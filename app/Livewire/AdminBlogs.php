@@ -7,6 +7,9 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+
 class AdminBlogs extends Component
 {
     use WithFileUploads;
@@ -69,6 +72,12 @@ class AdminBlogs extends Component
 
 
             session()->flash('form_completion_message', 'Blog Post Created Successfully');
+
+
+
+
+
+
 
             $this->dispatch('alert-manager');
 

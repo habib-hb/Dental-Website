@@ -146,9 +146,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/root_canal_treatment'">Select</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/root_canal_treatment'"><a href="{{env('BASE_LINK')}}/services/root_canal_treatment">Select</a></button>
 
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/root_canal_treatment'">Details</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/root_canal_treatment'"><a href="{{env('BASE_LINK')}}/details/root_canal_treatment">Details</a></button>
                 </div>
 
             </div>
@@ -168,9 +168,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Cosmetic dentistry is the branch of dentistry that focuses on improving the appearance of your smile.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"  onclick="window.location.href='{{env('BASE_LINK')}}/services/cosmetic_dentist'">Select</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"  onclick="window.location.href='{{env('BASE_LINK')}}/services/cosmetic_dentist'"><a href="{{env('BASE_LINK')}}/services/cosmetic_dentist">Select</a></button>
 
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/cosmetic_dentist'">Details</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/cosmetic_dentist'"><a href="{{env('BASE_LINK')}}/details/cosmetic_dentist">Details</a></button>
                 </div>
 
             </div>
@@ -191,9 +191,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or bridge.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"  onclick="window.location.href='{{env('BASE_LINK')}}/services/dental_implants'">Select</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all"  onclick="window.location.href='{{env('BASE_LINK')}}/services/dental_implants'"><a href="{{env('BASE_LINK')}}/services/dental_implants">Select</a></button>
 
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/dental_implants'">Details</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/dental_implants'"><a href="{{env('BASE_LINK')}}/details/dental_implants">Details</a></button>
                 </div>
 
             </div>
@@ -214,9 +214,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">It's never been easier to brighten your smile at home. There are all kinds of products you can try.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/teeth_whitening'">Select</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/teeth_whitening'"><a href="{{env('BASE_LINK')}}/services/teeth_whitening">Select</a></button>
 
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/teeth_whitening'">Details</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/teeth_whitening'"><a href="{{env('BASE_LINK')}}/details/teeth_whitening">Details</a></button>
                 </div>
 
             </div>
@@ -236,9 +236,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">In general, any dental problem that needs immediate treatment to stop bleeding, alleviate severe pain.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/emergency_dentistry'">Select</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/emergency_dentistry'"><a href="{{env('BASE_LINK')}}/services/emergency_dentistry">Select</a></button>
 
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/emergency_dentistry'">Details</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/emergency_dentistry'"><a href="{{env('BASE_LINK')}}/details/emergency_dentistry">Details</a></button>
                 </div>
 
             </div>
@@ -258,9 +258,9 @@
                 <p class="text-center mt-2 text-lg font-normal px-4  {{$theme_mode == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">Preventive dentistry is dental care that helps maintain good oral health. a combination of regular dental.</p>
 
                 <div class="mt-4 flex flex-row gap-4 mb-6">
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/prevention'">Select</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/services/prevention'"><a href="{{env('BASE_LINK')}}/services/prevention">Select</a></button>
 
-                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/prevention'">Details</button>
+                    <button class="h-[45px] w-[120px] rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all" onclick="window.location.href='{{env('BASE_LINK')}}/details/prevention'"><a href="{{env('BASE_LINK')}}/details/prevention">Details</a></button>
                 </div>
 
             </div>
@@ -273,7 +273,7 @@
 
 
           {{-- Consult Now Button --}}
-          <button class="mt-4 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "  onclick="window.location.href='/consultation'">Consult Now</button>
+          <button class="mt-4 px-8 py-2 w-[90vw] md:max-w-[300px] mx-auto rounded-lg bg-[#1A579F] text-white  shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:scale-110 transition-all "  onclick="window.location.href='/consultation'"><a href="{{env('BASE_LINK')}}/consultation">Consult Now</a></button>
 
 
 

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Blog Showcase</title>
+        <title>About Me</title>
 
 
 
@@ -12,7 +12,7 @@
         @livewireStyles
 
           <!-- Favicon -->
-          <link rel="icon" href="{{ asset('favicons/blogs_showcase_fav.png') }}" type="image/png">
+          <link rel="icon" href="{{ asset('favicons/about_me_fav.png') }}" type="image/png">
     </head>
     <body>
 
