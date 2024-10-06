@@ -147,6 +147,9 @@
 
     <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Appointments</h1>
 
+
+    <button><img src="{{asset('images/add.png')}}" class="h-[24px] rounded-full" alt=""></button>
+
     {{--Appointment Data --}}
     <div class="mt-4 flex flex-col gap-4">
 
