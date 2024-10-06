@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 use Livewire\WithPagination;
@@ -27,6 +28,15 @@ class AdminAppointments extends Component
 
     public $appointment_fulfilled_notification = null;
 
+
+    // testing
+    public $filtered = false;
+    // end testing
+
+
+    // Filter Options
+    public $filter_start_date;
+    public $filter_end_date;
 
 
 
@@ -147,6 +157,28 @@ class AdminAppointments extends Component
 
 
     }
+
+
+
+
+    #[On('save_start_date')]
+    public function save_start_date($date){
+
+        $this->filter_start_date = $date;
+
+        dd($this->filter_start_date);
+
+    }
+
+    #[On('save_end_date')]
+    public function save_end_date($date){
+
+        $this->filter_end_date = $date;
+
+        dd($this->filter_end_date);
+
+    }
+
 
 
     public function render()

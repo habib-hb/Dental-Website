@@ -140,15 +140,64 @@
 
 
 
-
-
-
-
-
     <h1 class="text-2xl font-semibold text-center mt-4 {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Appointments</h1>
 
 
-    <button><img src="{{asset('images/add.png')}}" class="h-[24px] rounded-full" alt=""></button>
+
+
+
+
+
+
+
+    {{-- Filter Button --}}
+    <div class="flex flex-col justify-center items-center">
+
+    <button><img src="{{$filtered ? asset('images/filtered_button.png') : (session('theme_mode') == 'light' ?  asset('images/filter_button_light_mode.png') :  asset('images/filter_button_dark_mode.png'))}}" class="w-[240px] mt-4 hover:scale-110 transition-all" alt=""></button>
+
+    {{-- Filter Options Section --}}
+    <div class="w-[96vw] md:max-w-[500px] h-[300px] mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
+        <h2 class="text-2xl font-semibold text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Options</h2>
+
+        <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">Filter By Date</p>
+        <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} text-sm opacity-50">Format(yyyy-mm-dd)</p>
+
+        <div id="date-range-picker" date-rangepicker datepicker-format="yyyy-mm-dd" class="flex items-center">
+
+            <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                   <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                  </svg>
+              </div>
+              <input id="datepicker-range-start" name="start"   type="text"  class="date_selector bg-[#deeaf8]  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-[#202329]  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none border-none   shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" placeholder="Select date start">
+            </div>
+
+
+            <span class="mx-4 text-gray-500">to</span>
+            <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                   <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                  </svg>
+              </div>
+              <input id="datepicker-range-end" name="end" type="text"  class="date_selector bg-[#deeaf8]  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-[#202329]  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none border-none   shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" placeholder="Select date end">
+          </div>
+          </div>
+
+
+          <div class="flex flex-col justify-center items-center">
+          <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" wire:click="filter_appointments" >Filter</button>
+         </div>
+
+
+
+    </div>
+
+    {{-- End Filter Options Section --}}
+
+
+    </div>
 
     {{--Appointment Data --}}
     <div class="mt-4 flex flex-col gap-4">
@@ -245,6 +294,44 @@
         <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
 
     </div>
+
+
+
+
+    <script>
+
+
+            document.addEventListener('livewire:initialized', () => {
+
+            Livewire.on('alert-manager', () => {
+
+                setTimeout(() => {
+
+                    document.body.classList.contains('dark') ? document.body.classList.remove('dark') : document.body.classList.add('dark');
+
+                }, 100);
+
+            })
+
+            })
+
+
+            let submitStartDate = ()=>{
+            let date_value = document.getElementById('datepicker-range-start').value;
+
+            Livewire.dispatch('save_start_date', {date:date_value});
+             }
+
+
+            let submitEndDate = ()=>{
+            let date_value = document.getElementById('datepicker-range-end').value;
+
+            Livewire.dispatch('save_end_date', {date:date_value});
+             }
+
+
+   </script>
+
 
 
 
