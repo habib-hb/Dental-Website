@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\booked_patient_details;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -17,6 +18,22 @@ class AdminAppointments extends Component
     public $database_offset = 0;
 
     public $database_limit = 10;
+
+    public $selected_services = [];
+
+    public $name_filter;
+
+    public $min_age_filter;
+
+    public $max_age_filter;
+
+    public $gender_filter;
+
+    public $filter_phone;
+
+    public $min_estimated_filter;
+
+    public $max_estimated_filter;
 
 
     //System Variables
@@ -162,13 +179,107 @@ class AdminAppointments extends Component
 
 
     #[On('save_date')]
-    public function save_start_date($start_date , $end_date){
+    public function save_start_date($start_date = null , $end_date = null, $selected_services = []){
 
         $this->filter_start_date = $start_date;
 
         $this->filter_end_date = $end_date;
 
-        dd($this->filter_start_date . " " . $this->filter_end_date);
+        // dd($this->filter_start_date . " " . $this->filter_end_date);
+
+        // $decoded_selected_services = json_decode($selected_services, true);
+
+        $this->selected_services = $selected_services;
+
+        // dd($this->selected_services);
+        // dd($this->name_filter);
+        // dd($this->min_age_filter . " " . $this->max_age_filter);
+        // dd($this->min_estimated_filter . " " . $this->max_estimated_filter);
+        // dd($this->gender_filter);
+        // dd($this->filter_phone);
+
+
+        // Query Database
+        $query = booked_patient_details::query();
+
+        // $query->where('appointment_status', null);
+
+        if(!$this->filter_start_date == null && !$this->filter_end_date == null){
+
+            $query->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
+
+
+
+        }
+
+        if(!$this->selected_services == []){
+
+            $query->whereIn('service_name', $this->selected_services);
+
+
+        }
+
+
+        if(!$this->name_filter == null){
+
+            $query->where('name', 'like', '%' . $this->name_filter . '%');
+
+
+        }
+
+
+        if(!$this->min_age_filter == null && !$this->max_age_filter == null){
+
+            $query->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
+
+
+        }
+
+
+        if(!$this->gender_filter == null){
+
+            $query->where('gender', $this->gender_filter);
+
+
+        }
+
+
+        if(!$this->filter_phone == null){
+
+            $query->where('contact_number', 'like', '%' . $this->filter_phone . '%');
+
+
+        }
+
+
+        if(!$this->min_estimated_filter == null && !$this->max_estimated_filter == null){
+
+            $query->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
+
+
+        }
+
+        $toArray = $query->get()->toArray();
+
+        dd($toArray);
+
+
+
+    }
+
+
+    public function selectedGender($gender){
+
+        if($this->gender_filter == $gender){
+
+            $this->gender_filter = null;
+
+        }else{
+
+            $this->gender_filter = $gender;
+
+        }
+
 
     }
 
