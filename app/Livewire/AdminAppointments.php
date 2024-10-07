@@ -161,23 +161,18 @@ class AdminAppointments extends Component
 
 
 
-    #[On('save_start_date')]
-    public function save_start_date($date){
+    #[On('save_date')]
+    public function save_start_date($start_date , $end_date){
 
-        $this->filter_start_date = $date;
+        $this->filter_start_date = $start_date;
 
-        dd($this->filter_start_date);
+        $this->filter_end_date = $end_date;
 
-    }
-
-    #[On('save_end_date')]
-    public function save_end_date($date){
-
-        $this->filter_end_date = $date;
-
-        dd($this->filter_end_date);
+        dd($this->filter_start_date . " " . $this->filter_end_date);
 
     }
+
+
 
 
 

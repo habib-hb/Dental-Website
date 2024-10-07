@@ -13,6 +13,11 @@
 
          <!-- Favicon -->
          <link rel="icon" href="{{ asset('favicons/admin_blogs_fav.png') }}" type="image/png">
+
+         <style>
+            .mce-notification {display: none !important;}
+        </style>
+
     </head>
     <body>
 

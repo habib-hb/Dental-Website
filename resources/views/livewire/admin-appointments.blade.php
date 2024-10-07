@@ -187,7 +187,7 @@
 
 
           <div class="flex flex-col justify-center items-center">
-          <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" wire:click="filter_appointments" >Filter</button>
+          <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="submitDate()" >Filter</button>
          </div>
 
 
@@ -316,18 +316,18 @@
             })
 
 
-            let submitStartDate = ()=>{
-            let date_value = document.getElementById('datepicker-range-start').value;
+            let submitDate = ()=>{
 
-            Livewire.dispatch('save_start_date', {date:date_value});
-             }
+                let start_date_value = document.getElementById('datepicker-range-start').value;
+
+                let end_date_value = document.getElementById('datepicker-range-end').value;
+
+                Livewire.dispatch('save_date', {start_date:start_date_value , end_date:end_date_value});
+
+            }
 
 
-            let submitEndDate = ()=>{
-            let date_value = document.getElementById('datepicker-range-end').value;
 
-            Livewire.dispatch('save_end_date', {date:date_value});
-             }
 
 
    </script>
