@@ -56,6 +56,16 @@ class AdminAppointments extends Component
     public $filter_end_date;
 
 
+    //The All Encompassing Variable and Operational Variables
+    public $filtered_appointments;
+
+    public $filter_is_on;
+
+
+
+
+
+
 
     public function mount(){
 
@@ -200,13 +210,13 @@ class AdminAppointments extends Component
 
 
         // Query Database
-        $query = booked_patient_details::query();
+        $this->filtered_appointments = booked_patient_details::query();
 
-        // $query->where('appointment_status', null);
+        // $this->filtered_appointments->where('appointment_status', null);
 
         if(!$this->filter_start_date == null && !$this->filter_end_date == null){
 
-            $query->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
+            $this->filtered_appointments->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
 
 
 
@@ -214,7 +224,7 @@ class AdminAppointments extends Component
 
         if(!$this->selected_services == []){
 
-            $query->whereIn('service_name', $this->selected_services);
+            $this->filtered_appointments->whereIn('service_name', $this->selected_services);
 
 
         }
@@ -222,7 +232,7 @@ class AdminAppointments extends Component
 
         if(!$this->name_filter == null){
 
-            $query->where('name', 'like', '%' . $this->name_filter . '%');
+            $this->filtered_appointments->where('name', 'like', '%' . $this->name_filter . '%');
 
 
         }
@@ -230,7 +240,7 @@ class AdminAppointments extends Component
 
         if(!$this->min_age_filter == null && !$this->max_age_filter == null){
 
-            $query->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
+            $this->filtered_appointments->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
 
 
         }
@@ -238,7 +248,7 @@ class AdminAppointments extends Component
 
         if(!$this->gender_filter == null){
 
-            $query->where('gender', $this->gender_filter);
+            $this->filtered_appointments->where('gender', $this->gender_filter);
 
 
         }
@@ -246,7 +256,7 @@ class AdminAppointments extends Component
 
         if(!$this->filter_phone == null){
 
-            $query->where('contact_number', 'like', '%' . $this->filter_phone . '%');
+            $this->filtered_appointments->where('contact_number', 'like', '%' . $this->filter_phone . '%');
 
 
         }
@@ -254,12 +264,12 @@ class AdminAppointments extends Component
 
         if(!$this->min_estimated_filter == null && !$this->max_estimated_filter == null){
 
-            $query->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
+            $this->filtered_appointments->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
 
 
         }
 
-        $toArray = $query->get()->toArray();
+        $toArray = $this->filtered_appointments->get()->toArray();
 
         dd($toArray);
 

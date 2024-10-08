@@ -296,7 +296,7 @@
                 <div class="flex flex-col justify-center items-center">
 
 
-                    <input wire:model="min_age_filter" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Min">
+                    <input wire:model="min_age_filter" type="number"   class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Min">
 
                 </div>
 
@@ -304,7 +304,7 @@
 
 
 
-                    <input wire:model="max_age_filter" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
+                    <input wire:model="max_age_filter" type="number"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
 
                 </div>
 
@@ -372,11 +372,10 @@
 
                     <input wire:model="min_estimated_filter" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Min">
 
+
                 </div>
 
                 <div class="flex flex-col justify-center items-center">
-
-
 
                     <input wire:model="max_estimated_filter" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
 
@@ -393,7 +392,11 @@
 
           <div class="flex flex-col justify-center items-center">
 
-                <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="submitDate()" >Filter</button>
+                <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-16 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="submitData()">Filter</button>
+
+
+
+                <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="clear_filter()">Clear</button>
 
          </div>
 
@@ -534,7 +537,7 @@
             })
 
 
-            let submitDate = ()=>{
+            let submitData = ()=>{
 
                 let start_date_value = document.getElementById('datepicker-range-start').value;
 
@@ -587,6 +590,27 @@
             let toggleDropdownRotate = ()=>{
 
                 document.getElementById('dropdown_icon').classList.toggle('rotate-180');
+
+            }
+
+
+
+            let clear_filter = ()=>{
+
+
+                document.getElementById('checkbox-item-1').checked = false;
+                document.getElementById('checkbox-item-2').checked = false;
+                document.getElementById('checkbox-item-3').checked = false;
+                document.getElementById('checkbox-item-4').checked = false;
+                document.getElementById('checkbox-item-5').checked = false;
+                document.getElementById('checkbox-item-6').checked = false;
+                document.getElementById('checkbox-item-7').checked = false;
+                document.getElementById('checkbox-all').checked = false;
+
+
+                document.getElementById('datepicker-range-start').value = '';
+                document.getElementById('datepicker-range-end').value = '';
+
 
             }
 
