@@ -302,8 +302,6 @@
 
                 <div class="flex flex-col justify-center items-center">
 
-
-
                     <input wire:model="max_age_filter" type="number"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
 
                 </div>
@@ -370,14 +368,14 @@
                 <div class="flex flex-col justify-center items-center">
 
 
-                    <input wire:model="min_estimated_filter" type="number" max="12" min="1"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Min">
+                    <input wire:model="min_estimated_filter" type="number"   class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Min">
 
 
                 </div>
 
                 <div class="flex flex-col justify-center items-center">
 
-                    <input wire:model="max_estimated_filter" type="number" max="59" min="0"  class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
+                    <input wire:model="max_estimated_filter" type="number"   class="w-[40vw] md:max-w-[100px] py-2   {{session('theme_mode') == 'light' ? 'bg-[#deeaf8] text-black' : 'bg-[#202329] text-white'}} rounded-lg shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]  outline-none border-none  px-2"  placeholder="Max">
 
                 </div>
 
