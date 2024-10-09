@@ -45,7 +45,9 @@ class AdminAppointments extends Component
 
     public $appointment_fulfilled_notification = null;
 
-    public $dispatching = false;
+    public $notification;
+
+    public $filter_no_more_appointments_on=false;
 
 
     // testing
@@ -61,7 +63,7 @@ class AdminAppointments extends Component
     //The All Encompassing Variable and Operational Variables
     public $filtered_appointments;
 
-    public $filter_is_on;
+    public $filter_button_is_clicked=false;
 
 
 
@@ -77,7 +79,7 @@ class AdminAppointments extends Component
         ->get();
 
 
-        // Filtered Array
+        //Filtered Array
         $appointments = $appointments->toArray();
 
 
@@ -86,12 +88,46 @@ class AdminAppointments extends Component
 
 
 
-         // Increase the offset for the next load
+         //Increase the offset for the next load
          $this->database_offset += $this->database_limit;
 
     }
 
     public function loadMore(){
+
+        if($this->filtered){
+
+            if(count($this->filtered_appointments) == count($this->all_appointments)){
+
+                $this->filter_no_more_appointments_on = true;
+
+            }
+
+            $this->all_appointments = array_slice($this->filtered_appointments, 0, ($this->database_limit + $this->database_offset));
+
+
+
+            if(count($this->filtered_appointments) == count($this->all_appointments)){
+
+                    // Doing this to show the message after the last load
+                    if($this->filter_no_more_appointments_on){
+
+                        session()->flash('no_more_appointments', 'No More Appointments Found');
+
+                    }
+
+                $this->filter_no_more_appointments_on = true;
+
+                return;
+
+            }
+
+            //Increase the offset for the next load
+            $this->database_offset += $this->database_limit;
+
+            return;
+
+        }
 
         $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)
@@ -193,44 +229,39 @@ class AdminAppointments extends Component
     #[On('save_data')]
     public function save_data($start_date = null , $end_date = null, $selected_services = []){
 
-        $filter_data_on = false;
+        $this->filtered = false;
 
         $this->filter_start_date = $start_date;
 
         $this->filter_end_date = $end_date;
 
-        // dd($this->filter_start_date . " " . $this->filter_end_date);
 
-        // $decoded_selected_services = json_decode($selected_services, true);
+
+             // $decoded_selected_services = json_decode($selected_services, true);
 
         $this->selected_services = $selected_services;
 
-        // dd($this->selected_services);
-        // dd($this->name_filter);
-        // dd($this->min_age_filter . " " . $this->max_age_filter);
-        // dd($this->min_estimated_filter . " " . $this->max_estimated_filter);
-        // dd($this->gender_filter);
-        // dd($this->filter_phone);
+
 
 
         // Query Database
-        $this->filtered_appointments = booked_patient_details::query();
+        $appointmentsQuery = booked_patient_details::query();
 
-        // $this->filtered_appointments->where('appointment_status', null);
+        $appointmentsQuery->where('appointment_status', null);
 
         if(!$this->filter_start_date == null && !$this->filter_end_date == null){
 
-            $this->filtered_appointments->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
+            $appointmentsQuery->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
         }
 
         if(!$this->selected_services == []){
 
-            $this->filtered_appointments->whereIn('service_name', $this->selected_services);
+            $appointmentsQuery->whereIn('service_name', $this->selected_services);
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
 
         }
@@ -238,9 +269,9 @@ class AdminAppointments extends Component
 
         if(!$this->name_filter == null){
 
-            $this->filtered_appointments->where('name', 'like', '%' . $this->name_filter . '%');
+            $appointmentsQuery->where('name', 'like', '%' . $this->name_filter . '%');
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
 
         }
@@ -248,9 +279,9 @@ class AdminAppointments extends Component
 
         if(!$this->min_age_filter == null && !$this->max_age_filter == null){
 
-            $this->filtered_appointments->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
+            $appointmentsQuery->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
 
         }
@@ -258,9 +289,9 @@ class AdminAppointments extends Component
 
         if(!$this->gender_filter == null){
 
-            $this->filtered_appointments->where('gender', $this->gender_filter);
+            $appointmentsQuery->where('gender', $this->gender_filter);
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
 
         }
@@ -268,9 +299,9 @@ class AdminAppointments extends Component
 
         if(!$this->filter_phone == null){
 
-            $this->filtered_appointments->where('contact_number', 'like', '%' . $this->filter_phone . '%');
+            $appointmentsQuery->where('contact_number', 'like', '%' . $this->filter_phone . '%');
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
 
         }
@@ -278,24 +309,36 @@ class AdminAppointments extends Component
 
         if(!$this->min_estimated_filter == null && !$this->max_estimated_filter == null){
 
-            $this->filtered_appointments->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
+            $appointmentsQuery->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
 
-            $filter_data_on = true;
+            $this->filtered = true;
 
 
         }
 
-        if($filter_data_on){
+        if($this->filtered){
 
-        $toArray = $this->filtered_appointments->get()->toArray();
+            // $this->filtered_appointments = $appointmentsQuery;
 
-        dd($toArray);
+            $this->database_offset= 0;
+
+            $toArray = $appointmentsQuery->get()->toArray();
+
+            $this->filtered_appointments = $toArray;
+
+            $this->all_appointments = array_slice($this->filtered_appointments, $this->database_offset, ($this->database_limit + $this->database_offset));
+
+            //Increase the offset for the next load
+            $this->database_offset += $this->database_limit;
 
         }else{
 
-            dd('Nothing Has Been Set To Be Filtered');
-            
+            $this->notification = "No Filter Option Has Been Set";
+
         }
+
+
+       $this->filter_option_button_clicked();
 
 
 
@@ -317,6 +360,32 @@ class AdminAppointments extends Component
         $this->min_estimated_filter = null;
         $this->max_estimated_filter = null;
 
+        $this->filtered=false;
+        $this->filter_no_more_appointments_on=false;
+
+        // Resetting the Data to it's previous state
+        $this->all_appointments = [];
+        $this->filtered_appointments = [];
+        $this->database_offset= 0;
+            $appointments = \App\Models\booked_patient_details::whereNull('appointment_status')->orderBy('appointment_date', 'desc')
+            ->skip($this->database_offset)
+            ->take($this->database_limit)
+            ->get();
+
+
+            //Filtered Array
+            $appointments = $appointments->toArray();
+
+
+            //Merging Both Arrays
+            $this->all_appointments = array_merge($this->all_appointments, $appointments);
+
+
+
+            //Increase the offset for the next load
+            $this->database_offset += $this->database_limit;
+
+
 
     }
 
@@ -333,6 +402,28 @@ class AdminAppointments extends Component
 
         }
 
+
+    }
+
+
+    public function clear_notification(){
+
+        $this->notification = null;
+
+    }
+
+
+    public function filter_option_button_clicked(){
+
+        if($this->filter_button_is_clicked){
+
+            $this->filter_button_is_clicked = false;
+
+        }else{
+
+            $this->filter_button_is_clicked = true;
+
+        }
 
     }
 

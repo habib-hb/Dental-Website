@@ -60,13 +60,39 @@
 
         </div>
 
+         <div wire:loading wire:target="filter_option_button_clicked" class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing Filter Section...</span>
+            </div>
+
+
+        </div>
+
+
+
+
         {{-- Livewire Loading --}}
-         <div id="filter_clear_loading" class="{{$dispatching ? '' : 'hidden'}}  text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+         <div id="filter_clear_loading" class="hidden  text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
             <div class="flex flex-row justify-center items-center px-2 gap-2">
                 <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
 
                 <span class=" text-white py-2 rounded-lg"> Clearing Filter...</span>
+            </div>
+
+
+        </div>
+
+
+         <div id="filter_data_loading" class="hidden  text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Loading Filtered Data...</span>
             </div>
 
 
@@ -110,6 +136,22 @@
                 </div>
 
                 <button wire:click="clear_no_more_appointments" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+
+            </div>
+
+            @endif
+
+            @if($notification == "No Filter Option Has Been Set")
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-row justify-between items-center px-8">
+
+
+                    <p class="text-white text-left">{{$notification}}</p>
+
+                </div>
+
+                <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
 
             </div>
 
@@ -179,10 +221,10 @@
     {{-- Filter Button --}}
     <div class="flex flex-col justify-center items-center">
 
-    <button><img src="{{$filtered ? asset('images/filtered_button.png') : (session('theme_mode') == 'light' ?  asset('images/filter_button_light_mode.png') :  asset('images/filter_button_dark_mode.png'))}}" class="w-[240px] mt-4 hover:scale-110 transition-all" alt=""></button>
+    <button wire:click="filter_option_button_clicked"><img src="{{$filtered ? asset('images/filtered_button.png') : (session('theme_mode') == 'light' ?  asset('images/filter_button_light_mode.png') :  asset('images/filter_button_dark_mode.png'))}}" class="w-[240px] mt-4 hover:scale-110 transition-all" alt=""></button>
 
     {{-- Filter Options Section --}}
-    <div class="w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
+    <div class=" {{$filter_button_is_clicked ? '' : 'hidden'}} w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
         <h2 class="text-2xl font-semibold text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Options</h2>
 
         <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">Filter By Date</p>
@@ -409,8 +451,13 @@
                 <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-16 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="submitData()">Filter</button>
 
 
+                <div class="flex gap-4 justify-center items-center">
 
-                <button class="mt-4  bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="clear_filter()">Clear</button>
+                     <button class="mt-4 bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="clear_filter()">Clear</button>
+
+                     <button wire:click="filter_option_button_clicked" class="mt-4 bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Close</button>
+
+                </div>
 
          </div>
 
@@ -568,6 +615,8 @@
                     document.getElementById('checkbox-item-7').checked == true ? selected_services.push('Consultation') : '';
 
 
+                document.getElementById('filter_data_loading').classList.remove('hidden');
+
                 Livewire.dispatch('save_data', {start_date:start_date_value , end_date:end_date_value , selected_services:selected_services});
 
             }
@@ -626,6 +675,7 @@
                 document.getElementById('datepicker-range-end').value = '';
 
                document.getElementById('filter_clear_loading').classList.remove('hidden');
+
 
 
                 Livewire.dispatch('clear_data', {});
