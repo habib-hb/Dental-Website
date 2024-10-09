@@ -16,8 +16,6 @@
     </head>
     <body  class="{{session('theme_mode') == 'dark' ? 'dark' : ''}} bg-[#EFF9FF] dark:bg-black">
 
-
-
         <livewire:admin-unfulfilled-appointments/>
 
         @livewireScripts

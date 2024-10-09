@@ -392,7 +392,7 @@ class AdminUnfulfilledAppointments extends Component
 
             $this->database_offset= 0;
 
-            $toArray = $appointmentsQuery->get()->toArray();
+            $toArray = $appointmentsQuery->orderBy('appointment_date', 'desc')->get()->toArray();
 
             $this->filtered_appointments = $toArray;
 
