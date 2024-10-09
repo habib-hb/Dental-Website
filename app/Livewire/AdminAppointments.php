@@ -188,8 +188,8 @@ class AdminAppointments extends Component
 
 
 
-    #[On('save_date')]
-    public function save_start_date($start_date = null , $end_date = null, $selected_services = []){
+    #[On('save_data')]
+    public function save_data($start_date = null , $end_date = null, $selected_services = []){
 
         $this->filter_start_date = $start_date;
 
@@ -273,6 +273,25 @@ class AdminAppointments extends Component
 
         dd($toArray);
 
+
+
+    }
+
+
+    #[On('clear_data')]
+    public function clear_data(){
+
+        $this->filter_start_date = null;
+        $this->filter_end_date = null;
+        $this->selected_services = [];
+
+        $this->name_filter = null;
+        $this->min_age_filter = null;
+        $this->max_age_filter = null;
+        $this->gender_filter = null;
+        $this->filter_phone = null;
+        $this->min_estimated_filter = null;
+        $this->max_estimated_filter = null;
 
 
     }

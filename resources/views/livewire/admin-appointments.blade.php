@@ -60,6 +60,19 @@
 
         </div>
 
+
+         <div class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Clearing Filter...</span>
+            </div>
+
+
+        </div>
+
+
         <div wire:loading wire:target="loadMore" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
             <div class="flex flex-row justify-center items-center px-2 gap-2">
 
@@ -552,7 +565,7 @@
                     document.getElementById('checkbox-item-7').checked == true ? selected_services.push('Consultation') : '';
 
 
-                Livewire.dispatch('save_date', {start_date:start_date_value , end_date:end_date_value , selected_services:selected_services});
+                Livewire.dispatch('save_data', {start_date:start_date_value , end_date:end_date_value , selected_services:selected_services});
 
             }
 
@@ -608,6 +621,9 @@
 
                 document.getElementById('datepicker-range-start').value = '';
                 document.getElementById('datepicker-range-end').value = '';
+
+
+                Livewire.dispatch('clear_data', {});
 
 
             }
