@@ -219,12 +219,12 @@
 
 
     {{-- Filter Button --}}
-    <div class="flex flex-col justify-center items-center">
+    <div class=" flex flex-col justify-center items-center">
 
     <button wire:click="filter_option_button_clicked"><img src="{{$filtered ? asset('images/filtered_button.png') : (session('theme_mode') == 'light' ?  asset('images/filter_button_light_mode.png') :  asset('images/filter_button_dark_mode.png'))}}" class="w-[240px] mt-4 hover:scale-110 transition-all" alt=""></button>
 
     {{-- Filter Options Section --}}
-    <div class=" {{$filter_button_is_clicked ? '' : 'hidden'}} w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
+    <div class=" {{$filter_button_is_clicked ? '' : 'hidden'}} absolute top-24 left-1/2 translate-x-[-50%] w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
         <h2 class="text-2xl font-semibold text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Options</h2>
 
         <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">Filter By Date</p>
@@ -453,7 +453,7 @@
 
                 <div class="flex gap-4 justify-center items-center">
 
-                     <button class="mt-4 bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="clear_filter()">Clear</button>
+                     <button class="mt-4 bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]" onclick="clear_filter()">Reset</button>
 
                      <button wire:click="filter_option_button_clicked" class="mt-4 bg-[#1A579F] hover:scale-110 transition-all text-white px-8 py-2 rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">Close</button>
 
