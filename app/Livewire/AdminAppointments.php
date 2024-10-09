@@ -45,6 +45,8 @@ class AdminAppointments extends Component
 
     public $appointment_fulfilled_notification = null;
 
+    public $dispatching = false;
+
 
     // testing
     public $filtered = false;
@@ -191,6 +193,8 @@ class AdminAppointments extends Component
     #[On('save_data')]
     public function save_data($start_date = null , $end_date = null, $selected_services = []){
 
+        $filter_data_on = false;
+
         $this->filter_start_date = $start_date;
 
         $this->filter_end_date = $end_date;
@@ -218,13 +222,15 @@ class AdminAppointments extends Component
 
             $this->filtered_appointments->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
 
-
+            $filter_data_on = true;
 
         }
 
         if(!$this->selected_services == []){
 
             $this->filtered_appointments->whereIn('service_name', $this->selected_services);
+
+            $filter_data_on = true;
 
 
         }
@@ -234,6 +240,8 @@ class AdminAppointments extends Component
 
             $this->filtered_appointments->where('name', 'like', '%' . $this->name_filter . '%');
 
+            $filter_data_on = true;
+
 
         }
 
@@ -241,6 +249,8 @@ class AdminAppointments extends Component
         if(!$this->min_age_filter == null && !$this->max_age_filter == null){
 
             $this->filtered_appointments->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
+
+            $filter_data_on = true;
 
 
         }
@@ -250,6 +260,8 @@ class AdminAppointments extends Component
 
             $this->filtered_appointments->where('gender', $this->gender_filter);
 
+            $filter_data_on = true;
+
 
         }
 
@@ -257,6 +269,8 @@ class AdminAppointments extends Component
         if(!$this->filter_phone == null){
 
             $this->filtered_appointments->where('contact_number', 'like', '%' . $this->filter_phone . '%');
+
+            $filter_data_on = true;
 
 
         }
@@ -266,12 +280,22 @@ class AdminAppointments extends Component
 
             $this->filtered_appointments->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
 
+            $filter_data_on = true;
+
 
         }
+
+        if($filter_data_on){
 
         $toArray = $this->filtered_appointments->get()->toArray();
 
         dd($toArray);
+
+        }else{
+
+            dd('Nothing Has Been Set To Be Filtered');
+            
+        }
 
 
 

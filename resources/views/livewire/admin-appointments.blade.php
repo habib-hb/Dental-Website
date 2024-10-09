@@ -60,8 +60,8 @@
 
         </div>
 
-
-         <div class="text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+        {{-- Livewire Loading --}}
+         <div id="filter_clear_loading" class="{{$dispatching ? '' : 'hidden'}}  text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
             <div class="flex flex-row justify-center items-center px-2 gap-2">
                 <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
@@ -71,6 +71,9 @@
 
 
         </div>
+
+
+         {{-- End Livewire Loading --}}
 
 
         <div wire:loading wire:target="loadMore" class="text-center fixed top-24 w-[90%] max-w-[400px]  bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
@@ -621,6 +624,8 @@
 
                 document.getElementById('datepicker-range-start').value = '';
                 document.getElementById('datepicker-range-end').value = '';
+
+               document.getElementById('filter_clear_loading').classList.remove('hidden');
 
 
                 Livewire.dispatch('clear_data', {});
