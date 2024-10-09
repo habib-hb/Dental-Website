@@ -8,13 +8,13 @@
 
 
 
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
 
          <!-- Favicon -->
          <link rel="icon" href="{{ asset('favicons/unfulfilled_appointments_fav.png') }}" type="image/png">
     </head>
-    <body>
+    <body  class="{{session('theme_mode') == 'dark' ? 'dark' : ''}} bg-[#EFF9FF] dark:bg-black">
 
 
 

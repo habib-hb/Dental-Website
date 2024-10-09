@@ -75,6 +75,18 @@
 
 
         {{-- Livewire Loading --}}
+         <div id="filter_close_outside_clicking_loading" class="hidden  text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
+
+            <div class="flex flex-row justify-center items-center px-2 gap-2">
+                <img src="{{asset('images/loading.png')}}" class="h-[24px] rounded-full animate-spin" alt="">
+
+                <span class=" text-white py-2 rounded-lg"> Processing Filter Section...</span>
+            </div>
+
+
+        </div>
+
+
          <div id="filter_clear_loading" class="hidden  text-center fixed top-24 w-[90%] max-w-[400px]   bg-[#1A579F] rounded-lg left-1/2 translate-x-[-50%] z-10">
 
             <div class="flex flex-row justify-center items-center px-2 gap-2">
@@ -224,7 +236,7 @@
     <button wire:click="filter_option_button_clicked"><img src="{{$filtered ? asset('images/filtered_button.png') : (session('theme_mode') == 'light' ?  asset('images/filter_button_light_mode.png') :  asset('images/filter_button_dark_mode.png'))}}" class="w-[240px] mt-4 hover:scale-110 transition-all" alt=""></button>
 
     {{-- Filter Options Section --}}
-    <div class=" {{$filter_button_is_clicked ? '' : 'hidden'}} absolute top-24 left-1/2 translate-x-[-50%] w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
+    <div id="full_filter_options_panel" class=" {{$filter_button_is_clicked ? '' : 'hidden'}} absolute top-24 left-1/2 translate-x-[-50%] w-[96vw] md:max-w-[500px] py-4 mt-4 border-8 {{session('theme_mode') == 'light' ? 'border-[#d6e0ec] bg-[#EFF9FF]' : 'bg-[#1e1d1d] border-[#1e1d1d]'}} rounded-lg shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] px-4">
         <h2 class="text-2xl font-semibold text-center {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}}">Options</h2>
 
         <p class=" {{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-2">Filter By Date</p>
@@ -254,8 +266,11 @@
           </div>
 
 
-          <div>
-                <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4">Filter By Services</p>
+
+          {{-- Dropdown Section --}}
+          <p class="{{session('theme_mode') == 'light' ? 'text-black' : 'text-white'}} mt-4">Filter By Services</p>
+          <div id="full_dropdown_section">
+
 
                 <button id="dropdownCheckboxButton" onclick="toggleDropdownRotate()" data-dropdown-toggle="dropdownDefaultCheckbox" class="text-gray-500 bg-[#deeaf8]   font-medium rounded-lg text-sm px-5 py-2.5 text-center justify-center inline-flex items-center dark:text-slate-400 dark:bg-[#202329] w-full    shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)]" type="button">Services checkbox <svg id="dropdown_icon" class="w-2.5 h-2.5 ms-3 transition-all" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
@@ -323,6 +338,8 @@
                         </ul>
                     </div>
           </div>
+
+           {{-- End Dropdown Section --}}
 
 
 
@@ -682,6 +699,50 @@
 
 
             }
+
+            // Section For Dropdown Management when user clicks outside of the dropdown
+            const dropdown = document.getElementById('full_dropdown_section');
+
+            // Function to handle clicks outside the dropdown
+            document.addEventListener('click', function(event) {
+                const isClickInside = dropdown.contains(event.target);
+
+                // If the click is outside the dropdown, perform an action
+                if (!isClickInside) {
+
+                    if(document.getElementById('dropdown_icon').classList.contains('rotate-180')){
+
+                        document.getElementById('dropdown_icon').classList.remove('rotate-180');
+
+                    } ;
+
+                }
+            });
+
+
+
+
+            // Section For full_filter_options_panel Management when user clicks outside of the dropdown
+            const full_filter_options_panel = document.getElementById('full_filter_options_panel');
+
+            // Function to handle clicks outside the dropdown
+            document.addEventListener('click', function(event) {
+                const isClickInside = full_filter_options_panel.contains(event.target);
+
+                // If the click is outside the dropdown, perform an action
+                if (!isClickInside) {
+
+                    if(!document.getElementById('full_filter_options_panel').classList.contains('hidden')){
+
+                        document.getElementById('filter_close_outside_clicking_loading').classList.remove('hidden');
+
+                        Livewire.dispatch('hide_filter_section', {});
+
+                    }
+
+                }
+
+            });
 
 
 

@@ -19,6 +19,23 @@ class AdminAppointments extends Component
 
     public $database_limit = 10;
 
+
+
+    //System Variables
+    public $appointment_unfulfilled_selected_id = [];
+
+    public $appointment_unfulfilled_notification = null;
+
+    public $appointment_fulfilled_selected_id = [];
+
+    public $appointment_fulfilled_notification = null;
+
+
+
+
+
+
+    //All the filter options
     public $selected_services = [];
 
     public $name_filter;
@@ -35,35 +52,19 @@ class AdminAppointments extends Component
 
     public $max_estimated_filter;
 
-
-    //System Variables
-    public $appointment_unfulfilled_selected_id = [];
-
-    public $appointment_unfulfilled_notification = null;
-
-    public $appointment_fulfilled_selected_id = [];
-
-    public $appointment_fulfilled_notification = null;
-
-    public $notification;
-
-    public $filter_no_more_appointments_on=false;
-
-
-    // testing
     public $filtered = false;
-    // end testing
 
-
-    // Filter Options
     public $filter_start_date;
+
     public $filter_end_date;
 
-
-    //The All Encompassing Variable and Operational Variables
     public $filtered_appointments;
 
     public $filter_button_is_clicked=false;
+
+    public $filter_no_more_appointments_on=false;
+
+    public $notification;
 
 
 
@@ -424,6 +425,14 @@ class AdminAppointments extends Component
             $this->filter_button_is_clicked = true;
 
         }
+
+    }
+
+
+    #[On('hide_filter_section')]
+    public function hide_filter_section(){
+
+        $this->filter_option_button_clicked();
 
     }
 
