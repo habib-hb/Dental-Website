@@ -64,6 +64,42 @@ class AdminUnsettledAppointments extends Component
 
 
 
+
+     //All the filter options
+     public $selected_services = [];
+
+     public $name_filter;
+
+     public $min_age_filter;
+
+     public $max_age_filter;
+
+     public $gender_filter;
+
+     public $filter_phone;
+
+     public $min_estimated_filter;
+
+     public $max_estimated_filter;
+
+     public $filtered = false;
+
+     public $filter_start_date;
+
+     public $filter_end_date;
+
+     public $filtered_appointments;
+
+     public $filter_button_is_clicked=false;
+
+     public $filter_no_more_appointments_on=false;
+
+     public $notification;
+
+
+
+
+
     public function mount(){
 
         $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Unsettled')->orderBy('appointment_date', 'desc')
@@ -187,6 +223,43 @@ class AdminUnsettledAppointments extends Component
 
 
     public function loadMore(){
+
+
+        if($this->filtered){
+
+            if(count($this->filtered_appointments) == count($this->all_appointments)){
+
+                $this->filter_no_more_appointments_on = true;
+
+            }
+
+            $this->all_appointments = array_slice($this->filtered_appointments, 0, ($this->database_limit + $this->database_offset));
+
+
+
+            if(count($this->filtered_appointments) == count($this->all_appointments)){
+
+                    // Doing this to show the message after the last load
+                    if($this->filter_no_more_appointments_on){
+
+                        session()->flash('no_more_appointments', 'No More Appointments Found');
+
+                    }
+
+                $this->filter_no_more_appointments_on = true;
+
+                return;
+
+            }
+
+            //Increase the offset for the next load
+            $this->database_offset += $this->database_limit;
+
+            return;
+
+        }
+        
+
 
         $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Unsettled')->orderBy('appointment_date', 'desc')
         ->skip($this->database_offset)

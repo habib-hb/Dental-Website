@@ -760,7 +760,7 @@ transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_
 
                     } ;
 
-                }
+                } 
             });
 
 
