@@ -6,6 +6,7 @@ use App\Models\available_schedules;
 use App\Models\booked_appointments;
 use App\Models\booked_patient_details;
 use DateTime;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 use Livewire\WithPagination;
@@ -258,7 +259,7 @@ class AdminUnsettledAppointments extends Component
             return;
 
         }
-        
+
 
 
         $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Unsettled')->orderBy('appointment_date', 'desc')
@@ -532,6 +533,220 @@ class AdminUnsettledAppointments extends Component
 
 
 
+    // New Insertion
+
+    #[On('save_data')]
+    public function save_data($start_date = null , $end_date = null, $selected_services = []){
+
+        $this->filtered = false;
+
+        $this->filter_start_date = $start_date;
+
+        $this->filter_end_date = $end_date;
+
+
+
+        // $decoded_selected_services = json_decode($selected_services, true);
+
+        $this->selected_services = $selected_services;
+
+
+
+
+        // Query Database
+        $appointmentsQuery = booked_patient_details::query();
+
+        $appointmentsQuery->where('appointment_status', 'Unsettled');
+
+        if(!$this->filter_start_date == null && !$this->filter_end_date == null){
+
+            $appointmentsQuery->whereBetween('appointment_date', [$this->filter_start_date, $this->filter_end_date]);
+
+            $this->filtered = true;
+
+        }
+
+        if(!$this->selected_services == []){
+
+            $appointmentsQuery->whereIn('service_name', $this->selected_services);
+
+            $this->filtered = true;
+
+
+        }
+
+
+        if(!$this->name_filter == null){
+
+            $appointmentsQuery->where('name', 'like', '%' . $this->name_filter . '%');
+
+            $this->filtered = true;
+
+
+        }
+
+
+        if(!$this->min_age_filter == null && !$this->max_age_filter == null){
+
+            $appointmentsQuery->whereBetween('age', [$this->min_age_filter, $this->max_age_filter]);
+
+            $this->filtered = true;
+
+
+        }
+
+
+        if(!$this->gender_filter == null){
+
+            $appointmentsQuery->where('gender', $this->gender_filter);
+
+            $this->filtered = true;
+
+
+        }
+
+
+        if(!$this->filter_phone == null){
+
+            $appointmentsQuery->where('contact_number', 'like', '%' . $this->filter_phone . '%');
+
+            $this->filtered = true;
+
+
+        }
+
+
+        if(!$this->min_estimated_filter == null && !$this->max_estimated_filter == null){
+
+            $appointmentsQuery->whereBetween('estimated_price', [$this->min_estimated_filter, $this->max_estimated_filter]);
+
+            $this->filtered = true;
+
+
+        }
+
+        if($this->filtered){
+
+            // $this->filtered_appointments = $appointmentsQuery;
+
+            $this->database_offset= 0;
+
+            $toArray = $appointmentsQuery->orderBy('appointment_date', 'desc')->get()->toArray();
+
+            $this->filtered_appointments = $toArray;
+
+            $this->all_appointments = array_slice($this->filtered_appointments, $this->database_offset, ($this->database_limit + $this->database_offset));
+
+            //Increase the offset for the next load
+            $this->database_offset += $this->database_limit;
+
+        }else{
+
+            $this->notification = "No Filter Option Has Been Set";
+
+        }
+
+
+    $this->filter_option_button_clicked();
+
+
+
+    }
+
+
+    #[On('clear_data')]
+    public function clear_data(){
+
+        $this->filter_start_date = null;
+        $this->filter_end_date = null;
+        $this->selected_services = [];
+
+        $this->name_filter = null;
+        $this->min_age_filter = null;
+        $this->max_age_filter = null;
+        $this->gender_filter = null;
+        $this->filter_phone = null;
+        $this->min_estimated_filter = null;
+        $this->max_estimated_filter = null;
+
+        $this->filtered=false;
+        $this->filter_no_more_appointments_on=false;
+
+        // Resetting the Data to it's previous state
+        $this->all_appointments = [];
+        $this->filtered_appointments = [];
+        $this->database_offset= 0;
+            $appointments = \App\Models\booked_patient_details::where('appointment_status' , 'Unsettled')->orderBy('appointment_date', 'desc')
+            ->skip($this->database_offset)
+            ->take($this->database_limit)
+            ->get();
+
+            //Filtered Array
+            $appointments = $appointments->toArray();
+
+
+            //Merging Both Arrays
+            $this->all_appointments = array_merge($this->all_appointments, $appointments);
+
+
+
+            //Increase the offset for the next load
+            $this->database_offset += $this->database_limit;
+
+
+
+    }
+
+
+    public function selectedGender($gender){
+
+        if($this->gender_filter == $gender){
+
+            $this->gender_filter = null;
+
+        }else{
+
+            $this->gender_filter = $gender;
+
+        }
+
+
+    }
+
+
+    public function clear_notification(){
+
+        $this->notification = null;
+
+    }
+
+
+    public function filter_option_button_clicked(){
+
+        if($this->filter_button_is_clicked){
+
+            $this->filter_button_is_clicked = false;
+
+        }else{
+
+            $this->filter_button_is_clicked = true;
+
+        }
+
+    }
+
+
+
+    #[On('hide_filter_section')]
+    public function hide_filter_section(){
+
+        $this->filter_option_button_clicked();
+
+    }
+
+
+
+ // End New Insertion
 
 
     public function render()

@@ -193,6 +193,24 @@
 
 
 
+            @if($notification == "No Filter Option Has Been Set")
+
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-row justify-between items-center px-8">
+
+
+                    <p class="text-white text-left">{{$notification}}</p>
+
+                </div>
+
+                <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+
+            </div>
+
+            @endif
+
+
+
             {{-- @if (session()->has('appointment_unfulfilled') && session('appointment_unfulfilled') != 'Close') --}}
             @if ($appointment_fulfilled_notification)
 
@@ -760,7 +778,7 @@ transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_
 
                     } ;
 
-                } 
+                }
             });
 
 
@@ -774,7 +792,7 @@ transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_
                 const isClickInside = full_filter_options_panel.contains(event.target);
 
                 // If the click is outside the dropdown, perform an action
-                if (!isClickInside) {
+                if (!isClickInside && document.getElementById('datepicker-range-start') !== document.activeElement && document.getElementById('datepicker-range-end') !== document.activeElement) {
 
                     if(!document.getElementById('full_filter_options_panel').classList.contains('hidden')){
 

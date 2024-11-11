@@ -295,7 +295,21 @@
             @endif
 
 
+            @if($notification == "No Filter Option Has Been Set")
 
+            <div class="flex flex-col justify-center items-center text-center fixed top-24 left-1/2 translate-x-[-50%] h-fit max-h-[50vh] overflow-auto mx-auto w-[90%] max-w-[400px]  bg-[#1A579F] py-4 rounded-lg z-10">
+                <div class="flex flex-row justify-between items-center px-8">
+
+
+                    <p class="text-white text-left">{{$notification}}</p>
+
+                </div>
+
+                <button wire:click="clear_notification" class="text-white border-2 border-white px-4 rounded-lg mt-2 hover:scale-110">Close</button>
+
+            </div>
+
+            @endif
 
 
 
@@ -640,7 +654,7 @@
              {{-- End Filter Options Section --}}
 
 
-             
+
 
 
 
@@ -811,6 +825,172 @@ transition-all {{count($all_appointments) == 0 ? 'hidden' : ''}}  shadow-[0_4px_
         <p class=" text-center {{session('theme_mode') == 'light' ? 'text-[#070707]' : 'text-[#fcfeff]'}}">@valueadderhabib</p>
 
     </div>
+
+
+
+
+
+
+    <script>
+
+
+        document.addEventListener('livewire:initialized', () => {
+
+        Livewire.on('alert-manager', () => {
+
+            setTimeout(() => {
+
+                document.body.classList.contains('dark') ? document.body.classList.remove('dark') : document.body.classList.add('dark');
+
+            }, 100);
+
+        })
+
+        })
+
+
+        let submitData = ()=>{
+
+            let start_date_value = document.getElementById('datepicker-range-start').value;
+
+            let end_date_value = document.getElementById('datepicker-range-end').value;
+
+            let selected_services = [];
+
+                document.getElementById('checkbox-item-1').checked == true ? selected_services.push('Root Canal Treatment') : '';
+                document.getElementById('checkbox-item-2').checked == true ? selected_services.push('Cosmetic Dentistry') : '';
+                document.getElementById('checkbox-item-3').checked == true ? selected_services.push('Dental Implants') : '';
+                document.getElementById('checkbox-item-4').checked == true ? selected_services.push('Teeth Whitening') : '';
+                document.getElementById('checkbox-item-5').checked == true ? selected_services.push('Emergency Dentistry') : '';
+                document.getElementById('checkbox-item-6').checked == true ? selected_services.push('Prevention') : '';
+                document.getElementById('checkbox-item-7').checked == true ? selected_services.push('Consultation') : '';
+
+
+            document.getElementById('filter_data_loading').classList.remove('hidden');
+
+            Livewire.dispatch('save_data', {start_date:start_date_value , end_date:end_date_value , selected_services:selected_services});
+
+        }
+
+
+        let check_all =()=>{
+
+            if(document.getElementById('checkbox-all').checked == false){
+
+                document.getElementById('checkbox-item-1').checked = false;
+                document.getElementById('checkbox-item-2').checked = false;
+                document.getElementById('checkbox-item-3').checked = false;
+                document.getElementById('checkbox-item-4').checked = false;
+                document.getElementById('checkbox-item-5').checked = false;
+                document.getElementById('checkbox-item-6').checked = false;
+                document.getElementById('checkbox-item-7').checked = false;
+
+            }else{
+
+                document.getElementById('checkbox-item-1').checked = true;
+                document.getElementById('checkbox-item-2').checked = true;
+                document.getElementById('checkbox-item-3').checked = true;
+                document.getElementById('checkbox-item-4').checked = true;
+                document.getElementById('checkbox-item-5').checked = true;
+                document.getElementById('checkbox-item-6').checked = true;
+                document.getElementById('checkbox-item-7').checked = true;
+
+            }
+
+        }
+
+
+
+        let toggleDropdownRotate = ()=>{
+
+            document.getElementById('dropdown_icon').classList.toggle('rotate-180');
+
+        }
+
+
+
+        let clear_filter = ()=>{
+
+
+            document.getElementById('checkbox-item-1').checked = false;
+            document.getElementById('checkbox-item-2').checked = false;
+            document.getElementById('checkbox-item-3').checked = false;
+            document.getElementById('checkbox-item-4').checked = false;
+            document.getElementById('checkbox-item-5').checked = false;
+            document.getElementById('checkbox-item-6').checked = false;
+            document.getElementById('checkbox-item-7').checked = false;
+            document.getElementById('checkbox-all').checked = false;
+
+
+            document.getElementById('datepicker-range-start').value = '';
+            document.getElementById('datepicker-range-end').value = '';
+
+           document.getElementById('filter_clear_loading').classList.remove('hidden');
+
+
+
+            Livewire.dispatch('clear_data', {});
+
+
+        }
+
+
+
+          // Section For Dropdown Management when user clicks outside of the dropdown
+          const dropdown = document.getElementById('full_dropdown_section');
+
+            // Function to handle clicks outside the dropdown
+            document.addEventListener('click', function(event) {
+                const isClickInside = dropdown.contains(event.target);
+
+                // If the click is outside the dropdown, perform an action
+                if (!isClickInside) {
+
+                    if(document.getElementById('dropdown_icon').classList.contains('rotate-180')){
+
+                        document.getElementById('dropdown_icon').classList.remove('rotate-180');
+
+                    } ;
+
+                }
+            });
+
+
+
+
+             // Section For full_filter_options_panel Management when user clicks outside of the dropdown
+             const full_filter_options_panel = document.getElementById('full_filter_options_panel');
+
+            // Function to handle clicks outside the dropdown
+            document.addEventListener('click', function(event) {
+                const isClickInside = full_filter_options_panel.contains(event.target);
+
+
+
+
+                // If the click is outside the dropdown, perform an action
+                if (!isClickInside && document.getElementById('datepicker-range-start') !== document.activeElement && document.getElementById('datepicker-range-end') !== document.activeElement) {
+
+                    if(!document.getElementById('full_filter_options_panel').classList.contains('hidden')){
+
+                        document.getElementById('filter_close_outside_clicking_loading').classList.remove('hidden');
+
+                        Livewire.dispatch('hide_filter_section', {});
+
+                    }
+
+                }
+
+            });
+
+
+
+
+
+
+
+</script>
+
 
 
 

@@ -730,7 +730,7 @@
                 const isClickInside = full_filter_options_panel.contains(event.target);
 
                 // If the click is outside the dropdown, perform an action
-                if (!isClickInside) {
+                if (!isClickInside && document.getElementById('datepicker-range-start') !== document.activeElement && document.getElementById('datepicker-range-end') !== document.activeElement) {
 
                     if(!document.getElementById('full_filter_options_panel').classList.contains('hidden')){
 
